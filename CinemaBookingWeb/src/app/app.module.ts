@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { CostumerComponent } from './components/costumer/costumer.component';
 import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { FrontpageComponent } from './components/frontpage/frontpage.component';
+import { AreapickComponent } from './components/areapick/areapick.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CostumerComponent,
-    LoginComponent
+    LoginComponent,
+    FrontpageComponent,
+    AreapickComponent
   ],
   imports: [
     BrowserModule,

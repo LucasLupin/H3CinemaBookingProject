@@ -1,0 +1,6 @@
+.frontpage {
+    background-color: #1c273a;
+    min-height: calc(100vh - 16rem);
+    color: white;
+    padding: 40px 150px;
+}

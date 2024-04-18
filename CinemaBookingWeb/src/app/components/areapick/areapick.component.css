@@ -1,0 +1,89 @@
+.frontpage {
+    background-color: #1c273a;
+    min-height: calc(100vh - 16rem);
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    color: white;
+}
+
+.logo img {
+    width: 6rem;
+}
+
+.choose-area-wrapper {
+    max-height: calc(100vh - 10rem);
+    height: calc(100vh - 10rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 15rem;
+}
+
+.area-container {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.auditoria-services.com%2Fwp-content%2Fuploads%2F2016%2F11%2FThe-Ultimate-1.jpg&f=1&nofb=1&ipt=ce3e2b8318d93344d6faceceeecb35ebd6c7d2c06f2a497082d6daf90dee5e65&ipo=images');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px 6px rgb(255 255 255 / 7%);
+}
+
+.area-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to left, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 300%);
+    border-radius: 20px;
+}
+
+.area-content {
+    position: relative;
+    z-index: 10;
+    color: white;
+    padding: 100px 400px;
+  }
+
+.btn-areas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.area-btn {
+    background-color: #10151f79;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.671);
+    font-size: 1.5rem;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.area-btn:hover {
+    background-color: #497bdf5c;
+    border: 1px solid #497bdfb0;
+}
+
+.area-container .header {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    padding: 0;
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
