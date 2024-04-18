@@ -1,36 +1,22 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', '../static/css/login.css'],
-  encapsulation: ViewEncapsulation.None 
+  templateUrl: './app.component.html'
+//   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'CinemaBooking';
-  name: string = 'Cinema Booking';
-  age: number = 20;
-  sand: boolean = true;
-  liste: string[] = ['a', 'b', 'c'];
-
-  ngOnInit(): void {
-    console.log('Init method called');
-    this.create();
-  }
-  create(): void {
-    console.log('Create method called');
-  }
-
-  showPassword(): void {
-    const password = document.getElementById('password');
-    if (password) {
-      if (password.getAttribute('type') === 'password') {
-        password.setAttribute('type', 'text');
-      } else {
-        password.setAttribute('type', 'password');
+export class AppComponent implements OnInit {
+    isLoggedIn = false;
+  
+    constructor(private authService: AuthService) {}
+  
+    ngOnInit() {
+      this.authService.currentUser.subscribe(user => {
+        this.isLoggedIn = user != null;
+      });
+      if (!this.isLoggedIn) {
+        console.log("user is not logged in, from app.component.ts")
       }
     }
-
   }
-
-}
