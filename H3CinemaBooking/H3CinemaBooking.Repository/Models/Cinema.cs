@@ -1,4 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace H3CinemaBooking.Repository.Models
 {
@@ -24,5 +26,13 @@ namespace H3CinemaBooking.Repository.Models
         public string Name { get; set; }
         public string Location { get; set; }
         public int NumberOfHalls { get; set; }
+
+        // Foreign key
+        public int AreaID { get; set; }
+
+        // Navigation property
+        [ForeignKey("AreaID")]
+        [JsonIgnore]
+        public virtual Area ?Area { get; set; }
     }
 }

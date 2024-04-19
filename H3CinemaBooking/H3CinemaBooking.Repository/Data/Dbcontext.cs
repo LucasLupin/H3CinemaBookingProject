@@ -23,6 +23,7 @@ namespace H3CinemaBooking.Repository.Data
         public DbSet<BookingSeat> BookingSeats { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<Roles> Roles { get; set; }
+        public DbSet<Area> Areas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +40,11 @@ namespace H3CinemaBooking.Repository.Data
                 .WithMany()
                 .HasForeignKey(ch => ch.CinemaID)
                 .IsRequired();
+
+            modelBuilder.Entity<Cinema>()
+                .HasOne(c => c.Area)
+                .WithMany(a => a.Cinemas)
+                .HasForeignKey(c => c.AreaID); 
 
             modelBuilder.Entity<CinemaHall>()
                 .HasMany(h => h.Seats)
@@ -93,18 +99,21 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "James Bond 1", Duration = 123, Director = "Peter Hunt" }, new Movie { MovieID = 2, Title = "SuperMan 1", Duration = 133, Director = "Guy Hamilton" }, new Movie { MovieID = 3, Title = "SpiderMan 1", Duration = 126, Director = "Michael Apted" });
 
             //MovieGenre Sheet
-          //  modelBuilder.Entity<MovieGenre>().HasData(new MovieGenre { MovieID = 1, GenreID = 1}, new MovieGenre { MovieID = 1, GenreID = 2 }, new MovieGenre { MovieID = 1, GenreID = 3 }, new MovieGenre { MovieID = 2, GenreID = 1 }, new MovieGenre { MovieID = 2, GenreID = 2 }, new MovieGenre { MovieID = 3, GenreID = 1 });
+            //  modelBuilder.Entity<MovieGenre>().HasData(new MovieGenre { MovieID = 1, GenreID = 1}, new MovieGenre { MovieID = 1, GenreID = 2 }, new MovieGenre { MovieID = 1, GenreID = 3 }, new MovieGenre { MovieID = 2, GenreID = 1 }, new MovieGenre { MovieID = 2, GenreID = 2 }, new MovieGenre { MovieID = 3, GenreID = 1 });
+
+            //Area Sheet
+            modelBuilder.Entity<Area>().HasData(new Area { AreaID = 1, AreaName = "StorKøbenhavn" }, new Area { AreaID = 2, AreaName = "Aalborg"}, new Area { AreaID = 3, AreaName = "Aarhus"}, new Area { AreaID = 4, AreaName = "Esbjerg"}, new Area { AreaID = 5, AreaName = "Frederikssund"}, new Area { AreaID = 6, AreaName = "Herning"}, new Area { AreaID = 7, AreaName = "Hillerød"}, new Area { AreaID = 8, AreaName = "Kolding"}, new Area { AreaID = 9, AreaName = "Køge"}, new Area { AreaID = 10, AreaName = "Nykøbing Falster"}, new Area { AreaID = 11, AreaName = "Næstved"}, new Area { AreaID = 12, AreaName = "Odense"}, new Area { AreaID = 13, AreaName = "Randers"}, new Area { AreaID = 14, AreaName = "Viborg"});
 
             //Cinema Sheet
-            modelBuilder.Entity<Cinema>().HasData(new Cinema { CinemaID = 1, Name = "Palace", Location = "NørreBro", NumberOfHalls = 8 }, new Cinema { CinemaID = 2, Name = "Nordisk Biograf", Location = "Fields", NumberOfHalls = 12 }, new Cinema { CinemaID = 3, Name = "CineMAX", Location = "FiskeTorvet", NumberOfHalls = 6 });
+            modelBuilder.Entity<Cinema>().HasData(new Cinema { CinemaID = 1, Name = "Palace", Location = "NørreBro", NumberOfHalls = 8, AreaID = 1 }, new Cinema { CinemaID = 2, Name = "Nordisk Biograf", Location = "Fields", NumberOfHalls = 12, AreaID = 1 }, new Cinema { CinemaID = 3, Name = "CineMAX", Location = "FiskeTorvet", NumberOfHalls = 6, AreaID = 1 }, new Cinema { CinemaID = 4, Name = "Aalborg City Syd", Location = "City Syd", NumberOfHalls = 6, AreaID = 2}, new Cinema { CinemaID = 5, Name = "Trøjborg", Location = "Aarhus", NumberOfHalls = 8, AreaID = 3});
 
             //CinemaHall Sheet
-            modelBuilder.Entity<CinemaHall>().HasData(new CinemaHall { HallsID = 1, CinemaID = 1, HallName = "Sal 1" }, new CinemaHall { HallsID = 2, CinemaID = 2, HallName = "Sal 1" }, new CinemaHall { HallsID = 3, CinemaID = 3, HallName = "Sal 1" });
+            modelBuilder.Entity<CinemaHall>().HasData(new CinemaHall { HallsID = 1, CinemaID = 1, HallName = "Sal 1" }, new CinemaHall { HallsID = 2, CinemaID = 2, HallName = "Sal 1" }, new CinemaHall { HallsID = 3, CinemaID = 3, HallName = "Sal 1" }, new CinemaHall { HallsID = 4, CinemaID = 4, HallName = "Sal 1"}, new CinemaHall { HallsID = 5, CinemaID = 5, HallName = "Sal 1"});
 
             //Seats Sheet
 
             var seats = new List<Seat>();
-            var HallIds = new List<int> { 1, 2, 3 };
+            var HallIds = new List<int> { 1, 2, 3, 4, 5 };
             int seatId = 1;
 
             foreach (var hallId in HallIds)
@@ -125,8 +134,11 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Seat>().HasData(seats.ToList());
 
             //Show Sheet
-            DateTime showDateTime = new DateTime(2023, 11, 5, 19, 0, 0);
-            modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime});
+            DateTime showDateTime = new DateTime(2023, 11, 5, 19, 0, 0); // 2023 11/5 19:00:00
+            DateTime showDateTime1 = new DateTime(2024, 20, 4, 19, 0, 0); // 2024 20/4 19:00:00
+            DateTime showDateTime2 = new DateTime(2024, 20, 4, 15, 0, 0); // 2024 20/4 15:00:00
+            DateTime showDateTime3 = new DateTime(2024, 20, 4, 11, 30, 0); // 2024 20/4 11:30:00
+            modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime1}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime2}, new Show { ShowID = 4, HallID = 4, MovieID = 3, Price = 100, ShowDateTime = showDateTime3}, new Show { ShowID = 5, HallID = 5, MovieID = 3, Price = 100, ShowDateTime = showDateTime1});
 
             //Role Sheet
             modelBuilder.Entity<Roles>().HasData(new Roles { RoleID = 1, RoleName = "Costumer" }, new Roles { RoleID = 2, RoleName = "Admin" });

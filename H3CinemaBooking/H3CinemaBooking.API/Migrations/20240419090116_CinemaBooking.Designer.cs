@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace H3CinemaBooking.API.Migrations
 {
     [DbContext(typeof(Dbcontext))]
-    [Migration("20240418151240_CinemaBooking")]
+    [Migration("20240419090116_CinemaBooking")]
     partial class CinemaBooking
     {
         /// <inheritdoc />
@@ -24,6 +24,95 @@ namespace H3CinemaBooking.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Area", b =>
+                {
+                    b.Property<int>("AreaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AreaID"));
+
+                    b.Property<string>("AreaName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AreaID");
+
+                    b.ToTable("Areas");
+
+                    b.HasData(
+                        new
+                        {
+                            AreaID = 1,
+                            AreaName = "StorKøbenhavn"
+                        },
+                        new
+                        {
+                            AreaID = 2,
+                            AreaName = "Aalborg"
+                        },
+                        new
+                        {
+                            AreaID = 3,
+                            AreaName = "Aarhus"
+                        },
+                        new
+                        {
+                            AreaID = 4,
+                            AreaName = "Esbjerg"
+                        },
+                        new
+                        {
+                            AreaID = 5,
+                            AreaName = "Frederikssund"
+                        },
+                        new
+                        {
+                            AreaID = 6,
+                            AreaName = "Herning"
+                        },
+                        new
+                        {
+                            AreaID = 7,
+                            AreaName = "Hillerød"
+                        },
+                        new
+                        {
+                            AreaID = 8,
+                            AreaName = "Kolding"
+                        },
+                        new
+                        {
+                            AreaID = 9,
+                            AreaName = "Køge"
+                        },
+                        new
+                        {
+                            AreaID = 10,
+                            AreaName = "Nykøbing Falster"
+                        },
+                        new
+                        {
+                            AreaID = 11,
+                            AreaName = "Næstved"
+                        },
+                        new
+                        {
+                            AreaID = 12,
+                            AreaName = "Odense"
+                        },
+                        new
+                        {
+                            AreaID = 13,
+                            AreaName = "Randers"
+                        },
+                        new
+                        {
+                            AreaID = 14,
+                            AreaName = "Viborg"
+                        });
+                });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Booking", b =>
                 {
@@ -120,6 +209,9 @@ namespace H3CinemaBooking.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CinemaID"));
 
+                    b.Property<int>("AreaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -133,12 +225,15 @@ namespace H3CinemaBooking.API.Migrations
 
                     b.HasKey("CinemaID");
 
+                    b.HasIndex("AreaID");
+
                     b.ToTable("Cinemas");
 
                     b.HasData(
                         new
                         {
                             CinemaID = 1,
+                            AreaID = 1,
                             Location = "NørreBro",
                             Name = "Palace",
                             NumberOfHalls = 8
@@ -146,6 +241,7 @@ namespace H3CinemaBooking.API.Migrations
                         new
                         {
                             CinemaID = 2,
+                            AreaID = 1,
                             Location = "Fields",
                             Name = "Nordisk Biograf",
                             NumberOfHalls = 12
@@ -153,6 +249,7 @@ namespace H3CinemaBooking.API.Migrations
                         new
                         {
                             CinemaID = 3,
+                            AreaID = 1,
                             Location = "FiskeTorvet",
                             Name = "CineMAX",
                             NumberOfHalls = 6
@@ -4637,8 +4734,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "TestAdmin@gmail.com",
                             IsActive = true,
                             Name = "AdminGod",
-                            PasswordHash = "sgovuM0XNqkIo7dVGhUVlA==",
-                            PasswordSalt = "V/ZdJB3yF9OE6iOPgs50tg==",
+                            PasswordHash = "HGidM6u5WjyaS/ktEd1vBw==",
+                            PasswordSalt = "6eYl9x1489vmtR8uWKsxmg==",
                             PhoneNumber = "56895423",
                             RoleID = 2
                         },
@@ -4648,8 +4745,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test2@example.com",
                             IsActive = true,
                             Name = "Lucas2",
-                            PasswordHash = "LDTj4fL+murijIX4i0e7kw==",
-                            PasswordSalt = "rHsgyk01D3muGG8TQ5n15A==",
+                            PasswordHash = "kzHlImt/y9MIu4SQ/DVZEg==",
+                            PasswordSalt = "0Fb+RcRey8xh0kwVFRkwVQ==",
                             PhoneNumber = "123457892",
                             RoleID = 1
                         },
@@ -4659,8 +4756,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test3@example.com",
                             IsActive = true,
                             Name = "Lucas3",
-                            PasswordHash = "4PqVVu+vw9SexUovyaJ6Pg==",
-                            PasswordSalt = "JoWUUBn2EkYp1ew6PttyLw==",
+                            PasswordHash = "wCPWclsGjvc6WHbxxmhbag==",
+                            PasswordSalt = "o9A3InhmDerExI2oaoyUFw==",
                             PhoneNumber = "123457893",
                             RoleID = 1
                         },
@@ -4670,8 +4767,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test4@example.com",
                             IsActive = true,
                             Name = "Lucas4",
-                            PasswordHash = "72uEcJT5Tqd0lUU+2tKV2w==",
-                            PasswordSalt = "4tSDtPLAzPFczUEP1uQPaA==",
+                            PasswordHash = "smUfywO1tgVqy3KAjFV0TA==",
+                            PasswordSalt = "veycA39zeqKhTLiKXmeEtA==",
                             PhoneNumber = "123457894",
                             RoleID = 1
                         });
@@ -4730,6 +4827,17 @@ namespace H3CinemaBooking.API.Migrations
                     b.Navigation("Seat");
                 });
 
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Cinema", b =>
+                {
+                    b.HasOne("H3CinemaBooking.Repository.Models.Area", "Area")
+                        .WithMany("Cinemas")
+                        .HasForeignKey("AreaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Area");
+                });
+
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.CinemaHall", b =>
                 {
                     b.HasOne("H3CinemaBooking.Repository.Models.Cinema", null)
@@ -4778,6 +4886,11 @@ namespace H3CinemaBooking.API.Migrations
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Area", b =>
+                {
+                    b.Navigation("Cinemas");
                 });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Booking", b =>

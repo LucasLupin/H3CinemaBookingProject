@@ -15,13 +15,16 @@ builder.Services.AddScoped<IUserDetailRepository, UserDetailRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IShowRepository, ShowRepository>();
-builder.Services.AddScoped<IGenericRepository<Cinema>, GenericRepository<Cinema>>();
-builder.Services.AddScoped<IGenericRepository<CinemaHall>, GenericRepository<CinemaHall>>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<ISeatRepository, SeatRepository>();
 builder.Services.AddScoped<Roles>();
 
+//Add Generic Repository to Services, And add services to the container
+builder.Services.AddScoped<IGenericRepository<Cinema>, GenericRepository<Cinema>>();
+builder.Services.AddScoped<IGenericRepository<CinemaHall>, GenericRepository<CinemaHall>>();
+builder.Services.AddScoped<IGenericRepository<Area>, GenericRepository<Area>>();
 
+//Add service to Services, And add services to the container
 builder.Services.AddScoped<IUserDetailService, UserDetailService>();
 builder.Services.AddScoped<HashingService>();
 

@@ -14,18 +14,16 @@ namespace H3CinemaBooking.API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Cinemas",
+                name: "Areas",
                 columns: table => new
                 {
-                    CinemaID = table.Column<int>(type: "int", nullable: false)
+                    AreaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumberOfHalls = table.Column<int>(type: "int", nullable: false)
+                    AreaName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cinemas", x => x.CinemaID);
+                    table.PrimaryKey("PK_Areas", x => x.AreaID);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,22 +87,24 @@ namespace H3CinemaBooking.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CinemaHalls",
+                name: "Cinemas",
                 columns: table => new
                 {
-                    HallsID = table.Column<int>(type: "int", nullable: false)
+                    CinemaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CinemaID = table.Column<int>(type: "int", nullable: false),
-                    HallName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumberOfHalls = table.Column<int>(type: "int", nullable: false),
+                    AreaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CinemaHalls", x => x.HallsID);
+                    table.PrimaryKey("PK_Cinemas", x => x.CinemaID);
                     table.ForeignKey(
-                        name: "FK_CinemaHalls_Cinemas_CinemaID",
-                        column: x => x.CinemaID,
-                        principalTable: "Cinemas",
-                        principalColumn: "CinemaID",
+                        name: "FK_Cinemas_Areas_AreaID",
+                        column: x => x.AreaID,
+                        principalTable: "Areas",
+                        principalColumn: "AreaID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -129,6 +129,26 @@ namespace H3CinemaBooking.API.Migrations
                         column: x => x.MovieID,
                         principalTable: "Movies",
                         principalColumn: "MovieID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CinemaHalls",
+                columns: table => new
+                {
+                    HallsID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CinemaID = table.Column<int>(type: "int", nullable: false),
+                    HallName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CinemaHalls", x => x.HallsID);
+                    table.ForeignKey(
+                        name: "FK_CinemaHalls_Cinemas_CinemaID",
+                        column: x => x.CinemaID,
+                        principalTable: "Cinemas",
+                        principalColumn: "CinemaID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -238,13 +258,24 @@ namespace H3CinemaBooking.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Cinemas",
-                columns: new[] { "CinemaID", "Location", "Name", "NumberOfHalls" },
+                table: "Areas",
+                columns: new[] { "AreaID", "AreaName" },
                 values: new object[,]
                 {
-                    { 1, "NørreBro", "Palace", 8 },
-                    { 2, "Fields", "Nordisk Biograf", 12 },
-                    { 3, "FiskeTorvet", "CineMAX", 6 }
+                    { 1, "StorKøbenhavn" },
+                    { 2, "Aalborg" },
+                    { 3, "Aarhus" },
+                    { 4, "Esbjerg" },
+                    { 5, "Frederikssund" },
+                    { 6, "Herning" },
+                    { 7, "Hillerød" },
+                    { 8, "Kolding" },
+                    { 9, "Køge" },
+                    { 10, "Nykøbing Falster" },
+                    { 11, "Næstved" },
+                    { 12, "Odense" },
+                    { 13, "Randers" },
+                    { 14, "Viborg" }
                 });
 
             migrationBuilder.InsertData(
@@ -281,10 +312,20 @@ namespace H3CinemaBooking.API.Migrations
                 columns: new[] { "UserDetailID", "Email", "IsActive", "Name", "PasswordHash", "PasswordSalt", "PhoneNumber", "RoleID" },
                 values: new object[,]
                 {
-                    { 1, "test2@example.com", true, "Lucas2", "LDTj4fL+murijIX4i0e7kw==", "rHsgyk01D3muGG8TQ5n15A==", "123457892", 1 },
-                    { 2, "test3@example.com", true, "Lucas3", "4PqVVu+vw9SexUovyaJ6Pg==", "JoWUUBn2EkYp1ew6PttyLw==", "123457893", 1 },
-                    { 3, "test4@example.com", true, "Lucas4", "72uEcJT5Tqd0lUU+2tKV2w==", "4tSDtPLAzPFczUEP1uQPaA==", "123457894", 1 },
-                    { 10, "TestAdmin@gmail.com", true, "AdminGod", "sgovuM0XNqkIo7dVGhUVlA==", "V/ZdJB3yF9OE6iOPgs50tg==", "56895423", 2 }
+                    { 1, "test2@example.com", true, "Lucas2", "kzHlImt/y9MIu4SQ/DVZEg==", "0Fb+RcRey8xh0kwVFRkwVQ==", "123457892", 1 },
+                    { 2, "test3@example.com", true, "Lucas3", "wCPWclsGjvc6WHbxxmhbag==", "o9A3InhmDerExI2oaoyUFw==", "123457893", 1 },
+                    { 3, "test4@example.com", true, "Lucas4", "smUfywO1tgVqy3KAjFV0TA==", "veycA39zeqKhTLiKXmeEtA==", "123457894", 1 },
+                    { 10, "TestAdmin@gmail.com", true, "AdminGod", "HGidM6u5WjyaS/ktEd1vBw==", "6eYl9x1489vmtR8uWKsxmg==", "56895423", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cinemas",
+                columns: new[] { "CinemaID", "AreaID", "Location", "Name", "NumberOfHalls" },
+                values: new object[,]
+                {
+                    { 1, 1, "NørreBro", "Palace", 8 },
+                    { 2, 1, "Fields", "Nordisk Biograf", 12 },
+                    { 3, 1, "FiskeTorvet", "CineMAX", 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -950,6 +991,11 @@ namespace H3CinemaBooking.API.Migrations
                 column: "CinemaID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cinemas_AreaID",
+                table: "Cinemas",
+                column: "AreaID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MovieGenre_MovieID",
                 table: "MovieGenre",
                 column: "MovieID");
@@ -1005,6 +1051,9 @@ namespace H3CinemaBooking.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cinemas");
+
+            migrationBuilder.DropTable(
+                name: "Areas");
         }
     }
 }

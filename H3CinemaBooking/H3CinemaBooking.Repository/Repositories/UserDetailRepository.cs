@@ -31,7 +31,7 @@ namespace H3CinemaBooking.Repository.Repositories
             return result;
         }
 
-        //TODO: Get All UserDetailsw
+        //TODO: Get All UserDetails
         public List<UserDetail> GetAll()
         {
             var result = context.UserDetails.ToList();
