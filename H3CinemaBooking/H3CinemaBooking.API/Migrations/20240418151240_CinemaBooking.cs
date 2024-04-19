@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace H3CinemaBooking.Repository.Migrations
+namespace H3CinemaBooking.API.Migrations
 {
     /// <inheritdoc />
     public partial class CinemaBooking : Migration
@@ -13,22 +13,6 @@ namespace H3CinemaBooking.Repository.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AdminUsers",
-                columns: table => new
-                {
-                    AdminUserID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdminUsers", x => x.AdminUserID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Cinemas",
                 columns: table => new
@@ -42,24 +26,6 @@ namespace H3CinemaBooking.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cinemas", x => x.CinemaID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Costumers",
-                columns: table => new
-                {
-                    CostumerID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Costumers", x => x.CostumerID);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,6 +54,38 @@ namespace H3CinemaBooking.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.MovieID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    RoleID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.RoleID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserDetail",
+                columns: table => new
+                {
+                    UserDetailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoleID = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserDetail", x => x.UserDetailID);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,16 +197,16 @@ namespace H3CinemaBooking.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Bookings", x => x.BookingID);
                     table.ForeignKey(
-                        name: "FK_Bookings_Costumers_CostumerID",
-                        column: x => x.CostumerID,
-                        principalTable: "Costumers",
-                        principalColumn: "CostumerID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Bookings_Shows_ShowID",
                         column: x => x.ShowID,
                         principalTable: "Shows",
                         principalColumn: "ShowID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_UserDetail_CostumerID",
+                        column: x => x.CostumerID,
+                        principalTable: "UserDetail",
+                        principalColumn: "UserDetailID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -240,11 +238,6 @@ namespace H3CinemaBooking.Repository.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AdminUsers",
-                columns: new[] { "AdminUserID", "Email", "Name", "PasswordHash", "PasswordSalt" },
-                values: new object[] { 1, "AdminTest@gmail.com", "AdminGod", "F2WcM7myzsTye8M1U9TI4Q==", "91ftUprXOuqlP6Q9ANRzSQ==" });
-
-            migrationBuilder.InsertData(
                 table: "Cinemas",
                 columns: new[] { "CinemaID", "Location", "Name", "NumberOfHalls" },
                 values: new object[,]
@@ -252,16 +245,6 @@ namespace H3CinemaBooking.Repository.Migrations
                     { 1, "NørreBro", "Palace", 8 },
                     { 2, "Fields", "Nordisk Biograf", 12 },
                     { 3, "FiskeTorvet", "CineMAX", 6 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Costumers",
-                columns: new[] { "CostumerID", "Email", "IsActive", "Name", "PasswordHash", "PasswordSalt", "PhoneNumber" },
-                values: new object[,]
-                {
-                    { 1, "test2@example.com", true, "Lucas2", "GBQKmBMqf8gPAfAujnJ23A==", "7acTkVJFoVInmB4ZA5ZBrQ==", "123457892" },
-                    { 2, "test3@example.com", true, "Lucas3", "LDGzWs9389ewNsGfS3wUZQ==", "Hj7nwj0ALFZETWUDG2uGsg==", "123457893" },
-                    { 3, "test4@example.com", true, "Lucas4", "sK7gA4IX5em95bgLP+MqXw==", "YRxPEKOsWJywJmjUUyUWgA==", "123457894" }
                 });
 
             migrationBuilder.InsertData(
@@ -282,6 +265,26 @@ namespace H3CinemaBooking.Repository.Migrations
                     { 1, "Peter Hunt", 123, "James Bond 1" },
                     { 2, "Guy Hamilton", 133, "SuperMan 1" },
                     { 3, "Michael Apted", 126, "SpiderMan 1" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RoleID", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "Costumer" },
+                    { 2, "Admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserDetail",
+                columns: new[] { "UserDetailID", "Email", "IsActive", "Name", "PasswordHash", "PasswordSalt", "PhoneNumber", "RoleID" },
+                values: new object[,]
+                {
+                    { 1, "test2@example.com", true, "Lucas2", "LDTj4fL+murijIX4i0e7kw==", "rHsgyk01D3muGG8TQ5n15A==", "123457892", 1 },
+                    { 2, "test3@example.com", true, "Lucas3", "4PqVVu+vw9SexUovyaJ6Pg==", "JoWUUBn2EkYp1ew6PttyLw==", "123457893", 1 },
+                    { 3, "test4@example.com", true, "Lucas4", "72uEcJT5Tqd0lUU+2tKV2w==", "4tSDtPLAzPFczUEP1uQPaA==", "123457894", 1 },
+                    { 10, "TestAdmin@gmail.com", true, "AdminGod", "sgovuM0XNqkIo7dVGhUVlA==", "V/ZdJB3yF9OE6iOPgs50tg==", "56895423", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -971,13 +974,13 @@ namespace H3CinemaBooking.Repository.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AdminUsers");
-
-            migrationBuilder.DropTable(
                 name: "BookingSeats");
 
             migrationBuilder.DropTable(
                 name: "MovieGenre");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Bookings");
@@ -989,10 +992,10 @@ namespace H3CinemaBooking.Repository.Migrations
                 name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "Costumers");
+                name: "Shows");
 
             migrationBuilder.DropTable(
-                name: "Shows");
+                name: "UserDetail");
 
             migrationBuilder.DropTable(
                 name: "CinemaHalls");

@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace H3CinemaBooking.Repository.Models
 {
-    public class AdminUser
+    public class Roles
     {
         [Key]
-        public int AdminUserID { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        [JsonIgnore]
-        public string ?PasswordSalt { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

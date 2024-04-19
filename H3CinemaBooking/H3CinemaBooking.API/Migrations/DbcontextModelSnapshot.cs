@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace H3CinemaBooking.Repository.Migrations
+namespace H3CinemaBooking.API.Migrations
 {
     [DbContext(typeof(Dbcontext))]
     partial class DbcontextModelSnapshot : ModelSnapshot
@@ -21,45 +21,6 @@ namespace H3CinemaBooking.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("H3CinemaBooking.Repository.Models.AdminUser", b =>
-                {
-                    b.Property<int>("AdminUserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminUserID"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AdminUserID");
-
-                    b.ToTable("AdminUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            AdminUserID = 1,
-                            Email = "AdminTest@gmail.com",
-                            Name = "AdminGod",
-                            PasswordHash = "F2WcM7myzsTye8M1U9TI4Q==",
-                            PasswordSalt = "91ftUprXOuqlP6Q9ANRzSQ=="
-                        });
-                });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Booking", b =>
                 {
@@ -237,72 +198,6 @@ namespace H3CinemaBooking.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Costumer", b =>
-                {
-                    b.Property<int>("CostumerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CostumerID"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordSalt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CostumerID");
-
-                    b.ToTable("Costumers");
-
-                    b.HasData(
-                        new
-                        {
-                            CostumerID = 1,
-                            Email = "test2@example.com",
-                            IsActive = true,
-                            Name = "Lucas2",
-                            PasswordHash = "GBQKmBMqf8gPAfAujnJ23A==",
-                            PasswordSalt = "7acTkVJFoVInmB4ZA5ZBrQ==",
-                            PhoneNumber = "123457892"
-                        },
-                        new
-                        {
-                            CostumerID = 2,
-                            Email = "test3@example.com",
-                            IsActive = true,
-                            Name = "Lucas3",
-                            PasswordHash = "LDGzWs9389ewNsGfS3wUZQ==",
-                            PasswordSalt = "Hj7nwj0ALFZETWUDG2uGsg==",
-                            PhoneNumber = "123457893"
-                        },
-                        new
-                        {
-                            CostumerID = 3,
-                            Email = "test4@example.com",
-                            IsActive = true,
-                            Name = "Lucas4",
-                            PasswordHash = "sK7gA4IX5em95bgLP+MqXw==",
-                            PasswordSalt = "YRxPEKOsWJywJmjUUyUWgA==",
-                            PhoneNumber = "123457894"
-                        });
-                });
-
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Genre", b =>
                 {
                     b.Property<int>("GenreID")
@@ -381,6 +276,35 @@ namespace H3CinemaBooking.Repository.Migrations
                             Director = "Michael Apted",
                             Duration = 126,
                             Title = "SpiderMan 1"
+                        });
+                });
+
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Roles", b =>
+                {
+                    b.Property<int>("RoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"));
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleID");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleID = 1,
+                            RoleName = "Costumer"
+                        },
+                        new
+                        {
+                            RoleID = 2,
+                            RoleName = "Admin"
                         });
                 });
 
@@ -4666,6 +4590,90 @@ namespace H3CinemaBooking.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.UserDetail", b =>
+                {
+                    b.Property<int>("UserDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserDetailID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordSalt")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserDetailID");
+
+                    b.ToTable("UserDetail");
+
+                    b.HasData(
+                        new
+                        {
+                            UserDetailID = 10,
+                            Email = "TestAdmin@gmail.com",
+                            IsActive = true,
+                            Name = "AdminGod",
+                            PasswordHash = "sgovuM0XNqkIo7dVGhUVlA==",
+                            PasswordSalt = "V/ZdJB3yF9OE6iOPgs50tg==",
+                            PhoneNumber = "56895423",
+                            RoleID = 2
+                        },
+                        new
+                        {
+                            UserDetailID = 1,
+                            Email = "test2@example.com",
+                            IsActive = true,
+                            Name = "Lucas2",
+                            PasswordHash = "LDTj4fL+murijIX4i0e7kw==",
+                            PasswordSalt = "rHsgyk01D3muGG8TQ5n15A==",
+                            PhoneNumber = "123457892",
+                            RoleID = 1
+                        },
+                        new
+                        {
+                            UserDetailID = 2,
+                            Email = "test3@example.com",
+                            IsActive = true,
+                            Name = "Lucas3",
+                            PasswordHash = "4PqVVu+vw9SexUovyaJ6Pg==",
+                            PasswordSalt = "JoWUUBn2EkYp1ew6PttyLw==",
+                            PhoneNumber = "123457893",
+                            RoleID = 1
+                        },
+                        new
+                        {
+                            UserDetailID = 3,
+                            Email = "test4@example.com",
+                            IsActive = true,
+                            Name = "Lucas4",
+                            PasswordHash = "72uEcJT5Tqd0lUU+2tKV2w==",
+                            PasswordSalt = "4tSDtPLAzPFczUEP1uQPaA==",
+                            PhoneNumber = "123457894",
+                            RoleID = 1
+                        });
+                });
+
             modelBuilder.Entity("MovieGenre", b =>
                 {
                     b.Property<int>("GenreID")
@@ -4683,7 +4691,7 @@ namespace H3CinemaBooking.Repository.Migrations
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Booking", b =>
                 {
-                    b.HasOne("H3CinemaBooking.Repository.Models.Costumer", "Costumer")
+                    b.HasOne("H3CinemaBooking.Repository.Models.UserDetail", "Costumer")
                         .WithMany("Bookings")
                         .HasForeignKey("CostumerID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4779,17 +4787,17 @@ namespace H3CinemaBooking.Repository.Migrations
                     b.Navigation("Seats");
                 });
 
-            modelBuilder.Entity("H3CinemaBooking.Repository.Models.Costumer", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Seat", b =>
                 {
                     b.Navigation("BookingSeats");
                 });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Show", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("H3CinemaBooking.Repository.Models.UserDetail", b =>
                 {
                     b.Navigation("Bookings");
                 });

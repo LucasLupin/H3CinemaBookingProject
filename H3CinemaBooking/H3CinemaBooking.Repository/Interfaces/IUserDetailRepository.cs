@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace H3CinemaBooking.Repository.Interfaces
 {
-    public interface ICostumerRepository
+    public interface IUserDetailRepository
     {
-        Costumer Create(Costumer costumer);
-        Costumer GetById(int id);
-        List<Costumer> GetAll();
-        void DeleteByID(int id, Costumer costumer);
+        UserDetail Create(UserDetail userDetail);
+        UserDetail GetById(int id);
+        List<UserDetail> GetAll();
+        void DeleteByID(int id, UserDetail userDetail);
     }
 }

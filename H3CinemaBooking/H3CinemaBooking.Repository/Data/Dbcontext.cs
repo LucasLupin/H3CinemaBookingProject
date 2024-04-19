@@ -12,16 +12,17 @@ namespace H3CinemaBooking.Repository.Data
 
         }
 
-        public DbSet<Costumer> Costumers { get; set; }
+        public DbSet<UserDetail> Costumers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<CinemaHall> CinemaHalls { get; set; }
         public DbSet<Show> Shows { get; set; }
-        public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<BookingSeat> BookingSeats { get; set; }
+        public DbSet<UserDetail> UserDetails { get; set; }
+        public DbSet<Roles> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -127,40 +128,44 @@ namespace H3CinemaBooking.Repository.Data
             DateTime showDateTime = new DateTime(2023, 11, 5, 19, 0, 0);
             modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime});
 
-            // Costumer Sheet
-            var customers = new List<Costumer>();
+            //Role Sheet
+            modelBuilder.Entity<Roles>().HasData(new Roles { RoleID = 1, RoleName = "Costumer" }, new Roles { RoleID = 2, RoleName = "Admin" });
+
+            // UserDetail Sheet
+            var UserDetails = new List<UserDetail>();
             var hashingService = new HashingService();
             var passwords = new List<string> { "Test123", "Test321", "Test0987654" };
+            
+            int UserDetailID = 1;  // Start UserDetail IDs from 1
+            
+            string AdmSalt = hashingService.GenerateSalt();
+            string AdmHash = hashingService.HashPassword(passwords[1], AdmSalt);
 
-            int customerId = 1;  // Start customer IDs from 1
+            modelBuilder.Entity<UserDetail>().HasData(new UserDetail { UserDetailID = 10, Name = "AdminGod", Email = "TestAdmin@gmail.com", PasswordHash = AdmHash, PasswordSalt = AdmSalt, PhoneNumber = "56895423", RoleID = 2, IsActive = true });
+            
             foreach (var password in passwords)
             {
                 string salt = hashingService.GenerateSalt();
                 string hash = hashingService.HashPassword(password, salt);
 
-                customers.Add(new Costumer
+                UserDetails.Add(new UserDetail
                 {
-                    CostumerID = customerId++,
-                    Name = "Lucas" + (customerId),
-                    Email = $"test{customerId}@example.com",
+                    UserDetailID = UserDetailID++,
+                    Name = "Lucas" + (UserDetailID),
+                    Email = $"test{UserDetailID}@example.com",
                     PasswordHash = hash,
                     PasswordSalt = salt,
-                    PhoneNumber = "12345789" + (customerId).ToString(),
+                    PhoneNumber = "12345789" + (UserDetailID).ToString(),
+                    RoleID = 1,
                     IsActive = true
                 });
             }
 
-            modelBuilder.Entity<Costumer>().HasData(customers);
-
-            //Adminuser Sheet
-            var AdmPassword = "AdminErSej";
-            var Admsalt = hashingService.GenerateSalt();
-            var Admhash = hashingService.HashPassword(AdmPassword, Admsalt);
-
-            modelBuilder.Entity<AdminUser>().HasData(new AdminUser { AdminUserID = 1, Name = "AdminGod", Email = "AdminTest@gmail.com", PasswordHash = Admhash, PasswordSalt = Admsalt});
-
+            modelBuilder.Entity<UserDetail>().HasData(UserDetails);
+            
             //Booking Sheet
             modelBuilder.Entity<Booking>().HasData(new Booking { BookingID = 1, ShowID = 1, CostumerID = 1, Price = 125, NumberOfSeats = 8, IsActive = true }, new Booking { BookingID = 2, ShowID = 2, CostumerID = 2, Price = 110, NumberOfSeats = 12, IsActive = true }, new Booking { BookingID = 3, ShowID = 3, CostumerID = 3, Price = 100, NumberOfSeats = 6, IsActive = true }); ;
+
             //BookingSeat Sheet
 
         }

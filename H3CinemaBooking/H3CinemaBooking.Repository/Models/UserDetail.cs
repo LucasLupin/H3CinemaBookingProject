@@ -18,15 +18,16 @@ namespace H3CinemaBooking.Repository.Models
     /// 7) Done
     /// 8) If The F....S....n....w
     /// </summary>
-    public class Costumer
+    public class UserDetail
     {
-        public int CostumerID { get; set; }
+        public int UserDetailID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         [JsonIgnore]
         public string ?PasswordSalt { get; set; }
         public string PhoneNumber { get; set; }
+        public int RoleID { get; set; }
 
         [JsonIgnore]
         public List<Booking> ?Bookings { get; set; }

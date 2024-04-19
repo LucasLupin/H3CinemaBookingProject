@@ -10,41 +10,41 @@ using System.Threading.Tasks;
 
 namespace H3CinemaBooking.Repository.Repositories
 {
-    public class CostumerRepository : ICostumerRepository
+    public class UserDetailRepository : IUserDetailRepository
     {
         private readonly Dbcontext context;
 
-        public CostumerRepository(Dbcontext _context)
+        public UserDetailRepository(Dbcontext _context)
         {
             context = _context;
         }
 
-        public Costumer Create(Costumer costumer)
+        public UserDetail Create(UserDetail userDetail)
         {
-            context.Costumers.Add(costumer);
+            context.UserDetails.Add(userDetail);
             context.SaveChanges();
-            return costumer;
+            return userDetail;
         }
-        public Costumer GetById(int Id)
+        public UserDetail GetById(int Id)
         {
-            var result = context.Costumers.FirstOrDefault(c => c.CostumerID == Id);
+            var result = context.UserDetails.FirstOrDefault(c => c.UserDetailID == Id);
             return result;
         }
 
-        //TODO: Get All Costumer
-        public List<Costumer> GetAll()
+        //TODO: Get All UserDetailsw
+        public List<UserDetail> GetAll()
         {
-            var result = context.Costumers.ToList();
+            var result = context.UserDetails.ToList();
             return result;
         }
 
-        public void DeleteByID(int Id, Costumer costumer)
+        public void DeleteByID(int Id, UserDetail userDetail)
         {
-            if (costumer != null)
+            if (userDetail != null)
             {
                 // Set IsActive to false instead of removing the customer
-                costumer.IsActive = false;
-                context.Update(costumer);
+                userDetail.IsActive = false;
+                context.Update(userDetail);
                 context.SaveChanges();
             }
         }

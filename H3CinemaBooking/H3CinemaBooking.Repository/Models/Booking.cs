@@ -19,6 +19,6 @@ namespace H3CinemaBooking.Repository.Models
         public virtual List<BookingSeat> ?BookingSeats { get; set; }
 
         public Show ?Show { get; set; } 
-        public Costumer ?Costumer { get; set; }
+        public UserDetail ?Costumer { get; set; }
     }
 }

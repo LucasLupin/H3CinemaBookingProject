@@ -3,53 +3,55 @@ using H3CinemaBooking.Repository.Service;
 using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using System.Collections.Generic;
+using H3CinemaBooking.Repository.Interfaces;
 
 namespace H3CinemaBooking.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminUserController : ControllerBase
+    public class UserDetailController : ControllerBase
     {
-        private readonly AdminUserService _adminservice;
+        private readonly IUserDetailService _userDetailService;
 
-        public AdminUserController(AdminUserService adminUserService)
+        public UserDetailController(IUserDetailService userDetailService)
         {
-            _adminservice = adminUserService;
+            _userDetailService = userDetailService;
         }
 
+
         [HttpGet]
-        public ActionResult<List<AdminUser>> GetAll()
+        public ActionResult<List<UserDetail>> GetAll()
         {
-            var result = _adminservice.GetAll();
+            var result = _userDetailService.GetAllUserDetail();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<AdminUser> GetByID(int id)
+        public ActionResult<UserDetail> GetByID(int id)
         {
-            var admin = _adminservice.GetById(id);
-            if (admin == null)
+            var userdetail = _userDetailService.GetUserDetailById(id);
+            if (userdetail == null)
             {
                 return NotFound();
             }
-            return Ok(admin);
+            return Ok(userdetail);
         }
 
         [HttpPost]
-        public ActionResult<AdminUser> Post(AdminUser admin)
+        public ActionResult<UserDetail> Post(UserDetail userDetail)
         {
-            var (hash, salt) = _adminservice.Create(admin);
+            var (hash, salt) = _userDetailService.CreateUserDetail(userDetail);
             if (string.IsNullOrEmpty(hash) || string.IsNullOrEmpty(salt))
             {
                 return BadRequest("Failed to create customer due to password hashing failure.");
             }
-            return Ok(admin);
+            return Ok(userDetail);
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _adminservice.Delete(id);
+            _userDetailService.DeleteUserdetail(id);
             return Ok();
         }
 
