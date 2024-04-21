@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /H3CinemaBooking/H3CinemaBooking.API/appsettings.json
 /H3CinemaBooking/H3CinemaBooking.API/appsettings.Development.json
+/CinemaBookingWeb/.angular/cache

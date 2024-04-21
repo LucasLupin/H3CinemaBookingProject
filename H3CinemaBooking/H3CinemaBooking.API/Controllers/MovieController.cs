@@ -24,7 +24,7 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<List<Movie>> GetAll()
         {
             var result = _movieRepository.GetAll();
-            return Ok($"Hello From MovieController GetAll Result: {result}");
+            return Ok(result);
         }
 
         // GET api/<MovieController>/id

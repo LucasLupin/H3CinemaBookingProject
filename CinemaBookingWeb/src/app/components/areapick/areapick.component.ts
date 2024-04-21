@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Area } from 'src/app/models/area/area';
+import { AreaService } from 'src/app/services/area.service';
 
 @Component({
   selector: 'app-areapick',
@@ -7,11 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./areapick.component.css']
 })
 export class AreapickComponent {
-  constructor(private router: Router) {}
+  AreaList : Area[] = [];
+
+  constructor(private router: Router, private service: AreaService) {}
+
   ngOnInit() {
+    this.service.getAll().subscribe(data => {
+      this.AreaList = data;
+      console.log("Data: ", data);
+      console.log("AreaList: ", this.AreaList);
+    })
   }
 
-  onAreaButtonClick(city: string) {
+  onAreaButtonClick(city?: string, cityID? : number) {
     if (city) {
       // Tjek med API om den valgte by findes, gør den det, så gem byen i localstorage og redirect til forsiden
       localStorage.setItem('selectedCity', city);

@@ -23,7 +23,7 @@ export class CostumerComponent {
     })
   }// end ngOnInit
 
-  constructor(private service: CostumerService){
+  constructor(private service: CostumerService ){
     
   }
 

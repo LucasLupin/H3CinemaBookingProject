@@ -1,4 +1,4 @@
-<nav class="navbar">
+<!-- <nav class="navbar">
   <ul>
     <li>
       <a class="roboto-bold-italic" routerLink="/home" routerLinkActive="active">Home</a>
@@ -27,4 +27,42 @@
 </div>
 <footer class="footer">
   <p>© 2024 CinemaBooking</p>
-</footer>
+</footer> -->
+
+
+<div class="layout-container">
+  <nav id="menu">
+    <div class="region region-menu">
+      <nav role="navigation" id="block-mainnavigation">
+        <ul class="menu">
+          <li class="menu-item-expand">
+            <span class="icon-bio" (click)="toggleCinemaDisplay()">Biografer <span class="arrow" [class.up]="showCinemaList"></span></span>
+            <div class="cinema-list" id="cinemaList">
+              <div class="cinema-column">
+                <span>Storkøbenhavn</span>
+                <ul>
+                  <li>
+                    <a href="">Dagmar</a>
+                  </li>
+                  <li>
+                    <a href="">Falkoner Bio</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="cinema-column">
+                <span>Jylland</span>
+                <ul>
+                  <li>Aalborg City Syd</li>
+                  <li>Aarhus C</li>
+                </ul>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </nav>
+</div>
+
