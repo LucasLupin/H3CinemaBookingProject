@@ -359,6 +359,84 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# Environment-specific files that contain sensitive information
+**/appsettings*.json
+
+# Angular specific
+**/node_modules/
+**/dist/
+**/.angular/cache/
+
+# Visual Studio Code - You might want to ignore VS Code settings if you're using it
+.vscode/
+
+# .NET specific
+**/bin/
+**/obj/
+**/*.user
+**/*.userosscache
+**/*.suo
+**/*.cache
+**/*.db
+
+# Rider - JetBrains Rider specific
+.idea/
+
+# Visual Studio specific
+*.dbmdl
+*.dbproj.schemaview
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build results
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Others
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+*.dotCover
+*.ncrunch*
+*.local.xml
+autoexp.dat
+*.TestLeft*
+*.tlog
+*.trx
+*.testsettings
+*.vsmdi
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Coverage Files
+*.coveragexml
+*.coverage
+coverage/
+coverage.json
+coverage.info
+coverage.lcov
+
+# .NET Benchmarking tool artifacts
+BenchmarkDotNet.Artifacts/
+
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /H3CinemaBooking/H3CinemaBooking.API/appsettings.json
