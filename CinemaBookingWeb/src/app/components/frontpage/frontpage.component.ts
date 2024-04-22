@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { Cinema } from 'src/app/models/cinema/cinema';
 import { Movie } from 'src/app/models/movie/movie';
 import { Show } from 'src/app/models/show/show';
-import { CinemaService } from 'src/app/services/cinema.service';
-import { MovieService } from 'src/app/services/movie.service';
-import { ShowService } from 'src/app/services/show.service';
+import { GenericService } from 'src/app/services/generic.services';
 
 @Component({
   selector: 'app-frontpage',
@@ -14,8 +12,11 @@ import { ShowService } from 'src/app/services/show.service';
 })
 export class FrontpageComponent {
 
-  constructor(private router: Router, private movieService: MovieService, private showService: ShowService, private cinemaService: CinemaService) {}
-
+  constructor(
+    private cinemaService: GenericService<Cinema>,
+    private movieService: GenericService<Movie>,
+    private showService: GenericService<Show>
+  ) {}
   cinemaList : Cinema[] = [];
   movieList : Movie[] = [];
   showList : Show[] = [];
@@ -26,15 +27,15 @@ export class FrontpageComponent {
 
   ngOnInit() {
 
-    this.movieService.getAll().subscribe(data => {
+    this.movieService.getAll('movie').subscribe(data => {
       this.movieList = data;
       console.log("MovieList: ", this.movieList);
 
-    this.showService.getAll().subscribe(data => {
+    this.showService.getAll('show').subscribe(data => {
       this.showList = data;
       console.log("ShowList: ", this.showList)
 
-      this.cinemaService.getAll().subscribe(data => {
+      this.cinemaService.getAll('cinema').subscribe(data => {
         this.cinemaList = data;
         console.log("CinemaList: ", this.cinemaList);
       })
