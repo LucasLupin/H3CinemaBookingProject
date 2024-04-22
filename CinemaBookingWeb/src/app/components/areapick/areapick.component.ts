@@ -22,11 +22,18 @@ export class AreapickComponent {
     })
   }
 
-  onAreaButtonClick(city?: string, cityID? : number) {
-    if (city) {
-      // Tjek med API om den valgte by findes, gør den det, så gem byen i localstorage og redirect til forsiden
-      localStorage.setItem('selectedCity', city);
+  onAreaButtonClick(cityName?: string, cityID? : number) {
+    if (cityName && cityID !== undefined) {
+      const cityData = {
+        name: cityName,
+        id: cityID
+      };
+  
+      const cityDataString = JSON.stringify(cityData);
+  
+      localStorage.setItem('selectedCity', cityDataString);
+  
       this.router.navigateByUrl('/');
     }
-  }
+  }  
 }
