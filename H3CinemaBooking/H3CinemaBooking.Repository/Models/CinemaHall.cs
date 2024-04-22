@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace H3CinemaBooking.Repository.Models
 {
@@ -7,8 +8,9 @@ namespace H3CinemaBooking.Repository.Models
     {
         [Key]
         public int HallsID { get; set; }
-        public int CinemaID { get; set; }
         public string HallName { get; set; }
+        [ForeignKey("CinemaID")]
+        public int CinemaID { get; set; }
         public List<Seat> Seats { get; set; }
     }
 }
