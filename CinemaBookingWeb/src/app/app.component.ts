@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
       });
       const city = localStorage.getItem('selectedCity');
       if (!city) {
+        // TODO: Tjek om selectedCity.id findes i backenden, hvis ikke, så skal den fjerne nuværende localstorage og redirect til areapick
         console.log('No city selected, redirecting to select-city');
         this.router.navigate(['/areapick']);
       }
