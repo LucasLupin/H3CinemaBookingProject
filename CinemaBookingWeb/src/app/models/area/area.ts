@@ -13,4 +13,5 @@ export class Area
 { 
   areaID? : number
   areaName? : string
+  regionID?: number
 }

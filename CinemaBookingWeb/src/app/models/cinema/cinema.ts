@@ -4,4 +4,5 @@ export class Cinema
   name?: string
   location?: string
   numberOfHalls?: number
+  areaID?: number
 }

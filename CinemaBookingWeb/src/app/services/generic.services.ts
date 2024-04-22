@@ -13,9 +13,10 @@ export class GenericService<Tentity> {
 
   }
 
-  getAll(type:string): Observable<Tentity[]>{
-    return this.http.get<Tentity[]>(this.url + type)
+  getAll(endpoint: string): Observable<Tentity[]> {
+    return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`);
   }
+
 
   delete(type:string, entityToDelete:number): boolean {
     this.http.delete(this.url + type + '/' + entityToDelete)

@@ -34,51 +34,34 @@
   <nav id="menu">
     <div class="region region-menu">
       <nav role="navigation" id="block-mainnavigation">
-        <ul class="menu">
-          <li class="menu-item-expand">
-            <span class="icon-bio" (click)="toggleCinemaDisplay()">Biografer <span class="arrow" [class.up]="showCinemaList"></span></span>
-            <div class="cinema-list" id="cinemaList">
-              <div class="cinema-column">
-                <span>Storkøbenhavn</span>
-                <ul>
-                  <li>
-                    <a href="">Dagmar</a>
-                  </li>
-                  <li>
-                    <a href="">Falkoner Bio</a>
-                  </li>
-                </ul>
+        <div class="navbar-left">
+          <ul class="menu">
+            <li class="menu-item-expand">
+              <span class="icon-bio" (click)="toggleCinemaDisplay()">Biografer <span class="arrow" [class.up]="showCinemaList"></span></span>
+              <div class="cinema-list" [ngStyle]="{'display': showCinemaList ? 'flex' : 'none'}" id="cinemaList">
+                <div class="cinema-column" *ngFor="let region of regionList">
+                  <span>{{ region.regionName }}</span>
+                  <ul>
+                    <li *ngFor="let cinema of cinemasByRegion[region.regionName]">
+                      <a href="#">{{ cinema.name }}</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
+            </li>
+          </ul>
+        </div>
 
-              <div class="cinema-column">
-                <span>Jylland</span>
-                <ul>
-                  <li>
-                    <a href="">Dagmar</a>
-                  </li>
-                  <li>
-                    <a href="">Falkoner Bio</a>
-                  </li>
-                </ul>
-              </div>
+        <div id="sitebranding" class="sitebranding">
+          <a href="/" class="logo">
+            <img src="https://www.nfbio.dk/themes/custom/nfbiodk/logo.svg" alt="logo">
+          </a>
+        </div>
 
-              <div class="cinema-column">
-                <span>Jylland</span>
-                <ul>
-                  <li>
-                    <a href="">Dagmar</a>
-                  </li>
-                  <li>
-                    <a href="">Falkoner Bio</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div class="navbar-right">
+        </div>
 
-          </li>
-        </ul>
       </nav>
     </div>
   </nav>
 </div>
-

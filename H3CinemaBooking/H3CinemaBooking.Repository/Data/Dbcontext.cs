@@ -99,7 +99,7 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "James Bond 1", Duration = 123, Director = "Peter Hunt" }, new Movie { MovieID = 2, Title = "SuperMan 1", Duration = 133, Director = "Guy Hamilton" }, new Movie { MovieID = 3, Title = "SpiderMan 1", Duration = 126, Director = "Michael Apted" });
 
             //Region Sheet
-            modelBuilder.Entity<Region>().HasData(new Region { RegionID = 1, RegionName = "Storkøbenhavn" }, new Region { RegionID = 2, RegionName = "Jylland" }, new Region { RegionID = 3, RegionName = "Sjælland og Øerne" }, new Region { RegionID = 4, RegionName = "Fyn" });
+            modelBuilder.Entity<Region>().HasData(new Region { RegionID = 1, RegionName = "Storkøbenhavn" }, new Region { RegionID = 2, RegionName = "Jylland" }, new Region { RegionID = 3, RegionName = "Sjælland og Øer" }, new Region { RegionID = 4, RegionName = "Fyn" });
 
             //MovieGenre Sheet
             //  modelBuilder.Entity<MovieGenre>().HasData(new MovieGenre { MovieID = 1, GenreID = 1}, new MovieGenre { MovieID = 1, GenreID = 2 }, new MovieGenre { MovieID = 1, GenreID = 3 }, new MovieGenre { MovieID = 2, GenreID = 1 }, new MovieGenre { MovieID = 2, GenreID = 2 }, new MovieGenre { MovieID = 3, GenreID = 1 });

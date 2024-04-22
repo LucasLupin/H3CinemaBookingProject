@@ -29,7 +29,7 @@ nav#menu {
 
 .icon-bio {
     font-family: "Inter-Black", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color:white;
     margin-right: 30px;
     white-space: nowrap;
@@ -45,18 +45,18 @@ nav#menu {
 }
 
 .cinema-list {
-    display: none; 
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap; 
-    background: #121223;
-    list-style-type: none;
-    position: absolute;
-    width: 600px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    font-size: 1.3rem;
-    justify-content: space-between;
+  display: none; 
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap; 
+  background: #121223;
+  list-style-type: none;
+  position: absolute;
+  width: 800px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-size: 1rem;
+  z-index: 1;
   }
 
   .cinema-column {
@@ -77,7 +77,7 @@ nav#menu {
     padding: 10px 0;
     color: white;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     border-bottom: 1px solid rgb(27, 27, 73);
   }
 
@@ -101,9 +101,27 @@ nav#menu {
     color: white;
     cursor: pointer;
     font-size: 12px;
-    border-bottom: 1px solid rgb(27, 27, 73);
+    /*border-bottom: 1px solid rgb(27, 27, 73);*/
   }
 
   .cinema-column ul a {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
+
+  div#sitebranding {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 40px);
+    width: 80px;
+    z-index: 0;
+}
+
+.sitebranding {
+  justify-self: center;
+}
+
+.logo img {
+  width: 4.5rem;
+}
