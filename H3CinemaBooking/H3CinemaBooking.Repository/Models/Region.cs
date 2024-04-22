@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace H3CinemaBooking.Repository.Models
 {
-    public class Area
+    public class Region
     {
-        public int AreaID { get; set; }
-        public string AreaName { get; set; }
         public int RegionID { get; set; }
+        public string RegionName { get; set; }
         [JsonIgnore]
-        public virtual List<Cinema> ?Cinemas { get; set; }
+        public virtual List<Area>? Areas { get; set; }
     }
 }

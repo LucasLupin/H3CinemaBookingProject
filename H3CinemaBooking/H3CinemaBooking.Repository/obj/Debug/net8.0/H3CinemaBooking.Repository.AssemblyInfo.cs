@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("H3CinemaBooking.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf4713c15803bdd97b4709cd8be4fc3ffb169d38")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74ceb5d5c2d136cf5f8f58dba37551ac6b468fa2")]
 [assembly: System.Reflection.AssemblyProductAttribute("H3CinemaBooking.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("H3CinemaBooking.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

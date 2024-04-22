@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace H3CinemaBooking.API.Migrations
 {
     [DbContext(typeof(Dbcontext))]
-    [Migration("20240419090116_CinemaBooking")]
-    partial class CinemaBooking
+    [Migration("20240422064104_Cinemabooking")]
+    partial class Cinemabooking
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace H3CinemaBooking.API.Migrations
                         new
                         {
                             AreaID = 1,
-                            AreaName = "StorKøbenhavn"
+                            AreaName = "Storkøbenhavn"
                         },
                         new
                         {
@@ -253,6 +253,22 @@ namespace H3CinemaBooking.API.Migrations
                             Location = "FiskeTorvet",
                             Name = "CineMAX",
                             NumberOfHalls = 6
+                        },
+                        new
+                        {
+                            CinemaID = 4,
+                            AreaID = 2,
+                            Location = "City Syd",
+                            Name = "Aalborg City Syd",
+                            NumberOfHalls = 6
+                        },
+                        new
+                        {
+                            CinemaID = 5,
+                            AreaID = 3,
+                            Location = "Aarhus",
+                            Name = "Trøjborg",
+                            NumberOfHalls = 8
                         });
                 });
 
@@ -294,6 +310,18 @@ namespace H3CinemaBooking.API.Migrations
                         {
                             HallsID = 3,
                             CinemaID = 3,
+                            HallName = "Sal 1"
+                        },
+                        new
+                        {
+                            HallsID = 4,
+                            CinemaID = 4,
+                            HallName = "Sal 1"
+                        },
+                        new
+                        {
+                            HallsID = 5,
+                            CinemaID = 5,
                             HallName = "Sal 1"
                         });
                 });
@@ -4632,6 +4660,2806 @@ namespace H3CinemaBooking.API.Migrations
                             HallID = 3,
                             SeatNumber = 20,
                             SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 601,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 602,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 603,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 604,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 605,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 606,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 607,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 608,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 609,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 610,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 611,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 612,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 613,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 614,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 615,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 616,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 617,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 618,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 619,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 620,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 621,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 622,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 623,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 624,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 625,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 626,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 627,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 628,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 629,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 630,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 631,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 632,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 633,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 634,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 635,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 636,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 637,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 638,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 639,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 640,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 641,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 642,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 643,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 644,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 645,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 646,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 647,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 648,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 649,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 650,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 651,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 652,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 653,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 654,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 655,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 656,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 657,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 658,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 659,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 660,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 661,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 662,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 663,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 664,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 665,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 666,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 667,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 668,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 669,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 670,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 671,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 672,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 673,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 674,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 675,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 676,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 677,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 678,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 679,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 680,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 681,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 682,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 683,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 684,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 685,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 686,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 687,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 688,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 689,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 690,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 691,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 692,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 693,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 694,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 695,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 696,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 697,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 698,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 699,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 700,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 701,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 702,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 703,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 704,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 705,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 706,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 707,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 708,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 709,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 710,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 711,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 712,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 713,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 714,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 715,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 716,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 717,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 718,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 719,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 720,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 721,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 722,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 723,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 724,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 725,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 726,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 727,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 728,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 729,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 730,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 731,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 732,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 733,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 734,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 735,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 736,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 737,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 738,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 739,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 740,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 741,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 742,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 743,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 744,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 745,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 746,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 747,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 748,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 749,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 750,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 751,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 752,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 753,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 754,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 755,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 756,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 757,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 758,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 759,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 760,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 761,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 762,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 763,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 764,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 765,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 766,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 767,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 768,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 769,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 770,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 771,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 772,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 773,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 774,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 775,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 776,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 777,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 778,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 779,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 780,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 781,
+                            HallID = 4,
+                            SeatNumber = 1,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 782,
+                            HallID = 4,
+                            SeatNumber = 2,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 783,
+                            HallID = 4,
+                            SeatNumber = 3,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 784,
+                            HallID = 4,
+                            SeatNumber = 4,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 785,
+                            HallID = 4,
+                            SeatNumber = 5,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 786,
+                            HallID = 4,
+                            SeatNumber = 6,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 787,
+                            HallID = 4,
+                            SeatNumber = 7,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 788,
+                            HallID = 4,
+                            SeatNumber = 8,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 789,
+                            HallID = 4,
+                            SeatNumber = 9,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 790,
+                            HallID = 4,
+                            SeatNumber = 10,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 791,
+                            HallID = 4,
+                            SeatNumber = 11,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 792,
+                            HallID = 4,
+                            SeatNumber = 12,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 793,
+                            HallID = 4,
+                            SeatNumber = 13,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 794,
+                            HallID = 4,
+                            SeatNumber = 14,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 795,
+                            HallID = 4,
+                            SeatNumber = 15,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 796,
+                            HallID = 4,
+                            SeatNumber = 16,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 797,
+                            HallID = 4,
+                            SeatNumber = 17,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 798,
+                            HallID = 4,
+                            SeatNumber = 18,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 799,
+                            HallID = 4,
+                            SeatNumber = 19,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 800,
+                            HallID = 4,
+                            SeatNumber = 20,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 801,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 802,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 803,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 804,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 805,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 806,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 807,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 808,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 809,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 810,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 811,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 812,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 813,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 814,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 815,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 816,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 817,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 818,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 819,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 820,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 821,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 822,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 823,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 824,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 825,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 826,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 827,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 828,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 829,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 830,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 831,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 832,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 833,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 834,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 835,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 836,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 837,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 838,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 839,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 840,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 841,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 842,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 843,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 844,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 845,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 846,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 847,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 848,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 849,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 850,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 851,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 852,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 853,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 854,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 855,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 856,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 857,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 858,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 859,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 860,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 861,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 862,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 863,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 864,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 865,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 866,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 867,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 868,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 869,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 870,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 871,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 872,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 873,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 874,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 875,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 876,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 877,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 878,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 879,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 880,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 881,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 882,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 883,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 884,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 885,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 886,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 887,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 888,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 889,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 890,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 891,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 892,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 893,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 894,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 895,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 896,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 897,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 898,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 899,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 900,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 901,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 902,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 903,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 904,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 905,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 906,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 907,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 908,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 909,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 910,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 911,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 912,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 913,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 914,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 915,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 916,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 917,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 918,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 919,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 920,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 921,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 922,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 923,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 924,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 925,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 926,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 927,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 928,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 929,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 930,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 931,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 932,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 933,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 934,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 935,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 936,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 937,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 938,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 939,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 940,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 941,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 942,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 943,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 944,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 945,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 946,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 947,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 948,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 949,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 950,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 951,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 952,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 953,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 954,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 955,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 956,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 957,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 958,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 959,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 960,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 961,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 962,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 963,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 964,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 965,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 966,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 967,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 968,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 969,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 970,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 971,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 972,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 973,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 974,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 975,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 976,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 977,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 978,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 979,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 980,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 981,
+                            HallID = 5,
+                            SeatNumber = 1,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 982,
+                            HallID = 5,
+                            SeatNumber = 2,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 983,
+                            HallID = 5,
+                            SeatNumber = 3,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 984,
+                            HallID = 5,
+                            SeatNumber = 4,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 985,
+                            HallID = 5,
+                            SeatNumber = 5,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 986,
+                            HallID = 5,
+                            SeatNumber = 6,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 987,
+                            HallID = 5,
+                            SeatNumber = 7,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 988,
+                            HallID = 5,
+                            SeatNumber = 8,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 989,
+                            HallID = 5,
+                            SeatNumber = 9,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 990,
+                            HallID = 5,
+                            SeatNumber = 10,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 991,
+                            HallID = 5,
+                            SeatNumber = 11,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 992,
+                            HallID = 5,
+                            SeatNumber = 12,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 993,
+                            HallID = 5,
+                            SeatNumber = 13,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 994,
+                            HallID = 5,
+                            SeatNumber = 14,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 995,
+                            HallID = 5,
+                            SeatNumber = 15,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 996,
+                            HallID = 5,
+                            SeatNumber = 16,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 997,
+                            HallID = 5,
+                            SeatNumber = 17,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 998,
+                            HallID = 5,
+                            SeatNumber = 18,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 999,
+                            HallID = 5,
+                            SeatNumber = 19,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1000,
+                            HallID = 5,
+                            SeatNumber = 20,
+                            SeatRow = "J"
                         });
                 });
 
@@ -4670,7 +7498,7 @@ namespace H3CinemaBooking.API.Migrations
                             HallID = 1,
                             MovieID = 1,
                             Price = 125.0,
-                            ShowDateTime = new DateTime(2023, 11, 5, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2023, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -4678,7 +7506,7 @@ namespace H3CinemaBooking.API.Migrations
                             HallID = 2,
                             MovieID = 2,
                             Price = 110.0,
-                            ShowDateTime = new DateTime(2023, 11, 5, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -4686,7 +7514,23 @@ namespace H3CinemaBooking.API.Migrations
                             HallID = 3,
                             MovieID = 3,
                             Price = 100.0,
-                            ShowDateTime = new DateTime(2023, 11, 5, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 4, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 4,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 4, 20, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 5,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -4734,8 +7578,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "TestAdmin@gmail.com",
                             IsActive = true,
                             Name = "AdminGod",
-                            PasswordHash = "HGidM6u5WjyaS/ktEd1vBw==",
-                            PasswordSalt = "6eYl9x1489vmtR8uWKsxmg==",
+                            PasswordHash = "mXCXpdNz75e0ppjt+yjlGw==",
+                            PasswordSalt = "CBnKSvdPpcdAn9/lA5KFIQ==",
                             PhoneNumber = "56895423",
                             RoleID = 2
                         },
@@ -4745,8 +7589,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test2@example.com",
                             IsActive = true,
                             Name = "Lucas2",
-                            PasswordHash = "kzHlImt/y9MIu4SQ/DVZEg==",
-                            PasswordSalt = "0Fb+RcRey8xh0kwVFRkwVQ==",
+                            PasswordHash = "62F/xhkWfxo9J19J/x54Gw==",
+                            PasswordSalt = "X2/HmL9xg8Lxp57qOLhuIg==",
                             PhoneNumber = "123457892",
                             RoleID = 1
                         },
@@ -4756,8 +7600,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test3@example.com",
                             IsActive = true,
                             Name = "Lucas3",
-                            PasswordHash = "wCPWclsGjvc6WHbxxmhbag==",
-                            PasswordSalt = "o9A3InhmDerExI2oaoyUFw==",
+                            PasswordHash = "qPYbK3Oq8FLCp6Th1yxEAw==",
+                            PasswordSalt = "FHn1g8Zc/2CgHhNRu1UcRg==",
                             PhoneNumber = "123457893",
                             RoleID = 1
                         },
@@ -4767,8 +7611,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test4@example.com",
                             IsActive = true,
                             Name = "Lucas4",
-                            PasswordHash = "smUfywO1tgVqy3KAjFV0TA==",
-                            PasswordSalt = "veycA39zeqKhTLiKXmeEtA==",
+                            PasswordHash = "R7S++eL4iTjdmXFtn/gLVw==",
+                            PasswordSalt = "iN+0PtbJjY0OJxotGZQ13g==",
                             PhoneNumber = "123457894",
                             RoleID = 1
                         });

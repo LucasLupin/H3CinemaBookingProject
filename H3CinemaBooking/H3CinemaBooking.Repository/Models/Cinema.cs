@@ -34,5 +34,8 @@ namespace H3CinemaBooking.Repository.Models
         [ForeignKey("AreaID")]
         [JsonIgnore]
         public virtual Area ?Area { get; set; }
+
+        [JsonIgnore]
+        public virtual CinemaHall? CinemaHall { get; set; }
     }
 }
