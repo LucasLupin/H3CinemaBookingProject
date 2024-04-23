@@ -8,6 +8,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { AreapickComponent } from './components/areapick/areapick.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AreapickComponent } from './components/areapick/areapick.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

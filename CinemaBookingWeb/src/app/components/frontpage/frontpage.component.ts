@@ -8,6 +8,7 @@ import { Region } from 'src/app/models/region/region.module';
 import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
+import { faTicket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-frontpage',
@@ -15,6 +16,7 @@ import { GenericService } from 'src/app/services/generic.services';
   styleUrls: ['./frontpage.component.css']
 })
 export class FrontpageComponent {
+  faTicket = faTicket;
   cinemaList : Cinema[] = [];
   movieList : Movie[] = [];
   showList : Show[] = [];
