@@ -1,35 +1,3 @@
-<!-- <nav class="navbar">
-  <ul>
-    <li>
-      <a class="roboto-bold-italic" routerLink="/home" routerLinkActive="active">Home</a>
-    </li>
-    <li>
-      <a routerLink="/movies" routerLinkActive="active">Movies</a>
-    </li>
-    <li>
-      <a routerLink="/bookings" routerLinkActive="active">Bookings</a>
-    </li>
-  </ul>
-  <div class="activeArea">
-    <select class="custom-select">
-      <option value="volvo">Aalborg</option>
-      <option value="saab">Aarhus</option>
-      <option value="mercedes">København</option>
-      <option value="audi">Odense</option>
-    </select>
-  </div>
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-  <a routerLink="/logout" routerLinkActive="active">Logout</a>
-</nav>
-<div class="frontpage">
-    <p>FRONT PAGE!</p>
-    <p>DIN VALGTE BY!: {{chosenCity}}</p>
-</div>
-<footer class="footer">
-  <p>© 2024 CinemaBooking</p>
-</footer> -->
-
-
 <div class="layout-container">
   <nav id="menu">
     <div class="region region-menu">
@@ -59,6 +27,14 @@
         </div>
 
         <div class="navbar-right">
+          <div class="Area-List">
+            <select class="Area-select" (change)="onAreaChange($event)">
+              <option Class="Area-Select-Option" *ngFor="let area of areaList" [value]="area.areaID">{{area.areaName}}</option>
+            </select>
+          </div>
+          
+          <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="isLoggedIn" routerLink="/logout" routerLinkActive="active">Logout</a>
         </div>
 
       </nav>

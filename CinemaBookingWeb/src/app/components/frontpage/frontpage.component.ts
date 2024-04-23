@@ -6,6 +6,7 @@ import { Cinema } from 'src/app/models/cinema/cinema';
 import { Movie } from 'src/app/models/movie/movie';
 import { Region } from 'src/app/models/region/region.module';
 import { Show } from 'src/app/models/show/show';
+import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
 
 @Component({
@@ -24,18 +25,24 @@ export class FrontpageComponent {
   
   chosenCity: string = '';
   showCinemaList: boolean = false;
+  isLoggedIn = false;
 
   constructor(
     private cinemaService: GenericService<Cinema>,
     private movieService: GenericService<Movie>,
     private showService: GenericService<Show>,
     private regionService: GenericService<Region>,
-    private areaService: GenericService<Area>
+    private areaService: GenericService<Area>,
+    private authService: AuthService
   ) {}
 
 
 
   ngOnInit() {
+
+    this.authService.currentUser.subscribe(user => {
+      this.isLoggedIn = this.authService.isLoggedIn();
+    });
 
     this.regionService.getAll('region').pipe(
       switchMap(regions => {
@@ -94,4 +101,20 @@ export class FrontpageComponent {
   toggleCinemaDisplay(): void {
       this.showCinemaList = !this.showCinemaList;
   }
-}
+
+  onAreaChange(event: any): void {
+    const selectedAreaID = event.target.value;
+
+    const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID)
+      if (selectedArea && selectedAreaID !== undefined) {
+        const areaData = {
+          name: selectedArea.areaName,
+          id: selectedAreaID
+        };
+        const areaDatastring = JSON.stringify(areaData);
+      localStorage.setItem('selectedCity', areaDatastring);
+      console.log("SelectedCity", areaDatastring);
+    }
+    }
+  }
+  
