@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,14 @@ export class GenericService<Tentity> {
     return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`);
   }
 
-
-  delete(type:string, entityToDelete:number): boolean {
-    this.http.delete(this.url + type + '/' + entityToDelete)
-    return true;
+  save(endpoint: string, data: Tentity): Observable<Tentity> {
+    return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data);
   }
+
+  delete(endpoint: string, id: number): Observable<boolean> {
+    return this.http.delete(`${environment.apiUrl}${endpoint}/${id}`).pipe(
+      map(() => true)
+    );
 }
+
+ }

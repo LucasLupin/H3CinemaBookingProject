@@ -42,6 +42,7 @@
   </nav>
   <main role="main">
     <div class="layout-content">
+      <div class="Frontpage-container">
         <div class="field-items">
           <div class="grid-container">
 
@@ -98,9 +99,43 @@
             </div>
           </div>
         </div>
+        </div>
+
+        <div Class="Movie-Header">
+          <span>Planlæg dit biografbesøg i {{SelectedCityName}}</span>
+        </div>
+
+        <div class="Filter-container">
+          <div class="dropdown-filters">
+            <select class="filter-dropdown">
+              <option *ngFor="let cinema of cinemaInSelectedArea">{{cinema.name}}</option>
+            </select>
+            <select class="filter-dropdown">
+              <option>Vælg film</option>
+            </select>
+            <select class="filter-dropdown">
+              <option>Vælg Genre</option>
+            </select>
+          </div>
+
+          <div class="movie-container">
+            <div *ngFor="let movie of movieList" class="movie-entry">
+              <div class="movie-image">
+                <img [src]="movie.movieLink" alt="{{ movie.title }}" width="220" height="330" />
+              </div>
+              <div class="movie-info">
+                <h2>
+                  <span class="Movie-Title">{{ movie.title }}</span>
+                </h2>
+                <button class="buy-button">Køb <fa-icon [icon]="faTicket"></fa-icon></button>
+              </div>
+            </div>
+          </div>
+          
+
+
       </div>
-
-
+      </div>
     </div>
   </main>
 </div>

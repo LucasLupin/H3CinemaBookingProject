@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace H3CinemaBooking.API.Migrations
 {
     [DbContext(typeof(Dbcontext))]
-    [Migration("20240422101931_Cinemabooking")]
+    [Migration("20240424114149_Cinemabooking")]
     partial class Cinemabooking
     {
         /// <inheritdoc />
@@ -538,6 +538,10 @@ namespace H3CinemaBooking.API.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
+                    b.Property<string>("MovieLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -550,23 +554,26 @@ namespace H3CinemaBooking.API.Migrations
                         new
                         {
                             MovieID = 1,
-                            Director = "Peter Hunt",
+                            Director = "Peter Molde-Amelung",
                             Duration = 123,
-                            Title = "James Bond 1"
+                            MovieLink = "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg",
+                            Title = "Jagt Sæson 2"
                         },
                         new
                         {
                             MovieID = 2,
-                            Director = "Guy Hamilton",
-                            Duration = 133,
-                            Title = "SuperMan 1"
+                            Director = "Luca Guadagnino",
+                            Duration = 251,
+                            MovieLink = "/static/assets/images/Challenger_Movie.jpeg",
+                            Title = "Challenger"
                         },
                         new
                         {
                             MovieID = 3,
-                            Director = "Michael Apted",
+                            Director = "Mike Mitchell",
                             Duration = 126,
-                            Title = "SpiderMan 1"
+                            MovieLink = "/static/assets/images/Kungfu-Panda4.jpeg",
+                            Title = "Kung-Fu Panda 4"
                         });
                 });
 
@@ -600,7 +607,7 @@ namespace H3CinemaBooking.API.Migrations
                         new
                         {
                             RegionID = 3,
-                            RegionName = "Sjælland og Øerne"
+                            RegionName = "Sjælland og Øer"
                         },
                         new
                         {
@@ -7733,6 +7740,22 @@ namespace H3CinemaBooking.API.Migrations
                             MovieID = 3,
                             Price = 100.0,
                             ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 6,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2023, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 7,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 120.0,
+                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -7780,8 +7803,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "TestAdmin@gmail.com",
                             IsActive = true,
                             Name = "AdminGod",
-                            PasswordHash = "/SykNDorUEwUHIzyr31ddQ==",
-                            PasswordSalt = "V7EFhwoxmCb0Z3276a/OmA==",
+                            PasswordHash = "om9vTchWYaGrQ26KjjryZg==",
+                            PasswordSalt = "zulwpSPQqHwkHgX4Ib5ZAg==",
                             PhoneNumber = "56895423",
                             RoleID = 2
                         },
@@ -7791,8 +7814,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test2@example.com",
                             IsActive = true,
                             Name = "Lucas2",
-                            PasswordHash = "TlyOdd+HHnTbs7tdBM1Yig==",
-                            PasswordSalt = "TLcc6lEd2HQSB1g3/kW+9w==",
+                            PasswordHash = "c9Q7q1DG+mKs9VUb71UARg==",
+                            PasswordSalt = "r5lkM804hYnqNVtBRsRX1Q==",
                             PhoneNumber = "123457892",
                             RoleID = 1
                         },
@@ -7802,8 +7825,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test3@example.com",
                             IsActive = true,
                             Name = "Lucas3",
-                            PasswordHash = "/j2m+iH3oVYLukyN2XTcrQ==",
-                            PasswordSalt = "hne3dEw5p3DW7PZB7vUW1A==",
+                            PasswordHash = "WT3uHjKIOdgde88DNLc0mA==",
+                            PasswordSalt = "QA9CsfXVCnMz0mRMp3ZnPA==",
                             PhoneNumber = "123457893",
                             RoleID = 1
                         },
@@ -7813,8 +7836,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test4@example.com",
                             IsActive = true,
                             Name = "Lucas4",
-                            PasswordHash = "BiqMg0JGHACRQEZRZjHa/A==",
-                            PasswordSalt = "MIsMFcjFEnM8mTz+HXC3Gw==",
+                            PasswordHash = "LMeWWb+GP5EKZX3ZwPSxcw==",
+                            PasswordSalt = "sNIPzJzRgFS91zk1jiklfw==",
                             PhoneNumber = "123457894",
                             RoleID = 1
                         });

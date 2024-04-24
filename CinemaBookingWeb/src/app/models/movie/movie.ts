@@ -4,4 +4,5 @@ export class Movie
     title?: string
     duration?: number
     director?: string
+    movieLink?: string
 }

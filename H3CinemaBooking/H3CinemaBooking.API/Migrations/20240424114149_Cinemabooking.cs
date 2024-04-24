@@ -34,7 +34,8 @@ namespace H3CinemaBooking.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
-                    Director = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Director = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieLink = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -289,12 +290,12 @@ namespace H3CinemaBooking.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "MovieID", "Director", "Duration", "Title" },
+                columns: new[] { "MovieID", "Director", "Duration", "MovieLink", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Peter Hunt", 123, "James Bond 1" },
-                    { 2, "Guy Hamilton", 133, "SuperMan 1" },
-                    { 3, "Michael Apted", 126, "SpiderMan 1" }
+                    { 1, "Peter Molde-Amelung", 123, "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg", "Jagt Sæson 2" },
+                    { 2, "Luca Guadagnino", 251, "/static/assets/images/Challenger_Movie.jpeg", "Challenger" },
+                    { 3, "Mike Mitchell", 126, "/static/assets/images/Kungfu-Panda4.jpeg", "Kung-Fu Panda 4" }
                 });
 
             migrationBuilder.InsertData(
@@ -304,7 +305,7 @@ namespace H3CinemaBooking.API.Migrations
                 {
                     { 1, "Storkøbenhavn" },
                     { 2, "Jylland" },
-                    { 3, "Sjælland og Øerne" },
+                    { 3, "Sjælland og Øer" },
                     { 4, "Fyn" }
                 });
 
@@ -322,10 +323,10 @@ namespace H3CinemaBooking.API.Migrations
                 columns: new[] { "UserDetailID", "Email", "IsActive", "Name", "PasswordHash", "PasswordSalt", "PhoneNumber", "RoleID" },
                 values: new object[,]
                 {
-                    { 1, "test2@example.com", true, "Lucas2", "TlyOdd+HHnTbs7tdBM1Yig==", "TLcc6lEd2HQSB1g3/kW+9w==", "123457892", 1 },
-                    { 2, "test3@example.com", true, "Lucas3", "/j2m+iH3oVYLukyN2XTcrQ==", "hne3dEw5p3DW7PZB7vUW1A==", "123457893", 1 },
-                    { 3, "test4@example.com", true, "Lucas4", "BiqMg0JGHACRQEZRZjHa/A==", "MIsMFcjFEnM8mTz+HXC3Gw==", "123457894", 1 },
-                    { 10, "TestAdmin@gmail.com", true, "AdminGod", "/SykNDorUEwUHIzyr31ddQ==", "V7EFhwoxmCb0Z3276a/OmA==", "56895423", 2 }
+                    { 1, "test2@example.com", true, "Lucas2", "c9Q7q1DG+mKs9VUb71UARg==", "r5lkM804hYnqNVtBRsRX1Q==", "123457892", 1 },
+                    { 2, "test3@example.com", true, "Lucas3", "WT3uHjKIOdgde88DNLc0mA==", "QA9CsfXVCnMz0mRMp3ZnPA==", "123457893", 1 },
+                    { 3, "test4@example.com", true, "Lucas4", "LMeWWb+GP5EKZX3ZwPSxcw==", "sNIPzJzRgFS91zk1jiklfw==", "123457894", 1 },
+                    { 10, "TestAdmin@gmail.com", true, "AdminGod", "om9vTchWYaGrQ26KjjryZg==", "zulwpSPQqHwkHgX4Ib5ZAg==", "56895423", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -1407,7 +1408,9 @@ namespace H3CinemaBooking.API.Migrations
                     { 2, 2, 2, 110.0, new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3, 3, 3, 100.0, new DateTime(2024, 4, 20, 15, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 4, 4, 3, 100.0, new DateTime(2024, 4, 20, 11, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 5, 3, 100.0, new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 5, 5, 3, 100.0, new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 1, 2, 100.0, new DateTime(2023, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 1, 3, 120.0, new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

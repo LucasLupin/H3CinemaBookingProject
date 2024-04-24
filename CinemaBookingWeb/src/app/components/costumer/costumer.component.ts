@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Subscriber } from 'rxjs';
 import { Costumer } from 'src/app/models/costumer/costumer';
 import { CostumerService } from 'src/app/services/costumer.service';
@@ -13,21 +14,20 @@ export class CostumerComponent {
   costumer : Costumer = {};
   costumerList : Costumer[] = [];
 
+  UserdetailForm: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    descibtion: new FormControl(''),
+    age: new FormControl(''),
+  });
+
+  public create(): void{
+    console.log(this.UserdetailForm.value);
+  }
+
   ngOnInit(): void {
     // this.costumerList = this.service.getAll();
-    // console.log("This is Version3: ", this.costumerList);
-    this.service.getAll().subscribe(data => {
-      this.costumerList = data;
-      console.log("data: ", data);
-      console.log("CostumerList: ", this.costumerList);
-    })
+    }
   }// end ngOnInit
 
-  constructor(private service: CostumerService ){
-    
-  }
 
-  getAll3(): void {
-
-  }
-}//end Class
+//end Class

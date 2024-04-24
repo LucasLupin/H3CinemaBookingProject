@@ -17,11 +17,13 @@ import { faTicket } from '@fortawesome/free-solid-svg-icons';
 })
 export class FrontpageComponent {
   faTicket = faTicket;
+  SelectedCityName: string = "";
   cinemaList : Cinema[] = [];
   movieList : Movie[] = [];
   showList : Show[] = [];
   areaList: Area[] = [];
   regionList: Region[] = [];
+  cinemaInSelectedArea: Cinema[] = [];
   cinemasByRegion: { [key: string]: Cinema[] } = {}; 
 // Dette er en syntax i Typescript som fungere lidt som et Dictonary. Den bruger regionName som Key og Value fra Cinema som Values
   
@@ -30,6 +32,7 @@ export class FrontpageComponent {
   isLoggedIn = false;
 
   constructor(
+    private router: Router,
     private cinemaService: GenericService<Cinema>,
     private movieService: GenericService<Movie>,
     private showService: GenericService<Show>,
@@ -65,7 +68,10 @@ export class FrontpageComponent {
       })
     ).subscribe(movies => {
       this.movieList = movies;
+      console.log("Movie: ", this.movieList);
+      
       this.mapCinemasToRegions();
+      this.FindCinemaBySelectedArea();
     });
 
     //Check om brugeren allerede har en valgt by i deres session, hvis ikke, så skal de fremvises areapick
@@ -75,6 +81,9 @@ export class FrontpageComponent {
       this.chosenCity = city;
       // Hent alt data der er for den valgte by
       console.log('Selected city:', city);
+    }
+    else {
+      this.router.navigateByUrl("/areapick")
     }
   }
   
@@ -106,17 +115,33 @@ export class FrontpageComponent {
 
   onAreaChange(event: any): void {
     const selectedAreaID = event.target.value;
-
-    const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID)
-      if (selectedArea && selectedAreaID !== undefined) {
-        const areaData = {
-          name: selectedArea.areaName,
-          id: selectedAreaID
-        };
-        const areaDatastring = JSON.stringify(areaData);
-      localStorage.setItem('selectedCity', areaDatastring);
-      console.log("SelectedCity", areaDatastring);
-    }
+    console.log(`Area changed to ID: ${selectedAreaID}`);
+    const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID);
+    if (selectedArea && selectedAreaID !== undefined) {
+      const areaData = {
+        name: selectedArea.areaName,
+        id: selectedAreaID
+      };
+      const areaDataString = JSON.stringify(areaData);
+      localStorage.setItem('selectedCity', areaDataString);
+  
+      this.FindCinemaBySelectedArea();
     }
   }
   
+
+  FindCinemaBySelectedArea(): void {
+    const selectedCityData = localStorage.getItem('selectedCity');
+    if (selectedCityData) {
+      const selectedArea = JSON.parse(selectedCityData);
+      const selectedAreaID = selectedArea.id;
+      this.SelectedCityName = selectedArea.name;
+  
+      this.cinemaInSelectedArea = this.cinemaList.filter(cinema => {
+        return String(cinema.areaID) === String(selectedAreaID); 
+      });
+    }
+  }
+  
+    
+} 

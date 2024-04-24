@@ -96,7 +96,7 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Genre>().HasData(new Genre { GenreID = 1, GenreName = "Action" }, new Genre { GenreID = 2, GenreName = "Sci-Fi" }, new Genre { GenreID = 3, GenreName = "Fantasy" });
 
             //Movie Sheet
-            modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "James Bond 1", Duration = 123, Director = "Peter Hunt" }, new Movie { MovieID = 2, Title = "SuperMan 1", Duration = 133, Director = "Guy Hamilton" }, new Movie { MovieID = 3, Title = "SpiderMan 1", Duration = 126, Director = "Michael Apted" });
+            modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "Jagt Sæson 2", Duration = 123, Director = "Peter Molde-Amelung", MovieLink = "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg" }, new Movie { MovieID = 2, Title = "Challenger", Duration = 251, Director = "Luca Guadagnino", MovieLink = "/static/assets/images/Challenger_Movie.jpeg" }, new Movie { MovieID = 3, Title = "Kung-Fu Panda 4", Duration = 126, Director = "Mike Mitchell", MovieLink = "/static/assets/images/Kungfu-Panda4.jpeg" });
 
             //Region Sheet
             modelBuilder.Entity<Region>().HasData(new Region { RegionID = 1, RegionName = "Storkøbenhavn" }, new Region { RegionID = 2, RegionName = "Jylland" }, new Region { RegionID = 3, RegionName = "Sjælland og Øer" }, new Region { RegionID = 4, RegionName = "Fyn" });
@@ -141,7 +141,7 @@ namespace H3CinemaBooking.Repository.Data
             DateTime showDateTime1 = new DateTime(2024, 4, 20, 19, 0, 0); // 2024 20/4 19:00:00
             DateTime showDateTime2 = new DateTime(2024, 4, 20, 15, 0, 0); // 2024 20/4 15:00:00
             DateTime showDateTime3 = new DateTime(2024, 4, 20, 11, 30, 0); // 2024 20/4 11:30:00
-            modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime1}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime2}, new Show { ShowID = 4, HallID = 4, MovieID = 3, Price = 100, ShowDateTime = showDateTime3}, new Show { ShowID = 5, HallID = 5, MovieID = 3, Price = 100, ShowDateTime = showDateTime1});
+            modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime1}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime2}, new Show { ShowID = 4, HallID = 4, MovieID = 3, Price = 100, ShowDateTime = showDateTime3}, new Show { ShowID = 5, HallID = 5, MovieID = 3, Price = 100, ShowDateTime = showDateTime1}, new Show { ShowID = 6, HallID = 1, MovieID = 2, Price = 100, ShowDateTime = showDateTime}, new Show { ShowID = 7, HallID = 1, MovieID = 3, Price = 120, ShowDateTime = showDateTime1});
 
             //Role Sheet
             modelBuilder.Entity<Roles>().HasData(new Roles { RoleID = 1, RoleName = "Costumer" }, new Roles { RoleID = 2, RoleName = "Admin" });

@@ -9,6 +9,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { AreapickComponent } from './components/areapick/areapick.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MovieComponent } from './components/movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CostumerComponent,
     LoginComponent,
     FrontpageComponent,
-    AreapickComponent
+    AreapickComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
