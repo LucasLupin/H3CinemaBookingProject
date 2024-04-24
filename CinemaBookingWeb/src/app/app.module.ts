@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { AreapickComponent } from './components/areapick/areapick.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
 
 @NgModule({
@@ -26,7 +26,8 @@ import { MovieComponent } from './components/movie/movie.component';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

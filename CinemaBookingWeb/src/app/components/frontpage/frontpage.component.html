@@ -29,8 +29,14 @@
         <div class="navbar-right">
           <div class="Area-List">
             <select class="Area-select" (change)="onAreaChange($event)">
-              <option Class="Area-Select-Option" *ngFor="let area of areaList" [value]="area.areaID">{{area.areaName}}</option>
+              <option class="Area-Select-Option" 
+                      *ngFor="let area of areaList" 
+                      [value]="area.areaID"
+                      [selected]="area.areaName === SelectedCityName">
+                {{ area.areaName }}
+              </option>
             </select>
+            
           </div>
           
           <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
@@ -49,7 +55,7 @@
           <div class="field-item large">
             <div class="video-container">
               <video autoplay="autoplay" loop="loop" muted="muted">
-                <source src="static/assets/videos/Challenger.mp4" type="video/mp4">
+                <source src="static/assets/videos/Challenger.mp4" type="video/mp4" autoplay="autoplay">
               </video>
             </div>
             <div class="frontpage-content large">
@@ -102,18 +108,25 @@
         </div>
 
         <div Class="Movie-Header">
-          <span>Planlæg dit biografbesøg i {{SelectedCityName}}</span>
+          <span class="Movie-Header-Text">Planlæg dit biografbesøg i {{SelectedCityName}}</span>
         </div>
 
         <div class="Filter-container">
           <div class="dropdown-filters">
-            <select class="filter-dropdown">
-              <option *ngFor="let cinema of cinemaInSelectedArea">{{cinema.name}}</option>
+            <select class="filter-dropdown" [(ngModel)]="selectedCinemaId" (change)="onDropdownChange('selectedCinemaId', $event)">
+              <option value="" disabled selected>Select Cinema</option>
+              <option *ngFor="let cinema of cinemaInSelectedArea" [value]="cinema.cinemaID" [selected]="cinema.cinemaID?.toString() === selectedCinemaId.toString()">
+                {{ cinema.name }}
+              </option>
             </select>
+
             <select class="filter-dropdown">
+              <option value="" disabled selected>Vælg film</option>
               <option>Vælg film</option>
             </select>
+
             <select class="filter-dropdown">
+              <option value="" disabled selected>Vælg Genre</option>
               <option>Vælg Genre</option>
             </select>
           </div>

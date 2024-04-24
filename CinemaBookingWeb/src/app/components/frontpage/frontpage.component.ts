@@ -17,6 +17,9 @@ import { faTicket } from '@fortawesome/free-solid-svg-icons';
 })
 export class FrontpageComponent {
   faTicket = faTicket;
+  selectedCinemaId: string = ""
+  selectedMovieId: string = ""
+  selectedGenreId: string =""
   SelectedCityName: string = "";
   cinemaList : Cinema[] = [];
   movieList : Movie[] = [];
@@ -27,6 +30,7 @@ export class FrontpageComponent {
   cinemasByRegion: { [key: string]: Cinema[] } = {}; 
 // Dette er en syntax i Typescript som fungere lidt som et Dictonary. Den bruger regionName som Key og Value fra Cinema som Values
   
+  selectedAreaId: string = "";
   chosenCity: string = '';
   showCinemaList: boolean = false;
   isLoggedIn = false;
@@ -44,6 +48,10 @@ export class FrontpageComponent {
 
 
   ngOnInit() {
+
+  this.selectedCinemaId = localStorage.getItem('selectedCinemaId') || '';
+  this.selectedMovieId = localStorage.getItem('selectedMovieId') || '';
+  this.selectedGenreId = localStorage.getItem('selectedGenreId') || '';
 
     this.authService.currentUser.subscribe(user => {
       this.isLoggedIn = this.authService.isLoggedIn();
@@ -115,13 +123,12 @@ export class FrontpageComponent {
 
   onAreaChange(event: any): void {
     const selectedAreaID = event.target.value;
-    console.log(`Area changed to ID: ${selectedAreaID}`);
     const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID);
     if (selectedArea && selectedAreaID !== undefined) {
-      const areaData = {
-        name: selectedArea.areaName,
-        id: selectedAreaID
-      };
+
+      this.resetDropdowns();
+
+      const areaData = { name: selectedArea.areaName, id: selectedAreaID};
       const areaDataString = JSON.stringify(areaData);
       localStorage.setItem('selectedCity', areaDataString);
   
@@ -129,7 +136,24 @@ export class FrontpageComponent {
     }
   }
   
+  onDropdownChange(key: string, event: Event): void {
+    const element = event.target as HTMLSelectElement;
+    if (element) {
+      const value = element.value;
+      localStorage.setItem(key, value);
+    }
+  }
 
+  resetDropdowns(): void {
+    const dropdownKeys = ['selectedCinemaId', 'selectedMovieId', 'selectedGenreId'];
+  
+    dropdownKeys.forEach(key => {
+      this.selectedCinemaId = ''; //TODO: Lucas denne skal laves Genersik so den kan bruges til alle 3 dropdowns
+      localStorage.removeItem(key);
+    });
+  }
+  
+  
   FindCinemaBySelectedArea(): void {
     const selectedCityData = localStorage.getItem('selectedCity');
     if (selectedCityData) {
@@ -141,7 +165,5 @@ export class FrontpageComponent {
         return String(cinema.areaID) === String(selectedAreaID); 
       });
     }
-  }
-  
-    
+  }  
 } 
