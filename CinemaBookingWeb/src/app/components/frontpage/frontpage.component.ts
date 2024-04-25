@@ -178,7 +178,10 @@ export class FrontpageComponent {
   FindCinemaBySelectedArea(): void {
     const selectedCityData = this.storageService.getItem('selectedArea');
     if (selectedCityData) {
-      const selectedArea = JSON.parse(selectedCityData);
+      console.log(selectedCityData);
+      
+      const selectedArea = selectedCityData;
+      
       const selectedAreaID = selectedArea.id;
       this.SelectedCityName = selectedArea.name;
   
