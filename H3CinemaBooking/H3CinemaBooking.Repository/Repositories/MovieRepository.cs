@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace H3CinemaBooking.Repository.Repositories
         //TODO: Get All Movie
         public List<Movie> GetAll()
         {
-            var result = context.Movies.ToList();
+            var result = context.Movies.Include(m => m.Genres).ToList();
             return result;
         }
 
