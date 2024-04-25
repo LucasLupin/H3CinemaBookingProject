@@ -9,6 +9,7 @@ import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
+import { LocalStorageGeneric } from 'src/app/services/generic.services';
 
 @Component({
   selector: 'app-frontpage',
@@ -42,13 +43,13 @@ export class FrontpageComponent {
     private showService: GenericService<Show>,
     private regionService: GenericService<Region>,
     private areaService: GenericService<Area>,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageService: LocalStorageGeneric
   ) {}
 
 
 
   ngOnInit() {
-
   this.selectedCinemaId = localStorage.getItem('selectedCinemaId') || '';
   this.selectedMovieId = localStorage.getItem('selectedMovieId') || '';
   this.selectedGenreId = localStorage.getItem('selectedGenreId') || '';
@@ -81,18 +82,6 @@ export class FrontpageComponent {
       this.mapCinemasToRegions();
       this.FindCinemaBySelectedArea();
     });
-
-    //Check om brugeren allerede har en valgt by i deres session, hvis ikke, så skal de fremvises areapick
-    console.log('FrontpageComponent initialized');
-    const city = localStorage.getItem('selectedCity');
-    if (city) {
-      this.chosenCity = city;
-      // Hent alt data der er for den valgte by
-      console.log('Selected city:', city);
-    }
-    else {
-      this.router.navigateByUrl("/areapick")
-    }
   }
   
   mapCinemasToRegions() {
@@ -130,8 +119,8 @@ export class FrontpageComponent {
 
       const areaData = { name: selectedArea.areaName, id: selectedAreaID};
       const areaDataString = JSON.stringify(areaData);
-      localStorage.setItem('selectedCity', areaDataString);
-  
+      localStorage.setItem('selectedArea', areaDataString);
+      this.storageService.handleLocalStorage();
       this.FindCinemaBySelectedArea();
     }
   }
@@ -140,7 +129,7 @@ export class FrontpageComponent {
     const element = event.target as HTMLSelectElement;
     if (element) {
       const value = element.value;
-      localStorage.setItem(key, value);
+      this.storageService.setItem(key, value);
     }
   }
 
@@ -149,13 +138,13 @@ export class FrontpageComponent {
   
     dropdownKeys.forEach(key => {
       this.selectedCinemaId = ''; //TODO: Lucas denne skal laves Genersik so den kan bruges til alle 3 dropdowns
-      localStorage.removeItem(key);
+      this.storageService.removeItem(key);
     });
   }
   
   
   FindCinemaBySelectedArea(): void {
-    const selectedCityData = localStorage.getItem('selectedCity');
+    const selectedCityData = this.storageService.getItem('selectedArea');
     if (selectedCityData) {
       const selectedArea = JSON.parse(selectedCityData);
       const selectedAreaID = selectedArea.id;

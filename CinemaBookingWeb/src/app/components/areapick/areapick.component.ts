@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Area } from 'src/app/models/area/area';
 import { AreaService } from 'src/app/services/area.service';
 import { GenericService } from 'src/app/services/generic.services';
+import { LocalStorageGeneric } from 'src/app/services/generic.services';
 
 @Component({
   selector: 'app-areapick',
@@ -12,7 +13,7 @@ import { GenericService } from 'src/app/services/generic.services';
 export class AreapickComponent {
   AreaList : Area[] = [];
 
-  constructor(private router: Router, private service: GenericService<Area>) {}
+  constructor(private router: Router, private service: GenericService<Area>, private storageService: LocalStorageGeneric) {}
 
   ngOnInit() {
     this.service.getAll("Area").subscribe(data => {
@@ -30,10 +31,8 @@ export class AreapickComponent {
       };
   
       const cityDataString = JSON.stringify(cityData);
-  
-      localStorage.setItem('selectedCity', cityDataString);
-  
-      this.router.navigateByUrl('/');
+      localStorage.setItem('selectedArea', cityDataString);
+      this.storageService.handleLocalStorage();
     }
   }  
 }
