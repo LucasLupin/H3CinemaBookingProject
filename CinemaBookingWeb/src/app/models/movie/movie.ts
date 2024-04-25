@@ -1,3 +1,5 @@
+import { Genre } from "../genre/genre"
+
 export class Movie
 {
     movieID?: number
@@ -5,4 +7,5 @@ export class Movie
     duration?: number
     director?: string
     movieLink?: string
+    genres?: Genre[];
 }

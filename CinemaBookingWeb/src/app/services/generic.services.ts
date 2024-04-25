@@ -1,8 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+<<<<<<< Updated upstream
 import { HttpClient} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Router } from '@angular/router';
+=======
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'content-type':'application/json'
+  })
+}
+
+>>>>>>> Stashed changes
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +27,15 @@ export class GenericService<Tentity> {
   }
 
   getAll(endpoint: string): Observable<Tentity[]> {
-    return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`);
+    return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`, httpOptions);
   }
 
-  save(endpoint: string, data: Tentity): Observable<Tentity> {
-    return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data);
+  create(endpoint: string, data: Tentity): Observable<Tentity> {
+    return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data, httpOptions);
   }
 
   delete(endpoint: string, id: number): Observable<boolean> {
-    return this.http.delete(`${environment.apiUrl}${endpoint}/${id}`).pipe(
+    return this.http.delete(`${environment.apiUrl}${endpoint}/${id}`, httpOptions).pipe(
       map(() => true)
     );
   }

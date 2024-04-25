@@ -9,7 +9,11 @@ import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
+<<<<<<< Updated upstream
 import { LocalStorageGeneric } from 'src/app/services/generic.services';
+=======
+import { Genre } from 'src/app/models/genre/genre';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-frontpage',
@@ -22,12 +26,15 @@ export class FrontpageComponent {
   selectedMovieId: string = ""
   selectedGenreId: string =""
   SelectedCityName: string = "";
+  displayedMovies: Movie[] = [];
   cinemaList : Cinema[] = [];
   movieList : Movie[] = [];
   showList : Show[] = [];
   areaList: Area[] = [];
+  genreList: Genre[] = [];
   regionList: Region[] = [];
   cinemaInSelectedArea: Cinema[] = [];
+  movieInSelectedArea: Movie[] = [];
   cinemasByRegion: { [key: string]: Cinema[] } = {}; 
 // Dette er en syntax i Typescript som fungere lidt som et Dictonary. Den bruger regionName som Key og Value fra Cinema som Values
   
@@ -38,6 +45,7 @@ export class FrontpageComponent {
 
   constructor(
     private router: Router,
+    private genreService: GenericService<Genre>,
     private cinemaService: GenericService<Cinema>,
     private movieService: GenericService<Movie>,
     private showService: GenericService<Show>,
@@ -65,6 +73,10 @@ export class FrontpageComponent {
       }),
       switchMap(areas => {
         this.areaList = areas;
+        return this.genreService.getAll('Genre');
+      }),
+      switchMap(genre => {
+        this.genreList = genre;
         return this.cinemaService.getAll('cinema');
       }),
       switchMap(cinemas => {
@@ -81,6 +93,7 @@ export class FrontpageComponent {
       
       this.mapCinemasToRegions();
       this.FindCinemaBySelectedArea();
+      this.filterMoviesDisplayed();
     });
   }
   
@@ -124,12 +137,36 @@ export class FrontpageComponent {
       this.FindCinemaBySelectedArea();
     }
   }
-  
-  onDropdownChange(key: string, event: Event): void {
+
+  onCinemaChange(event: Event): void {
     const element = event.target as HTMLSelectElement;
     if (element) {
+<<<<<<< Updated upstream
       const value = element.value;
       this.storageService.setItem(key, value);
+=======
+      this.selectedCinemaId = element.value;
+      localStorage.setItem('selectedCinemaId', this.selectedCinemaId);
+      this.filterMoviesDisplayed();
+    }
+  }
+
+  onMovieChange(event: Event): void {
+    const element = event.target as HTMLSelectElement;
+    if (element) {
+      this.selectedMovieId = element.value;
+      localStorage.setItem('selectedMovieId', this.selectedMovieId);
+      this.filterMoviesDisplayed();
+    }
+  }
+
+  onGenreChange(event: Event): void {
+    const element = event.target as HTMLSelectElement;
+    if (element) {
+      this.selectedGenreId = element.value;
+      localStorage.setItem('selectedGenreId', this.selectedGenreId);
+      this.filterMoviesDisplayed();
+>>>>>>> Stashed changes
     }
   }
 
@@ -137,9 +174,12 @@ export class FrontpageComponent {
     const dropdownKeys = ['selectedCinemaId', 'selectedMovieId', 'selectedGenreId'];
   
     dropdownKeys.forEach(key => {
+      this.selectedGenreId = '';
+      this.selectedMovieId = '';
       this.selectedCinemaId = ''; //TODO: Lucas denne skal laves Genersik so den kan bruges til alle 3 dropdowns
       this.storageService.removeItem(key);
     });
+    this.filterMoviesDisplayed();
   }
   
   
@@ -155,4 +195,19 @@ export class FrontpageComponent {
       });
     }
   }  
-} 
+
+  filterMoviesDisplayed(): void {
+    this.displayedMovies = [...this.movieList];
+  
+    if (this.selectedMovieId) {
+        this.displayedMovies = this.displayedMovies.filter(movie => 
+            movie.movieID?.toString() === this.selectedMovieId
+        );
+    }
+    if (this.selectedGenreId) {
+        this.displayedMovies = this.displayedMovies.filter(movie => 
+            movie.genres && movie.genres.some(genre => genre.genreID?.toString() === this.selectedGenreId)
+        );
+    }
+}
+}

@@ -107,32 +107,37 @@
         </div>
         </div>
 
-        <div Class="Movie-Header">
+        <div class="Movie-Header">
           <span class="Movie-Header-Text">Planlæg dit biografbesøg i {{SelectedCityName}}</span>
-        </div>
+          <button class="reset-filter-button" (click)="resetDropdowns()">Nulstil Filter</button>
+      </div>      
 
         <div class="Filter-container">
           <div class="dropdown-filters">
-            <select class="filter-dropdown" [(ngModel)]="selectedCinemaId" (change)="onDropdownChange('selectedCinemaId', $event)">
-              <option value="" disabled selected>Select Cinema</option>
+            <select class="filter-dropdown" [(ngModel)]="selectedCinemaId" (change)="onCinemaChange($event)">
+              <option value="" disabled selected>Vælg Biograf</option>
               <option *ngFor="let cinema of cinemaInSelectedArea" [value]="cinema.cinemaID" [selected]="cinema.cinemaID?.toString() === selectedCinemaId.toString()">
                 {{ cinema.name }}
               </option>
             </select>
 
-            <select class="filter-dropdown">
+            <select class="filter-dropdown" [(ngModel)]="selectedMovieId" (change)="onMovieChange($event)">
               <option value="" disabled selected>Vælg film</option>
-              <option>Vælg film</option>
+              <option *ngFor="let movie of movieList" [value]="movie.movieID" [selected]="movie.movieID?.toString() === selectedMovieId.toString()">
+                {{ movie.title}}
+              </option>
             </select>
 
-            <select class="filter-dropdown">
+            <select class="filter-dropdown" [(ngModel)]="selectedGenreId" (change)="onGenreChange($event)">
               <option value="" disabled selected>Vælg Genre</option>
-              <option>Vælg Genre</option>
+              <option *ngFor="let genre of genreList" [value]="genre.genreID" [selected]="genre.genreID?.toString() === selectedGenreId.toString()">
+                {{ genre.genreName}}
+              </option>
             </select>
           </div>
 
           <div class="movie-container">
-            <div *ngFor="let movie of movieList" class="movie-entry">
+            <div *ngFor="let movie of displayedMovies" class="movie-entry">
               <div class="movie-image">
                 <img [src]="movie.movieLink" alt="{{ movie.title }}" width="220" height="330" />
               </div>

@@ -451,4 +451,21 @@ video {
   margin-top: 60px;
   color: #fff;
   font-weight: bolder;
+  position: relative;
 }
+
+.Movie-Header .reset-filter-button {
+  font-size: 14px;
+  position: absolute;
+  right: 30px; 
+  top: 40px; 
+  background-color: transparent; 
+  border: none;
+  color: #fff; 
+  cursor: pointer;
+}
+
+.Movie-Header .reset-filter-button:hover {
+  color: #0056b3; 
+}
+

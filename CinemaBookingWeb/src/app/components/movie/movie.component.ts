@@ -26,7 +26,7 @@ export class MovieComponent {
 
   public create(): void {
     if (this.movieForm.valid) {
-      this.genericService.save('movies', this.movieForm.value).subscribe({
+      this.genericService.create('movies', this.movieForm.value).subscribe({
         next: (response) => {
           console.log('Movie saved:', response);
           this.movieForm.reset();
