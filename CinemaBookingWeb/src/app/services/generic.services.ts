@@ -32,10 +32,6 @@ export class GenericService<Tentity> {
     return this.http.get<boolean>(`${environment.apiUrl}${endpoint}/${id}`);
   }
 
-  checkIfAreaExists(cityID: number): Observable<boolean> {
-    return this.exists('Region', cityID);
-  }
-
 }
 
 @Injectable({
@@ -50,7 +46,7 @@ export class LocalStorageGeneric {
     if (selectedArea) {
       try {
         if (typeof selectedArea === 'object' && 'name' in selectedArea && 'id' in selectedArea) {
-          this.service.checkIfAreaExists(selectedArea.id)
+          this.service.exists('Region',selectedArea.id)
           .toPromise()
           .then((result: { regionID: number; regionName: string } | boolean | undefined) => {
             if (result === null || typeof result === 'undefined' || typeof result === 'boolean') {
