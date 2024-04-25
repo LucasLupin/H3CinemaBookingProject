@@ -9,11 +9,8 @@ import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< Updated upstream
 import { LocalStorageGeneric } from 'src/app/services/generic.services';
-=======
 import { Genre } from 'src/app/models/genre/genre';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-frontpage',
@@ -141,10 +138,6 @@ export class FrontpageComponent {
   onCinemaChange(event: Event): void {
     const element = event.target as HTMLSelectElement;
     if (element) {
-<<<<<<< Updated upstream
-      const value = element.value;
-      this.storageService.setItem(key, value);
-=======
       this.selectedCinemaId = element.value;
       localStorage.setItem('selectedCinemaId', this.selectedCinemaId);
       this.filterMoviesDisplayed();
@@ -166,7 +159,6 @@ export class FrontpageComponent {
       this.selectedGenreId = element.value;
       localStorage.setItem('selectedGenreId', this.selectedGenreId);
       this.filterMoviesDisplayed();
->>>>>>> Stashed changes
     }
   }
 

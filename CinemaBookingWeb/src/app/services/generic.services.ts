@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-<<<<<<< Updated upstream
-import { HttpClient} from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { Router } from '@angular/router';
-=======
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +10,6 @@ const httpOptions = {
   })
 }
 
->>>>>>> Stashed changes
 
 @Injectable({
   providedIn: 'root'
