@@ -16,34 +16,33 @@
 
     <div *ngIf="movieList.length">
         <h2 class="Movie-Text">Movie List</h2>
-
-        <div class="movie-list-headers">
-            <span>ID</span>
-            <span>Title</span>
-            <span>Director</span>
-            <span>Duration</span>
-            <span>ImgLink</span>
-        </div>
-
-        <ul>
-            <li *ngFor="let movie of movieList">
-                <div class="movie-info">
-                    <div class="movie-items">
-                        <span class="movie-id">{{ movie.movieID }}</span>
-                        <span class="movie-title">{{ movie.title }}</span>
-                        <span class="movie-director">{{ movie.director }}</span>
-                        <span class="movie-duration">{{ movie.duration }}</span>
-                        <span class="movie-link">{{ movie.movieLink }}</span>
-                    </div>
-                </div>
-                
-                <div class="movie-btn">
-                    <button class="edit-btn">Edit</button>
-                    <button (click)="deleteMovie(movie)" class="delete-btn">Delete</button>
-                </div>
-            </li>
-        </ul>
-    </div>
-        
+<table class="movie-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Duration</th>
+            <th>ImgLink</th>
+            <th>
+                <button class="create-btn">Create</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movieList">
+            <td data-label="ID">{{movie.movieID}}</td>
+            <td data-label="Title">{{movie.title}}</td>
+            <td data-label="Director">{{ movie.director }}</td>
+            <td data-label="Duration">{{ movie.duration }}</td>
+            <td data-label="movieLink">{{ movie.movieLink }}</td>
+            <td>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    </div>   
 
 </div>
