@@ -14,3 +14,12 @@
 
     <button type="submit">Save</button>
 </form>
+
+<div *ngFor="let movie of movieList" class="movie-container">
+    <h3>{{ movie.title }}</h3>
+    <p>Director: {{ movie.director }}</p>
+    <p>Duration: {{ movie.duration }} minutes</p>
+    <button>Delete</button>
+</div>
+
+  

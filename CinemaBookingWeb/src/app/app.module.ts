@@ -11,6 +11,8 @@ import { AreapickComponent } from './components/areapick/areapick.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
+import { AdminFrontPageComponent } from './components/admin/admin-front-page/adminFrontPage.component';
+import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MovieComponent } from './components/movie/movie.component';
     LoginComponent,
     FrontpageComponent,
     AreapickComponent,
-    MovieComponent
+    MovieComponent,
+    AdminFrontPageComponent,
+    AdminMovieComponent
   ],
   imports: [
     BrowserModule,

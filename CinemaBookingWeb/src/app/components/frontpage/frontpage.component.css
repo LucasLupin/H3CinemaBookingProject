@@ -211,7 +211,6 @@ main {
   display: flex;
   justify-content: center;
   padding: 20px 0;
-  border: solid 2px yellow;
 }
 
 .layout-content {
@@ -220,7 +219,6 @@ main {
   margin: 0 auto; 
   display: grid;
   grid-template-columns: 2fr 1fr;
-  border: solid 2px purple;
 }
 .grid-container {
   display: grid;

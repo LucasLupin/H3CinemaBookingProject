@@ -1,0 +1,49 @@
+<div class="layout-container">
+    <nav id="menu">
+      <div class="region region-menu">
+        <nav role="navigation" id="block-mainnavigation">
+          <div id="sitebranding" class="sitebranding">
+            <a href="" class="Admin-Text">  
+                <span>AdminMovie</span>
+            </a>
+            <a href="/admin" class="logo">
+              <img src="/static/assets/images/logo.png" alt="logo">
+            </a>
+          </div>
+        </nav>
+      </div>
+    </nav>
+
+    <div *ngIf="movieList.length">
+        <h2 class="Movie-Text">Movie List</h2>
+
+        <div class="movie-list-headers">
+            <span>ID</span>
+            <span>Title</span>
+            <span>Director</span>
+            <span>Duration</span>
+            <span>ImgLink</span>
+        </div>
+
+        <ul>
+            <li *ngFor="let movie of movieList">
+                <div class="movie-info">
+                    <div class="movie-items">
+                        <span class="movie-id">{{ movie.movieID }}</span>
+                        <span class="movie-title">{{ movie.title }}</span>
+                        <span class="movie-director">{{ movie.director }}</span>
+                        <span class="movie-duration">{{ movie.duration }}</span>
+                        <span class="movie-link">{{ movie.movieLink }}</span>
+                    </div>
+                </div>
+                
+                <div class="movie-btn">
+                    <button class="edit-btn">Edit</button>
+                    <button (click)="deleteMovie(movie)" class="delete-btn">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+        
+
+</div>
