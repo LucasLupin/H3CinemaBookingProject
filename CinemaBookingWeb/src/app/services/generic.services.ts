@@ -31,6 +31,9 @@ export class GenericService<Tentity> {
   }
 
   create(endpoint: string, data: Tentity): Observable<Tentity> {
+    console.log("Data in Service: ",data);
+    console.log("endoint: ", `${environment.apiUrl}${endpoint}`);
+    
     return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data, httpOptions);
   }
 
