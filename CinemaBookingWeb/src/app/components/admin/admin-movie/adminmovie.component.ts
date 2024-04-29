@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Genre } from 'src/app/models/genre/genre';
 import { Movie } from 'src/app/models/movie/movie';
 import { GenericService } from 'src/app/services/generic.services';
 
@@ -10,45 +11,82 @@ import { GenericService } from 'src/app/services/generic.services';
 })
 export class AdminMovieComponent {
 movieList: Movie[] = [];
+genreList: Genre[] =[];
 
 movieForm: FormGroup = new FormGroup({
   movieID: new FormControl(''),
-  title: new FormControl(''),
-  duration: new FormControl(''),
-  director: new FormControl(''),
+  title: new FormControl('',  Validators.required),
+  duration: new FormControl('', Validators.required),
+  director: new FormControl('', Validators.required),
+  movieLink: new FormControl('', [Validators.required, Validators.minLength(5)]),
   genre: new FormGroup({
     genreID: new FormControl(''),
     genreName: new FormControl(''),
   })
 });
 
-constructor(private genericService: GenericService<Movie>) {}
+constructor(private movieService: GenericService<Movie>, private genreSerice: GenericService<Genre>) {}
 
   ngOnInit() {
     this.fetchMovies();
   }
 
   fetchMovies() {
-    this.genericService.getAll("movie").subscribe(data => {
+    this.movieService.getAll("movie").subscribe(data => {
       this.movieList = data;
+    });
+
+    this.genreSerice.getAll("Genre").subscribe(data => {
+      this.genreList = data;
+      console.log(this.genreList);
+      
     });
   }
 
   public create(): void {
     if (this.movieForm.valid) {
-      this.genericService.create('movie', this.movieForm.value).subscribe({
-        next: (response) => { 
-          console.log('Movie saved:', response);
-          this.movieList.push(response); // Assuming response is the newly created movie
-          this.movieForm.reset();
-        }
-      });
+      const formValue = this.movieForm.value;
+      console.log("FormValue: ", formValue);
+  
+      const selectedGenre = this.genreList.find(genre => genre.genreID == formValue.genre.genreID);
+      console.log("Genre: ", selectedGenre);
+      
+      if (selectedGenre) {
+  
+        const movieData = {
+          title: formValue.title,
+          duration: parseInt(formValue.duration, 10),
+          director: formValue.director,
+          movieLink: formValue.movieLink,
+          genres: [{
+            genreID: selectedGenre.genreID,
+            genreName: selectedGenre.genreName
+          }]
+        };
+
+        console.log("Data in the Component movie: ", movieData);
+        
+        this.movieService.create('movie/Complex', movieData).subscribe({
+          next: (response) => {
+            console.log('Complex movie saved:', response);
+            this.movieList.push(response);
+            this.movieForm.reset();
+          },
+          error: (error) => {
+            console.error('Failed to create movie:', error);
+            alert(`Failed to create movie: ${error.error.title}`);
+          }
+        });
+      }
+    }
+    else {
+      alert(`It's not valid data in the form`);
     }
   }
-
+  
   deleteMovie(movie: Movie) {
     if (movie && movie.movieID !== undefined) {
-        this.genericService.delete('movie', movie.movieID).subscribe(() => {
+        this.movieService.delete('movie', movie.movieID).subscribe(() => {
             this.fetchMovies();
         });
     }

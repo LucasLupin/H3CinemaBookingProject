@@ -38,11 +38,35 @@
             <td data-label="movieLink">{{ movie.movieLink }}</td>
             <td>
                 <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
+                <button class="delete-btn" (click)="deleteMovie(movie)">Delete</button>
             </td>
         </tr>
     </tbody>
 </table>
-    </div>   
-
 </div>
+<div class="form-container">
+    <form [formGroup]="movieForm" (ngSubmit)="create()">
+      <input type="text" placeholder="Title" id="title" formControlName="title">
+      <small>
+        <div *ngIf="movieForm.get('title')?.invalid">
+            Title is requrired
+        </div>
+      </small>
+      <input type="text" placeholder="Duration" formControlName="duration">
+      <input type="text" placeholder="Director" formControlName="director">
+      <input type="text" placeholder="movieLink" formControlName="movieLink">
+      <div formGroupName="genre">
+        <span>Genre</span>
+        <select formControlName="genreID">
+          <option value="">Select Genre</option>
+          <option *ngFor="let genre of genreList" [value]="genre.genreID">
+            {{ genre.genreName }}
+          </option>
+        </select>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  
+
+  
