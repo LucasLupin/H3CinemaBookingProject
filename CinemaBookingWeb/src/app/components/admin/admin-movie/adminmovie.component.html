@@ -47,11 +47,6 @@
 <div class="form-container">
     <form [formGroup]="movieForm" (ngSubmit)="create()">
       <input type="text" placeholder="Title" id="title" formControlName="title">
-      <small>
-        <div *ngIf="movieForm.get('title')?.invalid">
-            Title is requrired
-        </div>
-      </small>
       <input type="text" placeholder="Duration" formControlName="duration">
       <input type="text" placeholder="Director" formControlName="director">
       <input type="text" placeholder="movieLink" formControlName="movieLink">
@@ -64,6 +59,11 @@
           </option>
         </select>
       </div>
+      <small>
+        <div *ngIf="movieForm.get('title')?.invalid" class="error-message">
+            Title is requrired
+        </div>
+      </small>
       <button type="submit">Save</button>
     </form>
   </div>
