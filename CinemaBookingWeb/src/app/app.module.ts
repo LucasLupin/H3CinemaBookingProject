@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './components/movie/movie.component';
 import { AdminFrontPageComponent } from './components/admin/admin-front-page/adminFrontPage.component';
 import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/generic.services';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.c
     AreapickComponent,
     MovieComponent,
     AdminFrontPageComponent,
-    AdminMovieComponent
+    AdminMovieComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,13 @@ import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.c
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true, // Sørg for, at denne interceptor bruges sammen med andre
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

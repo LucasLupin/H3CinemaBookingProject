@@ -63,7 +63,7 @@ export class FrontpageComponent {
       this.isLoggedIn = this.authService.isLoggedIn();
     });
 
-    this.regionService.getAll('region').pipe(
+    this.regionService.getAll('Region').pipe(
       switchMap(regions => {
         this.regionList = regions;
         return this.areaService.getAll('area');

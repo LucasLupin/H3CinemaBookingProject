@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { GenericService } from 'src/app/services/generic.services';
+import { UserService } from 'src/app/services/generic.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +10,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginForm!: FormGroup;
+  error: string = '';
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
+
   ngOnInit(): void {
-    console.log("hey")
+    this.loginForm = this.formBuilder.group({
+      username: [''], // Initialiser feltet
+      password: [''], // Initialiser feltet
+    });
+  }
+
+  onLogin() {
+    // Kontroller, om loginForm indeholder værdier, før indsendelse
+    if (this.loginForm.value) {
+      const { username, password } = this.loginForm.value;
+      this.userService.login(username, password).subscribe({
+        next: (success) => {
+          if (success) {
+            this.router.navigate(['/loggedinsuccess']);
+          } else {
+            this.error = 'Invalid credentials';
+          }
+        },
+        error: (err) => {
+          this.error = err.message;
+        }
+      });
+    }
   }
 
   showSignupDesign(): void {

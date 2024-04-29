@@ -1,7 +1,7 @@
 <div class="container">
   <div id="signin-section" class="signin-section show">
     <h2 class="login-text roboto-bold">Log ind</h2>
-    <form class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
       <input type="email" placeholder="Email" required>
       <input type="password" placeholder="Adgangskode" required>
       <div class="center">

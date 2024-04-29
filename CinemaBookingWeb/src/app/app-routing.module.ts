@@ -5,13 +5,17 @@ import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { AreapickComponent } from './components/areapick/areapick.component';
 import { AdminFrontPageComponent } from './components/admin/admin-front-page/adminFrontPage.component';
 import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.component';
+import { authGuard, adminGuard } from './guard/auth.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
-  { path: 'admin', component: AdminFrontPageComponent},
+  { path: 'profile', component: FrontpageComponent, canActivate : [authGuard]},
+  { path: 'admin', component: AdminFrontPageComponent, canActivate : [adminGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'areapick', component: AreapickComponent },
-  { path: 'adminmovie', component: AdminMovieComponent}
+  { path: 'adminmovie', component: AdminMovieComponent},
+  { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 
 @NgModule({
