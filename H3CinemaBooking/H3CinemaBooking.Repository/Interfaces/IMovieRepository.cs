@@ -12,6 +12,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         Movie Create(Movie movie);
         Movie GetById(int Id);
         List<Movie> GetAll();
+        void UpdateByID(int Id, Movie updatedMovie);
         void DeleteByID(int Id);
         Movie CreateComplex(Movie movie, List<string>genreNames);
     }

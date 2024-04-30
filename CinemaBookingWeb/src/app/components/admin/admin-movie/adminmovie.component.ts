@@ -81,7 +81,7 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
       const formdata = this.movieForm.value;
       const selectedGenre = this.genreList.find(genre => genre.genreID == formdata.genre.genreID);
       const movieData = {
-        movieId: formdata.movieId,
+        movieId: formdata.movieID,
         title: formdata.title,
         duration: parseInt(formdata.duration, 10),
         director: formdata.director,
@@ -91,8 +91,10 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
           genreName: selectedGenre?.genreName
         }]
       };
-      if (this.isEditMode) {
-        this.movieService.update('movies', movieData, movieData.movieId).subscribe({
+      if (this.isEditMode == true && movieData.movieId) {  
+        console.log("TSMovie: ", movieData);
+        
+        this.movieService.update('movie', movieData, movieData.movieId).subscribe({
           next: (response) => {
             console.log('Movie updated:', response);
             this.resetForm();

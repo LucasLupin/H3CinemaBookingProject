@@ -68,6 +68,13 @@ namespace H3CinemaBooking.API.Controllers
         }
 
 
+        //Update Api Movie with Genre
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Movie movie)
+        {
+            _movieRepository.UpdateByID(id, movie);
+            return Ok();
+        }
 
         // DELETE api/<MovieController>/ID
         [HttpDelete("{id}")]

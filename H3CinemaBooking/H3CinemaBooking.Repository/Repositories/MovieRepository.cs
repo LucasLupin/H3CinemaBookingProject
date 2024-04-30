@@ -63,8 +63,36 @@ namespace H3CinemaBooking.Repository.Repositories
             return result;
         }
 
-        public void DeleteByID(int Id)
-        {
+        public void UpdateByID(int Id, Movie updatedMovie) 
+            {
+            var movie = context.Movies
+                            .Include(m => m.Genres)
+                            .FirstOrDefault(m => m.MovieID == Id);
+
+            if (movie != null) 
+            { 
+                movie.Title = updatedMovie.Title;
+                movie.Director = updatedMovie.Director;
+                movie.Duration = updatedMovie.Duration;
+                movie.MovieLink = updatedMovie.MovieLink;
+
+                movie.Genres.Clear();
+
+                foreach (var genre in updatedMovie.Genres)
+                {
+                    var existingGenre = context.Genres.Find(genre.GenreID);
+                    if (existingGenre != null) 
+                    {
+                        movie.Genres.Add(existingGenre);
+                    }
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+            public void DeleteByID(int Id)
+            {
             var movie = context.Movies.FirstOrDefault(c => c.MovieID == Id);
             if (movie != null)
             {
