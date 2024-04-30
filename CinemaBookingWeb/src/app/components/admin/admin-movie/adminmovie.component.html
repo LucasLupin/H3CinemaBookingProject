@@ -45,21 +45,26 @@
 </table>
 </div>
 <div *ngIf="showForm == true">
+<div *ngIf="isEditMode == true">
+<h2 class="Movie-Text">Movie Edit</h2>
+</div>
+<div *ngIf="isEditMode == false">
 <h2 class="Movie-Text">Movie Create</h2>
+</div>
 <div class="form-container">
     <form [formGroup]="movieForm" (ngSubmit)="save()">
       <input type="hidden" formControlName="movieID">
       <span>Title</span>
       <input type="text" placeholder="Title" id="title" formControlName="title">
       <span>Duration</span>
-      <input type="number" placeholder="Duration" formControlName="duration">
+      <input type="number" placeholder="Duration" id="duration" formControlName="duration">
       <span>Director</span>
-      <input type="text" placeholder="Director" formControlName="director">
+      <input type="text" placeholder="Director" id="director" formControlName="director">
       <span>MovieLink</span>
-      <input type="text" placeholder="movieLink" formControlName="movieLink">
+      <input type="text" placeholder="movieLink" id="movieLink" formControlName="movieLink">
       <div formGroupName="genre">
         <span>Genre</span>
-        <select formControlName="genreID">
+        <select formControlName="genreID" id="genreID">
           <option value="">Select Genre</option>
           <option *ngFor="let genre of genreList" [value]="genre.genreID">
             {{ genre.genreName }}
@@ -70,7 +75,16 @@
       <button class="cancel-btn" type="cancel" (click)="toggleSave()">Cancel</button>
       <small>
         <div *ngIf="movieForm.get('title')?.invalid" class="error-message">
-            Title is requrired
+           | Title is requrired |
+        </div>
+        <div *ngIf="movieForm.get('duration')?.invalid" class="error-message">
+          |  Duration is requrired |
+        </div>
+        <div *ngIf="movieForm.get('director')?.invalid" class="error-message">
+          |  Director is requrired |
+        </div>
+        <div *ngIf="movieForm.get('movieLink')?.invalid" class="error-message">
+            |  MovieLink is requrired |
         </div>
       </small>
     </form>
