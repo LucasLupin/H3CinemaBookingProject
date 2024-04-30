@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt'; // JWT-bibliotek til parsing og validering
 import { inject } from '@angular/core';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -54,6 +53,15 @@ export class GenericService<Tentity> {
     console.log("endoint: ", `${environment.apiUrl}${endpoint}`);
     
     return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data, httpOptions);
+  }
+
+  update(endpoint: string, data: Tentity, id:number): Observable<Tentity> {
+    if (id === undefined) {
+      throw new Error("Cannot update entity without an ID.");
+    }
+    console.log("id", id);
+    
+    return this.http.put<Tentity>(`${environment.apiUrl}${endpoint}/${id}`, data, httpOptions)
   }
 
   delete(endpoint: string, id: number): Observable<boolean> {

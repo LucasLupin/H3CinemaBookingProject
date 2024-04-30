@@ -14,7 +14,7 @@
       </div>
     </nav>
 
-    <div *ngIf="movieList.length">
+    <div *ngIf="movieList.length && showList == true">
         <h2 class="Movie-Text">Movie List</h2>
 <table class="movie-table">
     <thead>
@@ -25,7 +25,7 @@
             <th>Duration</th>
             <th>ImgLink</th>
             <th>
-                <button class="create-btn">Create</button>
+                <button class="create-btn" (click)="toggleSave()">Create</button>
             </th>
         </tr>
     </thead>
@@ -37,18 +37,25 @@
             <td data-label="Duration">{{ movie.duration }}</td>
             <td data-label="movieLink">{{ movie.movieLink }}</td>
             <td>
-                <button class="edit-btn">Edit</button>
+                <button class="edit-btn" (click)="editMovie(movie)">Edit</button>
                 <button class="delete-btn" (click)="deleteMovie(movie)">Delete</button>
             </td>
         </tr>
     </tbody>
 </table>
 </div>
+<div *ngIf="showForm == true">
+<h2 class="Movie-Text">Movie Create</h2>
 <div class="form-container">
-    <form [formGroup]="movieForm" (ngSubmit)="create()">
+    <form [formGroup]="movieForm" (ngSubmit)="save()">
+      <input type="hidden" formControlName="movieID">
+      <span>Title</span>
       <input type="text" placeholder="Title" id="title" formControlName="title">
-      <input type="text" placeholder="Duration" formControlName="duration">
+      <span>Duration</span>
+      <input type="number" placeholder="Duration" formControlName="duration">
+      <span>Director</span>
       <input type="text" placeholder="Director" formControlName="director">
+      <span>MovieLink</span>
       <input type="text" placeholder="movieLink" formControlName="movieLink">
       <div formGroupName="genre">
         <span>Genre</span>
@@ -59,14 +66,16 @@
           </option>
         </select>
       </div>
+      <button type="submit">Save</button>
+      <button class="cancel-btn" type="cancel" (click)="toggleSave()">Cancel</button>
       <small>
         <div *ngIf="movieForm.get('title')?.invalid" class="error-message">
             Title is requrired
         </div>
       </small>
-      <button type="submit">Save</button>
     </form>
   </div>
+</div>
   
 
   

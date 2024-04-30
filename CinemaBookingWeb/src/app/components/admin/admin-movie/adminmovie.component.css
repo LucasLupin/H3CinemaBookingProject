@@ -123,7 +123,7 @@
     background-color: #2c3e50;
   }
   
-  .edit-btn, .delete-btn, .create-btn {
+  .edit-btn, .delete-btn, .create-btn, .cancel-btn {
     padding: 10px 20px;
     margin-left: 10px;
     border: none;
@@ -141,11 +141,11 @@
     background-color: #f39c12;
   }
   
-  .delete-btn {
+  .delete-btn, .cancel-btn {
     background-color: #e74c3c;
   }
   
-  .edit-btn:hover, .delete-btn:hover, .create-btn:hover {
+  .edit-btn:hover, .delete-btn:hover, .create-btn:hover, .cancel-btn {
     opacity: 0.8;
   }
   
@@ -211,7 +211,7 @@
   }
   
   .form-container input[type="text"],
-  .form-container select {
+  .form-container select,.form-container input[type="number"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -241,9 +241,9 @@
   
   .error-message {
     color: red;
-    font-size: 14px;
+    font-size: 18px;
     display: inline-block;
-    margin-right: 10px;
+    margin-left: 10px;
   }
   
   /* Responsive adjustments */

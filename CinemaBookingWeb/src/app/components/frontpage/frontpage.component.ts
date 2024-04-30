@@ -8,7 +8,7 @@ import { Region } from 'src/app/models/region/region.module';
 import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';
-import { faTicket } from '@fortawesome/free-solid-svg-icons';
+import { faTicket, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageGeneric } from 'src/app/services/generic.services';
 import { Genre } from 'src/app/models/genre/genre';
 
@@ -19,6 +19,7 @@ import { Genre } from 'src/app/models/genre/genre';
 })
 export class FrontpageComponent {
   faTicket = faTicket;
+  faCheck = faCheck;
   selectedCinemaId: string = ""
   selectedMovieId: string = ""
   selectedGenreId: string =""
