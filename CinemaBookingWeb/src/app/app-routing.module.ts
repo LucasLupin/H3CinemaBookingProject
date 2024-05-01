@@ -8,6 +8,7 @@ import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.c
 import { authGuard, adminGuard } from './guard/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
+import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'areapick', component: AreapickComponent },
   { path: 'adminmovie', component: AdminMovieComponent},
   { path: 'admingenre', component: AdmingenreComponent},
+  { path: 'admincinema', component: AdminCinemaComponent},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 

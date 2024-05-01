@@ -17,6 +17,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/generic.services';
 import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
+import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.c
     AdminMovieComponent,
     AdmingenreComponent,
     UnauthorizedComponent,
-    AdmingenreComponent
+    AdmingenreComponent,
+    AdminCinemaComponent
   ],
   imports: [
     BrowserModule,

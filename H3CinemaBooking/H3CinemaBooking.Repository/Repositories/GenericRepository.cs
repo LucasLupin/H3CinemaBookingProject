@@ -1,9 +1,11 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
+using H3CinemaBooking.Repository.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 
 namespace H3CinemaBooking.Repository.Repositories
 {
@@ -34,6 +36,18 @@ namespace H3CinemaBooking.Repository.Repositories
         {
              return await dbSet.ToListAsync();
         }
+
+        public interface IEntity
+        {
+            int Id { get; set; }
+        }
+
+        public void Update(Cinema cinema)
+        {
+            context.Entry(cinema).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
 
 
         public void DeleteById(int id)
