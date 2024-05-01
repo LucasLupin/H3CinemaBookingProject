@@ -7,7 +7,8 @@ import { GenericService } from 'src/app/services/generic.services';
 @Component({
   selector: 'app-admin-movie',
   templateUrl: './adminmovie.component.html',
-  styleUrls: ['./adminmovie.component.css']
+  styleUrls: ['../../../../static/assets/css/admin.css']
+  
 })
 export class AdminMovieComponent {
 movieForm!: FormGroup;
@@ -80,9 +81,10 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
     if (this.movieForm.valid) {
       const formdata = this.movieForm.value;
       const selectedGenre = this.genreList.find(genre => genre.genreID == formdata.genre.genreID);
+      const movieId = this.isEditMode ? formdata.movieID : 0;
 
       const movieData = {
-        movieId: formdata.movieID,
+        movieId: movieId,
         title: formdata.title,
         duration: parseInt(formdata.duration, 10),
         director: formdata.director,
@@ -92,6 +94,7 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
           genreName: selectedGenre?.genreName
         }]
       };
+      
       if (this.isEditMode == true && movieData.movieId) {  
         this.movieService.update('movie', movieData, movieData.movieId).subscribe({
           next: (response) => {

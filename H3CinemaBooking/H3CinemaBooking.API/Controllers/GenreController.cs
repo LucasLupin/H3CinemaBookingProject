@@ -1,5 +1,6 @@
 ﻿using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using H3CinemaBooking.Repository.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 
@@ -36,7 +37,7 @@ namespace H3CinemaBooking.API.Controllers
             {
                 return NotFound();
             }
-            return Ok($"Hello from MovieGenreController Get {movie}");
+            return Ok(movie);
         }
 
         // POST api/<MovieGenreController>
@@ -44,7 +45,15 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<Genre> Post(Genre genre)
         {
             _movieGenreRepository.Create(genre);
-            return Ok("MovieGenre created successfully.");
+            return Ok(genre);
+        }
+
+        //Update Api Movie with Genre
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Genre genre)
+        {
+            _movieGenreRepository.UpdateByID(id, genre);
+            return Ok();
         }
 
         // DELETE api/<MovieGenreController>/ID

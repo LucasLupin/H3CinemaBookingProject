@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace H3CinemaBooking.Repository.Repositories
             context = _context;
         }
         public Genre Create(Genre Genre)
-        {
+            {
             context.Genres.Add(Genre);
             context.SaveChanges();
             return Genre;
@@ -32,6 +33,18 @@ namespace H3CinemaBooking.Repository.Repositories
         {
             var result = context.Genres.ToList();
             return result;
+        }
+
+        public void UpdateByID(int Id, Genre updatedGenre)
+        {
+            var genre = context.Genres.FirstOrDefault(g => g.GenreID == Id);
+
+            if (genre != null)
+            {
+                genre.GenreName = updatedGenre.GenreName;
+
+                context.SaveChanges();
+            }
         }
 
         public void DeleteGenreByID(int Id)

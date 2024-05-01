@@ -26,8 +26,9 @@
               "src/static"
             ],            
             "styles": [
-              "src/static/css/base.css",
-              "src/static/css/login.css"
+              "src/static/assets/css/base.css",
+              "src/static/assets/css/login.css",
+              "src/static/assets/css/admin.css"
             ],
             "scripts": [
             ]
@@ -97,7 +98,9 @@
               "src/static"
             ],            
             "styles": [
-              "src/base.css"
+              "src/base.css",
+              "src/assets/css/login.css",
+              "src/assets/css/admin.css"
             ],
             "scripts": []
           }

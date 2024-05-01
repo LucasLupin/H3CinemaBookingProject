@@ -7,6 +7,7 @@ import { AdminFrontPageComponent } from './components/admin/admin-front-page/adm
 import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.component';
 import { authGuard, adminGuard } from './guard/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'areapick', component: AreapickComponent },
   { path: 'adminmovie', component: AdminMovieComponent},
+  { path: 'admingenre', component: AdmingenreComponent},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 
