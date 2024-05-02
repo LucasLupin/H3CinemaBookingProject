@@ -24,6 +24,7 @@ builder.Services.AddScoped<IGenericRepository<Cinema>, GenericRepository<Cinema>
 builder.Services.AddScoped<IGenericRepository<CinemaHall>, GenericRepository<CinemaHall>>();
 builder.Services.AddScoped<IGenericRepository<Area>, GenericRepository<Area>>();
 builder.Services.AddScoped<IGenericRepository<Region>, GenericRepository<Region>>();
+builder.Services.AddScoped<IGenericRepository<Roles>, GenericRepository<Roles>>();
 
 //Add service to Services, And add services to the container
 builder.Services.AddScoped<IUserDetailService, UserDetailService>();

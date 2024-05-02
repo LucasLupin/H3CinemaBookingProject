@@ -60,6 +60,8 @@ export class GenericService<Tentity> {
       throw new Error("Cannot update entity without an ID.");
     }
     console.log("id", id);
+    console.log("Data: ", data);
+    
     
     return this.http.put<Tentity>(`${environment.apiUrl}${endpoint}/${id}`, data, httpOptions)
   }

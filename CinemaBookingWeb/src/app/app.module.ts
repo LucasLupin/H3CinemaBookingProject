@@ -21,6 +21,7 @@ import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinem
 import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/admincinemahall.component';
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
+import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminareaComponent } from './components/admin/adminarea/adminarea.compo
     AdmingenreComponent,
     AdminCinemaComponent,
     AdminregionComponent,
-    AdminareaComponent
+    AdminareaComponent,
+    AdminroleComponent
   ],
   imports: [
     BrowserModule,
