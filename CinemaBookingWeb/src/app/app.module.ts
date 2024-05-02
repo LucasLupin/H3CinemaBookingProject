@@ -20,6 +20,7 @@ import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.c
 import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
 import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/admincinemahall.component';
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
+import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AdminregionComponent } from './components/admin/adminregion/adminregion
     UnauthorizedComponent,
     AdmingenreComponent,
     AdminCinemaComponent,
-    AdminregionComponent
+    AdminregionComponent,
+    AdminareaComponent
   ],
   imports: [
     BrowserModule,
