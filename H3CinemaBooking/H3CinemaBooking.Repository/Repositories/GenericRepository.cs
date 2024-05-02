@@ -42,9 +42,9 @@ namespace H3CinemaBooking.Repository.Repositories
             int Id { get; set; }
         }
 
-        public void Update(Cinema cinema)
+        public void Update(TEntity entity)
         {
-            context.Entry(cinema).State = EntityState.Modified;
+            context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
 

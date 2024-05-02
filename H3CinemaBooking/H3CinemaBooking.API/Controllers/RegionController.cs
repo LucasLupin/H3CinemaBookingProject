@@ -46,7 +46,21 @@ namespace H3CinemaBooking.API.Controllers
                 return BadRequest("Cinema data is required");
             }
             _regionRepository.Create(region);
-            return Ok("Cinema created successfully.");
+            return Ok(region);
+        }
+
+        //Update Api Movie with Genre
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Region region)
+        {
+            var existingRegion = _regionRepository.GetById(id);
+
+            if (existingRegion != null)
+            {
+                existingRegion.RegionName = region.RegionName;
+            }
+            _regionRepository.Update(existingRegion);
+            return Ok(existingRegion);
         }
 
         // DELETE api/<CinemaController>/5
@@ -59,7 +73,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _regionRepository.DeleteById(id);
-            return Ok("Cinema deleted successfully.");
+            return Ok();
         }
     }
 }

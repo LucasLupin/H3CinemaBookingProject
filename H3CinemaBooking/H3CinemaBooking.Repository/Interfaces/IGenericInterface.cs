@@ -9,7 +9,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         TEntity Create(TEntity entity);
         TEntity GetById(int id);
         public Task<List<TEntity>> GetAllAsync();
-        public void Update(Cinema cinema);
+        public void Update(TEntity entity);
         void DeleteById(int id);
     }
 }

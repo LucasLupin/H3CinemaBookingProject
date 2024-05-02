@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs';
 import { Area } from 'src/app/models/area/area';
 import { Cinema } from 'src/app/models/cinema/cinema';
 import { Movie } from 'src/app/models/movie/movie';
-import { Region } from 'src/app/models/region/region.module';
+import { Region } from 'src/app/models/region/region';
 import { Show } from 'src/app/models/show/show';
 import { AuthService } from 'src/app/services/auth.service';
 import { GenericService } from 'src/app/services/generic.services';

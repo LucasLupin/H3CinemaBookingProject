@@ -43,7 +43,7 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<CinemaHall>Post(CinemaHall cinemaHall)
         {   
             _cinemaHallRepository.Create(cinemaHall);
-            return Ok("CinemaHall created successfully.");
+            return Ok(cinemaHall);
         }
 
         // DELETE api/<CinemaController>/5
@@ -56,15 +56,24 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _cinemaHallRepository.DeleteById(id);
-            return Ok("Cinema deleted successfully.");
+            return Ok();
         }
 
 
-        //TODO: Make a update here
-        // PUT api/<CinemaHallController>/5
+        //Update Api Movie with Genre
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Update(int id, CinemaHall cinemahall)
         {
+            var existingCinemahall = _cinemaHallRepository.GetById(id);
+
+            if (existingCinemahall != null)
+            {
+                existingCinemahall.HallName = cinemahall.HallName;
+                existingCinemahall.CinemaID = cinemahall.CinemaID;
+
+            }
+            _cinemaHallRepository.Update(existingCinemahall);
+            return Ok(existingCinemahall);
         }
     }
 }

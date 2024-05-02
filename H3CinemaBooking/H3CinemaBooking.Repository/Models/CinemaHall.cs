@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace H3CinemaBooking.Repository.Models
 {
@@ -11,6 +12,7 @@ namespace H3CinemaBooking.Repository.Models
         public string HallName { get; set; }
         [ForeignKey("CinemaID")]
         public int CinemaID { get; set; }
-        public List<Seat> Seats { get; set; }
+        [JsonIgnore]
+        public List<Seat> ?Seats { get; set; }
     }
 }

@@ -18,6 +18,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/generic.services';
 import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
 import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
+import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/admincinemahall.component';
+import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,11 @@ import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinem
     AdminFrontPageComponent,
     AdminMovieComponent,
     AdmingenreComponent,
+    AdmincinemaHallComponent,
     UnauthorizedComponent,
     AdmingenreComponent,
-    AdminCinemaComponent
+    AdminCinemaComponent,
+    AdminregionComponent
   ],
   imports: [
     BrowserModule,

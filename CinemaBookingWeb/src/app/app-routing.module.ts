@@ -9,6 +9,8 @@ import { authGuard, adminGuard } from './guard/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
 import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
+import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/admincinemahall.component';
+import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'adminmovie', component: AdminMovieComponent},
   { path: 'admingenre', component: AdmingenreComponent},
   { path: 'admincinema', component: AdminCinemaComponent},
+  { path: 'admincinemahall', component: AdmincinemaHallComponent},
+  { path: 'adminregion', component: AdminregionComponent},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 
