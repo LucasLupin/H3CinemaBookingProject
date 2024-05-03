@@ -61,6 +61,12 @@ namespace H3CinemaBooking.Repository.Repositories
             }
         }
 
+        public Roles GetRole(int roleId)
+        {
+            var result = context.Roles.FirstOrDefault(r => r.RoleID == roleId);
+            return result;
+        }
+
 
         // Create a login
 

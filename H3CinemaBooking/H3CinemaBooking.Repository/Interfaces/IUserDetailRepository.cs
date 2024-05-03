@@ -16,5 +16,7 @@ namespace H3CinemaBooking.Repository.Interfaces
 
         UserDetail GetByEmail(string email);
         UserDetail GetByPhoneNumber(string phoneNumber);
+
+        Roles GetRole(int roleId);
     }
 }

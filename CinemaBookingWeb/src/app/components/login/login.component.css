@@ -156,10 +156,11 @@
   }
   
   .forgot-password {
-    color: #ff7162;
+    color: white;
     text-decoration: none;
     display: block;
     cursor: pointer;
+    font-weight: 600;
   }
   
   /* Styling af form input-felter */

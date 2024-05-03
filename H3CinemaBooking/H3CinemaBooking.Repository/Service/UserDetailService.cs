@@ -115,13 +115,22 @@ namespace H3CinemaBooking.Repository.Service
         private string CreateToken(UserDetail userDetail)
         {
             //TODO: Lav så den bruger en rolle metode der konverterer id til rolle navn
+            var roleInfo = _userDetailRepository.GetRole(userDetail.RoleID);
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, userDetail.Email),
                 new Claim(ClaimTypes.Name, userDetail.Name),
-                new Claim(ClaimTypes.Role, "Customer"),
                 new Claim(ClaimTypes.MobilePhone, userDetail.PhoneNumber)
             };
+
+            if (roleInfo != null)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, roleInfo.RoleName));
+            }
+            else
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Customer"));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

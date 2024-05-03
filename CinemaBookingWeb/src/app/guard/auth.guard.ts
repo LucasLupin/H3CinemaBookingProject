@@ -21,9 +21,8 @@ export const authGuard: CanActivateFn = (route, state) => {
 export const adminGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  const expectedRole = route.data['Admin'];
 
-  if (authService.isAuthenticated() && authService.getUserRole() === expectedRole) {
+  if (authService.isAuthenticated() && authService.getUserRole() === 'Admin') {
       console.log("user is admin")
       return true;
   } else {
