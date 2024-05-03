@@ -230,3 +230,22 @@
 .password-requirements.show {
     display: block;
 }
+
+.signup-field-error {
+    color: red;
+    margin-top: 5px;
+    display: none;
+}
+
+
+.login-field-error {
+  color: red;
+  margin-top: 5px;
+  display: none;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  text-align: center;
+} 
+.show {
+  display: flex;
+}

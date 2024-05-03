@@ -22,6 +22,7 @@ import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/ad
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,16 @@ import { AdminroleComponent } from './components/admin/adminrole/adminrole.compo
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('authToken');
+        },
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes: [],
+      },
+    })
   ],
   providers: [
     {

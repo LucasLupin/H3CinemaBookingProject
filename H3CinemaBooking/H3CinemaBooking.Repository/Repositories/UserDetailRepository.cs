@@ -31,6 +31,18 @@ namespace H3CinemaBooking.Repository.Repositories
             return result;
         }
 
+        public UserDetail GetByEmail(string Email)
+        {
+            var result = context.UserDetails.FirstOrDefault(c => c.Email == Email);
+            return result;
+        }
+
+        public UserDetail GetByPhoneNumber(string PhoneNumber)
+        {
+            var result = context.UserDetails.FirstOrDefault(c => c.PhoneNumber == PhoneNumber);
+            return result;
+        }
+
         //TODO: Get All UserDetails
         public List<UserDetail> GetAll()
         {
@@ -48,5 +60,9 @@ namespace H3CinemaBooking.Repository.Repositories
                 context.SaveChanges();
             }
         }
+
+
+        // Create a login
+
     }
 }

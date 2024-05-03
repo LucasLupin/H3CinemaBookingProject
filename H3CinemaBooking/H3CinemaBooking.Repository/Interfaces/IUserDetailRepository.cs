@@ -13,5 +13,8 @@ namespace H3CinemaBooking.Repository.Interfaces
         UserDetail GetById(int id);
         List<UserDetail> GetAll();
         void DeleteByID(int id, UserDetail userDetail);
+
+        UserDetail GetByEmail(string email);
+        UserDetail GetByPhoneNumber(string phoneNumber);
     }
 }

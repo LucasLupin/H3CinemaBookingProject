@@ -41,6 +41,14 @@ export class FrontpageComponent {
   showCinemaList: boolean = false;
   isLoggedIn = false;
 
+  //Auth Global Variables
+  isAuthenticated!: boolean;
+  userRole!: string;
+  email!: string;
+  name!: string;
+
+
+
   constructor(
     private router: Router,
     private genreService: GenericService<Genre>,
@@ -56,13 +64,22 @@ export class FrontpageComponent {
 
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.isAuthenticated();
+
+    if (this.isAuthenticated) {
+      this.name = this.authService.getName() || '';
+      this.email = this.authService.getEmail() || '';
+      this.userRole = this.authService.getUserRole() || '';
+      console.log("User is authenticated on front page.");
+    } else {
+      console.log("User is not authenticated on front page.");
+    }
+    console.log("User Role: ", this.userRole);
+    console.log("Email: ", this.email);
+    console.log("Name: ", this.name);
   this.selectedCinemaId = localStorage.getItem('selectedCinemaId') || '';
   this.selectedMovieId = localStorage.getItem('selectedMovieId') || '';
   this.selectedGenreId = localStorage.getItem('selectedGenreId') || '';
-
-    this.authService.currentUser.subscribe(user => {
-      this.isLoggedIn = this.authService.isLoggedIn();
-    });
 
     this.regionService.getAll('Region').pipe(
       switchMap(regions => {
