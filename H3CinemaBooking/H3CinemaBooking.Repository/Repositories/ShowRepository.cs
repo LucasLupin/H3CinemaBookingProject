@@ -38,6 +38,21 @@ namespace H3CinemaBooking.Repository.Repositories
             return result;
         }
 
+        public void UpdateByID(int Id, Show updatedShow)
+        {
+            var show = context.Shows.FirstOrDefault(s => s.ShowID == Id);
+
+            if (show != null)
+            {
+                show.HallID = updatedShow.HallID;
+                show.MovieID = updatedShow.MovieID;
+                show.Price = updatedShow.Price;
+                show.ShowDateTime = updatedShow.ShowDateTime;
+
+                context.SaveChanges();
+            }
+        }
+
         public void DeleteByID(int Id, Show show)
         {
             if (show != null)

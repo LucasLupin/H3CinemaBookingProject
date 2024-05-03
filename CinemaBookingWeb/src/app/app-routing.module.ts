@@ -14,6 +14,7 @@ import { AdminregionComponent } from './components/admin/adminregion/adminregion
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
 import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
+import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'adminarea', component: AdminareaComponent},
   { path: 'adminrole', component: AdminroleComponent},
   { path: 'adminseat', component: AdminseatComponent},
+  { path: 'adminshow', component:AdminshowComponent},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 

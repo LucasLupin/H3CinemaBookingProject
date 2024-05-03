@@ -23,7 +23,21 @@ import { AdminregionComponent } from './components/admin/adminregion/adminregion
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
 import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
-import { ShowComponent } from './components/show/show.component';
+import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule, 
+  NgxMatTimepickerModule 
+} from '@angular-material-components/datetime-picker';
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +58,8 @@ import { ShowComponent } from './components/show/show.component';
     AdminareaComponent,
     AdminroleComponent,
     AdminseatComponent,
-    ShowComponent
+    AdminshowComponent,
+    AdminshowComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +67,16 @@ import { ShowComponent } from './components/show/show.component';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+
   ],
   providers: [
     {
@@ -63,4 +87,6 @@ import { ShowComponent } from './components/show/show.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule 
+{ 
+}

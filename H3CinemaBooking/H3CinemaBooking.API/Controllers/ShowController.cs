@@ -2,6 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
+using H3CinemaBooking.Repository.Repositories;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,7 +33,7 @@ namespace H3CinemaBooking.API.Controllers
             {
                 return NotFound();
             }
-            return Ok($"Hello from ShowController Get {show}");
+            return Ok(show);
         }
 
         // POST api/<Showtroller>
@@ -40,7 +41,7 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<Show>Post(Show show)
         {   
             _showRepository.Create(show);
-            return Ok("Show created successfully.");
+            return Ok(show);
         }
 
         // DELETE api/<CinemaHallController>/ID
@@ -57,12 +58,12 @@ namespace H3CinemaBooking.API.Controllers
             return Ok();
         }
 
-
-        //TODO: Make a update here
-        // PUT api/<CinemaHallController>/5
+        //Update Api Movie with Genre
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Update(int id, Show show)
         {
+            _showRepository.UpdateByID(id, show);
+            return Ok(show);
         }
     }
 }

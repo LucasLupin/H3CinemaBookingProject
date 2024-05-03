@@ -31,7 +31,7 @@
         <tr *ngFor="let cinemahall of cinemahallList">
             <td data-label="ID">{{cinemahall.hallsID}}</td>
             <td data-label="Name">{{cinemahall.hallName}}</td>
-            <td data-label="Location">{{ cinemahall.cinemaID }}</td>
+            <td data-label="CinemaID">{{ cinemahall.cinemaID }}</td>
             <td>
                 <button class="edit-btn" (click)="editCinemaHall(cinemahall)">Edit</button>
                 <button class="delete-btn" (click)="deleteCinemaHall(cinemahall)">Delete</button>

@@ -4,5 +4,5 @@ export class Show
   hallID?: number
   movieID?: number
   price?: number
-  showdatetime?: Date
+  showDateTime?: Date
 }

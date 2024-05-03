@@ -41,7 +41,7 @@ export class AdmincinemaHallComponent {
   
       this.cinemahallSerice.getAll("cinemahall").subscribe(data => {
         this.cinemahallList = data;
-        console.log("AreaData: ", this.cinemahallList);
+        console.log("CinemaHall: ", this.cinemahallList[0].hallName);
         
       });
     }
