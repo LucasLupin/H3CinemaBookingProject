@@ -149,7 +149,7 @@ namespace H3CinemaBooking.Repository.Data
             // UserDetail Sheet
             var UserDetails = new List<UserDetail>();
             var hashingService = new HashingService();
-            var passwords = new List<string> { "Test123", "Test321", "Test0987654" };
+            var passwords = new List<string> { "Test123!", "Test321!", "Test0987654!" };
             
             int UserDetailID = 1;  // Start UserDetail IDs from 1
             

@@ -4,13 +4,17 @@ using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using H3CinemaBooking.Repository.Interfaces;
+using Microsoft.AspNetCore.Identity.Data;
+using H3CinemaBooking.Repository.Models.DTO;
 
 namespace H3CinemaBooking.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class UserDetailController : ControllerBase
+
     {
+
         private readonly IUserDetailService _userDetailService;
 
         public UserDetailController(IUserDetailService userDetailService)
@@ -54,6 +58,48 @@ namespace H3CinemaBooking.API.Controllers
             _userDetailService.DeleteUserdetail(id);
             return Ok();
         }
+
+        [HttpPost("register")]
+        public ActionResult<UserDetail> RegisterUser(RegisterUserDTO registerUserDetail)
+        {
+            List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);
+            if (errors.Any())
+            {
+                return BadRequest(string.Join(", ", errors));
+            }
+            if (_userDetailService.CheckIfUserExistsFromEmail(registerUserDetail.Email) || _userDetailService.CheckIfUserExistsFromNumber(registerUserDetail.PhoneNumber))
+            {
+                return BadRequest("Email or Phonenumber already exists");
+            }
+            var jwt = _userDetailService.RegisterUser(registerUserDetail);
+            if (jwt == "false")
+            {
+                return BadRequest("Something went wrong doing signup");
+            }
+            return Ok(jwt);
+        }
+
+        [HttpPost("login")]
+        public ActionResult<UserDetail> Login(LoginUserDTO loginUserDetail)
+        {
+            List<string> errors = _userDetailService.ValidateUserInput(loginUserDetail);
+            if (errors.Any())
+            {
+                return BadRequest(string.Join(", ", errors));
+            }
+            if (_userDetailService.CheckIfUserExistsFromEmail(loginUserDetail.Email))
+            {
+                var jwt = _userDetailService.Login(loginUserDetail);
+                if (jwt != "False")
+                {
+                    return Ok(jwt);
+                }
+                return BadRequest("Invalid credentials");
+
+            }
+            return BadRequest("Invalid credentials");
+        }
+
 
         //[HttpPut("{id}")]
         //public ActionResult Put(int id, [FromBody] Costumer costumer)

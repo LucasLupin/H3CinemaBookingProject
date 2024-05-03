@@ -1,4 +1,5 @@
 ﻿using H3CinemaBooking.Repository.Models;
+using H3CinemaBooking.Repository.Models.DTO;
 using H3CinemaBooking.Repository.Models.DTO_s;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,12 @@ namespace H3CinemaBooking.Repository.Interfaces
         UserDetailDTO GetUserDetailById(int id);
         (string Hash, string Salt) CreateUserDetail(UserDetail userdetail);
         bool DeleteUserdetail(int id);
+
+        string RegisterUser(RegisterUserDTO registerUserDetail);
+        bool CheckIfUserExistsFromEmail(string email);
+        bool CheckIfUserExistsFromNumber(string phoneNumber);
+
+        string Login(LoginUserDTO loginUserDetail);
+        List<string> ValidateUserInput<T>(T userObjekt);
     }
 }

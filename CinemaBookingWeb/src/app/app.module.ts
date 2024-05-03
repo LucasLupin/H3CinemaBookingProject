@@ -22,6 +22,7 @@ import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/ad
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
+import { JwtModule } from '@auth0/angular-jwt';
 import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
 import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,6 +78,15 @@ import {
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('authToken');
+        },
+        allowedDomains: ['localhost:4200'],
+        disallowedRoutes: [],
+      },
+    })
   ],
   providers: [
     {
