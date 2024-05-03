@@ -55,13 +55,16 @@ export class GenericService<Tentity> {
     return this.http.post<Tentity>(`${environment.apiUrl}${endpoint}`, data, httpOptions);
   }
 
+  createBulk(endpoint: string, data: Tentity[]): Observable<any> {
+    return this.http.post<Tentity[]>(`${environment.apiUrl}${endpoint}/bulk`, data, httpOptions)
+  }
+
   update(endpoint: string, data: Tentity, id:number): Observable<Tentity> {
     if (id === undefined) {
       throw new Error("Cannot update entity without an ID.");
     }
     console.log("id", id);
     console.log("Data: ", data);
-    
     
     return this.http.put<Tentity>(`${environment.apiUrl}${endpoint}/${id}`, data, httpOptions)
   }

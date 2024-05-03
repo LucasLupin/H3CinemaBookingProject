@@ -22,6 +22,8 @@ import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/ad
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
+import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
+import { ShowComponent } from './components/show/show.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AdminroleComponent } from './components/admin/adminrole/adminrole.compo
     AdminCinemaComponent,
     AdminregionComponent,
     AdminareaComponent,
-    AdminroleComponent
+    AdminroleComponent,
+    AdminseatComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

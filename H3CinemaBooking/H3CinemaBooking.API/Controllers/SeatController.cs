@@ -40,7 +40,14 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<Seat>Post(Seat seat)
         {
             _seatRepository.Create(seat);
-            return Ok("Seat created successfully.");
+            return Ok();
+        }
+
+        [HttpPost("bulk")]
+        public IActionResult PostBulk([FromBody] List<Seat> seats)
+        {
+            _seatRepository.CreateBulk(seats);
+            return Ok(seats);
         }
 
         // DELETE api/<SeatController>/ID
