@@ -23,6 +23,8 @@ import { AdminregionComponent } from './components/admin/adminregion/adminregion
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
+import { ShowComponent } from './components/show/show.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { JwtModule } from '@auth0/angular-jwt';
     AdminCinemaComponent,
     AdminregionComponent,
     AdminareaComponent,
-    AdminroleComponent
+    AdminroleComponent,
+    AdminseatComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

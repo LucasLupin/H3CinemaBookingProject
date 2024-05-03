@@ -10,6 +10,7 @@ namespace H3CinemaBooking.Repository.Interfaces
     public interface ISeatRepository
     {
         Seat Create(Seat seat);
+        public IEnumerable<Seat> CreateBulk(IEnumerable<Seat> seats);
         Seat GetById(int id);
         List<Seat> GetAll();
         void DeleteByID(int id);

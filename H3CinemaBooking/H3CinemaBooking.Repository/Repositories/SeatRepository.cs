@@ -24,7 +24,15 @@ namespace H3CinemaBooking.Repository.Repositories
                 context.SaveChanges();
                 return seat;
             }
-            public Seat GetById(int Id)
+
+            public IEnumerable<Seat> CreateBulk(IEnumerable<Seat> seats)
+            {
+                context.Seats.AddRange(seats);
+                context.SaveChanges();
+                return seats;
+            }
+
+        public Seat GetById(int Id)
             {
                 var result = context.Seats.FirstOrDefault(c => c.SeatID == Id);
                 return result;
