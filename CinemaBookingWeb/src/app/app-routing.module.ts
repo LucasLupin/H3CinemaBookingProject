@@ -18,7 +18,7 @@ import { AdminseatComponent } from './components/admin/adminseat/adminseat.compo
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
   { path: 'profile', component: FrontpageComponent, canActivate : [authGuard]},
-  { path: 'admin', component: AdminFrontPageComponent, canActivate : [authGuard, adminGuard]},
+  { path: 'admin', component: AdminFrontPageComponent, canActivate : [adminGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'areapick', component: AreapickComponent },
   { path: 'adminmovie', component: AdminMovieComponent},
