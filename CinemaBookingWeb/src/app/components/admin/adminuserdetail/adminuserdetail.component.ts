@@ -24,7 +24,7 @@ export class AdminuserdetailComponent {
       userDetailID: new FormControl(userdetail ? userdetail.userDetailID : 0),
       name: new FormControl(userdetail ? userdetail.name : '', Validators.required),
       email: new FormControl(userdetail ? userdetail.email : '', Validators.required),
-      password: new FormControl(userdetail ? userdetail.PasswordHash : '', Validators.required),
+      password: new FormControl({value: userdetail && this.isEditMode ? userdetail.PasswordHash : '', disabled: this.isEditMode}, this.isEditMode ? null : Validators.required),
       phoneNumber: new FormControl(userdetail ? userdetail.phoneNumber : '', Validators.required),
       roleID: new FormControl(userdetail ? userdetail.roleID : '', Validators.required),
       isActive: new FormControl(userdetail ? userdetail.isActive : true, Validators.required),
@@ -34,10 +34,18 @@ export class AdminuserdetailComponent {
   constructor(private userDetailService: GenericService<Userdetail>, private roleSerice: GenericService<Role>) {
     this.initForm();
   }
-    ngOnInit() {
-      this.fetchUserDetail();
-      this.initForm();
-    }
+  ngOnInit() {
+    this.fetchUserDetail();
+    this.initForm();
+
+    this.userDetailForm.get('isActive')!.valueChanges.subscribe(active => {
+        console.log("isActive toggled, new value:", active);
+        if (this.isEditMode && this.currentUserDetail) {
+            this.save();
+        }
+    });
+}
+
   
     fetchUserDetail() {
       this.userDetailService.getAll("userDetail").subscribe(data => {
@@ -75,12 +83,12 @@ export class AdminuserdetailComponent {
     }
   
     public save(): void {
+      console.log("Attempting to save. Form valid:", this.userDetailForm.valid);
+      console.log("Userdetail: ", this.userDetailForm.value)
       if (this.userDetailForm.valid) {
         const formdata = this.userDetailForm.value;
         console.log("Formdata: ", formdata);
         
-        const userdetailID = this.isEditMode ? formdata.userDetailID : 0;
-
         const registerData: RegisterUserDTO = {
           name: formdata.name,
           email: formdata.email,
@@ -88,18 +96,21 @@ export class AdminuserdetailComponent {
           password: formdata.password
         };
   
-        const userdetailData = {
+        const userDetailDTOData = {
           userDetailID: this.isEditMode ? formdata.userDetailID : 0,
           name: formdata.name,
           email: formdata.email,
-          passwordHash: formdata.password,
           phoneNumber: formdata.phoneNumber,
           roleID: parseInt(formdata.roleID, 10),
           isActive: formdata.isActive
         };
 
-        if (this.isEditMode == true && userdetailData.userDetailID) {  
-          this.userDetailService.update('userdetail', userdetailData, userdetailData.userDetailID).subscribe({
+        console.log("TestID", userDetailDTOData.userDetailID);
+        
+        if (this.isEditMode == true && userDetailDTOData.userDetailID) {  
+          console.log("UpdateTest", userDetailDTOData);
+          
+          this.userDetailService.update('userdetail', userDetailDTOData, userDetailDTOData.userDetailID).subscribe({
             next: (response) => {
               console.log('UserDetail updated:', response);
               this.resetForm();
@@ -113,7 +124,7 @@ export class AdminuserdetailComponent {
         }
            else
            {
-            if (userdetailData.roleID == 1)
+            if (userDetailDTOData.roleID == 1)
               {
                 console.log("UserDetailCostumer Create: ", registerData);
             
@@ -130,7 +141,7 @@ export class AdminuserdetailComponent {
                 }
               });
               }
-            else if (userdetailData.roleID == 2)
+            else if (userDetailDTOData.roleID == 2)
               {
                 console.log("UserDetailAdmin Create: ", registerData);
             

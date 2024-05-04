@@ -15,6 +15,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         UserDetailDTO GetUserDetailById(int id);
         (string Hash, string Salt) CreateUserDetail(UserDetail userdetail);
         bool DeleteUserdetail(int id);
+        public void UpdateByID(int Id, UserDetailDTO updatedUser);
 
         string RegisterUser(RegisterUserDTO registerUserDetail);
         UserDetail RegisterAdminWithoutToken(RegisterUserDTO registerUserDetail);

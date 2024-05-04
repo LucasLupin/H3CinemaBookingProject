@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using H3CinemaBooking.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity.Data;
 using H3CinemaBooking.Repository.Models.DTO;
+using H3CinemaBooking.Repository.Repositories;
+using H3CinemaBooking.Repository.Models.DTO_s;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -135,17 +137,12 @@ namespace H3CinemaBooking.API.Controllers
         }
 
 
-        //[HttpPut("{id}")]
-        //public ActionResult Put(int id, [FromBody] Costumer costumer)
-        //{
-        //    var existingCostumer = _costumerService.GetCostumerById(id);
-        //    if (existingCostumer == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _costumerService.UpdateCostumer(id, costumer);
-        //    return NoContent();
-        //}
+        //Update 
+        [HttpPut("{id}")]
+        public ActionResult Update(UserDetailDTO userdetail, int id)
+        {
+            _userDetailService.UpdateByID(id, userdetail);
+            return Ok(userdetail);
+        }
     }
 }

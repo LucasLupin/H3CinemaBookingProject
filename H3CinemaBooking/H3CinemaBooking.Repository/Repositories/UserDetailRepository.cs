@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using H3CinemaBooking.Repository.Models.DTO_s;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,16 +51,45 @@ namespace H3CinemaBooking.Repository.Repositories
             return result;
         }
 
-        public void DeleteByID(int Id, UserDetail userDetail)
+        public void DeleteByID(int Id)
         {
+            var userDetail = context.UserDetails.FirstOrDefault(u => u.UserDetailID == Id);
+
             if (userDetail != null)
             {
-                // Set IsActive to false instead of removing the customer
-                userDetail.IsActive = false;
-                context.Update(userDetail);
+                if (!userDetail.IsActive)
+                {
+                    context.UserDetails.Remove(userDetail);
+                }
+                else
+                {
+                    userDetail.IsActive = false;
+                    context.UserDetails.Update(userDetail);
+                }
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("User detail not found.");
+            }
+        }
+
+        public void UpdateByID(int id, UserDetailDTO newUserDetail)
+        {
+            var existingUser = context.UserDetails.FirstOrDefault(u => u.UserDetailID == id);
+            if (existingUser != null)
+            {
+                existingUser.Name = newUserDetail.Name;
+                existingUser.Email = newUserDetail.Email;
+                existingUser.PhoneNumber = newUserDetail.PhoneNumber;
+                existingUser.RoleID = newUserDetail.RoleID;
+                existingUser.IsActive = newUserDetail.IsActive;
+
                 context.SaveChanges();
             }
         }
+
+
 
         public Roles GetRole(int roleId)
         {

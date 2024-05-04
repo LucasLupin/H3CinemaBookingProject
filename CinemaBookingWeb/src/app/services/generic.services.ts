@@ -3,8 +3,11 @@ import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { AuthService } from './auth.service';
-
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { inject } from '@angular/core';
+import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -19,6 +22,12 @@ const httpOptions = {
     'content-type': 'application/json'
   })
 };
+
+interface UserDetails {
+  username: string;
+  role: string;
+  authToken: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +56,8 @@ export class GenericService<Tentity> {
   }
 
   createBulk(endpoint: string, data: Tentity[]): Observable<any> {
+    console.log("Data in service: ", data);
+    console.log("endpoint: ", endpoint);
     return this.http.post<Tentity[]>(`${environment.apiUrl}${endpoint}/bulk`, data, httpOptions)
   }
 
@@ -110,6 +121,7 @@ export class LocalStorageGeneric {
         };
         console.log("formattedResult:", formattedResult);
         this.setItem('selectedArea', formattedResult);
+        this.router.navigate(['/']);
       }
     } catch (error) {
       this.removeItem('selectedArea');
@@ -148,10 +160,10 @@ export class LocalStorageGeneric {
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authSevice: AuthService) {}
+  constructor(private userService: UserService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authToken = this.authSevice.getAuthToken();
+    const authToken = this.userService.getAuthToken();
     if (authToken) {
       request = request.clone({
         setHeaders: {
@@ -163,84 +175,77 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 }
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class UserService {
-//   private authToken!: string;
-//   private userRole!: string;
-//   private email!: string;
-//   private name!: string;
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private authToken!: string;
+  private userRole!: string;
+  private username!: string;
 
-//   constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-//   login(email: string, password: string): Observable<boolean> {
-//     return this.http.post(`${environment.apiUrl}UserDetail/login`, { email, password }, { responseType: 'text' }).pipe(
-//       tap(response => this.storeAuthToken(response)),
-//       map(response => !!response),
-//       catchError(error => {
-//         console.error('Login failed:', error);
-//         return throwError(() => new Error('Login failed'));
-//       })
-//     );
-//   }
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.post<any>(`${environment.apiUrl}/login`, { username, password }).pipe(
+      tap(response => this.saveAuthDetails(response)),
+      map(response => !!response.token),
+      catchError(error => {
+        console.error('Login failed:', error);
+        return throwError(() => new Error('Login failed'));
+      })
+    );
+  }
 
-//   getAuthToken(): string | null {
-//     if (this.authToken) {
-//       return this.authToken;
-//     }
+  getAuthToken(): string | null {
+    if (this.authToken) {
+      return this.authToken;
+    }
 
-//     const data = localStorage.getItem('authToken');
-//     if (data) {
-//       const convertedData = JSON.parse(data);
-//       this.authToken = convertedData;
-//       return this.authToken;
-//     }
+    const data = localStorage.getItem('userData');
+    if (data) {
+      const userData: UserDetails = JSON.parse(data);
+      this.authToken = userData.authToken;
+      return this.authToken;
+    }
 
-//     return null;
-//   }
+    return null;
+  }
 
-//   validateToken(authToken: string): Observable<UserDetails | null> {
-//     return this.http.get<UserDetails>(`${environment.apiUrl}/check-token`, {
-//       headers: new HttpHeaders({
-//         'Authorization': `Bearer ${authToken}`
-//       }),
-//       observe: 'response'
-//     }).pipe(
-//       map(response => {
-//         if (response.status === 200 && response.body) {
-//           this.authToken = response.body.authToken;
-//           this.userRole = response.body.role;
-//           this.email = response.body.email;
-//           localStorage.setItem('authToken', JSON.stringify(response.body));
-//           return response.body;
-//         }
-//         return null;
-//       }),
-//       catchError(error => {
-//         console.error('Token validation failed:', error.message);
-//         this.logout();
-//         return of(null);
-//       })
-//     );
-//   }
+  validateToken(authToken: string): Observable<UserDetails | null> {
+    return this.http.get<UserDetails>(`${environment.apiUrl}/check-token`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${authToken}`
+      }),
+      observe: 'response'
+    }).pipe(
+      map(response => {
+        if (response.status === 200 && response.body) {
+          this.authToken = response.body.authToken;
+          this.userRole = response.body.role;
+          this.username = response.body.username;
+          localStorage.setItem('userData', JSON.stringify(response.body));
+          return response.body;
+        }
+        return null;
+      }),
+      catchError(error => {
+        console.error('Token validation failed:', error.message);
+        this.logout();
+        return of(null);
+      })
+    );
+  }
 
-//   logout(): void {
-//     localStorage.removeItem('authToken');
-//     this.router.navigate(['/login']);
-//   }
+  logout(): void {
+    localStorage.removeItem('userData');
+    this.router.navigate(['/login']);
+  }
 
-//   storeAuthToken(token: string): void {
-//     this.authToken = token;
-//     localStorage.setItem('authToken', token);
-
-//     // Decode the token to extract user information
-//     const decodedToken = this.jwtHelper.decodeToken(token);
-//     this.email = decodedToken?.email || '';
-//     this.name = decodedToken?.name || '';
-//     this.userRole = decodedToken?.role || '';
-//     console.log('User role:', this.userRole);
-//     console.log('Name:', this.name);
-//     console.log('Email:', this.email);
-//   }
-// }
+  saveAuthDetails(response: any): void {
+    localStorage.setItem('userData', JSON.stringify({
+      username: response.user.username,
+      role: response.user.role,
+      authToken: response.token
+    }));
+  }
+}

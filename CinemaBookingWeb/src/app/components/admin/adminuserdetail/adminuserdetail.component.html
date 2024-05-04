@@ -77,15 +77,14 @@
             </option>
           </select>
 
-        <div *ngIf="isEditMode">
-            <div class="form-group">
-                <label for="isActiveSwitch">IsActive</label>
-                <div class="switch">
-                    <input type="checkbox" id="isActiveSwitch" formControlName="isActive">
-                    <span class="slider round"></span>
-                </div>
+          <div *ngIf="isEditMode" class="form-group">
+            <label for="isActiveSwitch">IsActive</label>
+            <div class="switch">
+                <input type="checkbox" id="isActiveSwitch" formControlName="isActive">
+                <span class="slider round"></span>
             </div>
         </div>
+        
 
         <div class="button-group">
             <button type="submit" class="save-btn">Save</button>

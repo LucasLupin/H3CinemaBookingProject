@@ -69,12 +69,18 @@ namespace H3CinemaBooking.Repository.Service
 
             return (newHash, newSalt);
         }
+
+        public void UpdateByID(int Id, UserDetailDTO updatedUser)
+        {
+            _userDetailRepository.UpdateByID(Id, updatedUser);
+        }
+
         public bool DeleteUserdetail(int id)
         {
             var userdetail = _userDetailRepository.GetById(id);
             if (userdetail != null)
             {
-                _userDetailRepository.DeleteByID(id, userdetail);
+                _userDetailRepository.DeleteByID(id);
                 return true;
             }
             return false;
