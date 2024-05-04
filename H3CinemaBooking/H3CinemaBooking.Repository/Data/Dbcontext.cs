@@ -64,9 +64,9 @@ namespace H3CinemaBooking.Repository.Data
                 .IsRequired();
 
             modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Costumer)
+                .HasOne(b => b.userDetail)
                 .WithMany(c => c.Bookings)
-                .HasForeignKey(b => b.CostumerID);
+                .HasForeignKey(b => b.UserDetailID);
 
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Show)
@@ -179,7 +179,7 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<UserDetail>().HasData(UserDetails);
             
             //Booking Sheet
-            modelBuilder.Entity<Booking>().HasData(new Booking { BookingID = 1, ShowID = 1, CostumerID = 1, Price = 125, NumberOfSeats = 8, IsActive = true }, new Booking { BookingID = 2, ShowID = 2, CostumerID = 2, Price = 110, NumberOfSeats = 12, IsActive = true }, new Booking { BookingID = 3, ShowID = 3, CostumerID = 3, Price = 100, NumberOfSeats = 6, IsActive = true }); ;
+            modelBuilder.Entity<Booking>().HasData(new Booking { BookingID = 1, ShowID = 1, UserDetailID = 1, Price = 125, NumberOfSeats = 8, IsActive = true }, new Booking { BookingID = 2, ShowID = 2, UserDetailID = 2, Price = 110, NumberOfSeats = 12, IsActive = true }, new Booking { BookingID = 3, ShowID = 3, UserDetailID = 3, Price = 100, NumberOfSeats = 6, IsActive = true }); ;
 
             //BookingSeat Sheet
 

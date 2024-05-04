@@ -100,6 +100,42 @@ namespace H3CinemaBooking.Repository.Service
             return "false";
         }
 
+        public UserDetail RegisterCostumerWithoutToken(RegisterUserDTO registerUserDetail)
+        {
+            UserDetail userDetail = new();
+            string newSalt = _hashingService.GenerateSalt();
+            string newHash = _hashingService.HashPassword(registerUserDetail.Password, newSalt);
+            userDetail.PasswordSalt = newSalt;
+            userDetail.PasswordHash = newHash;
+            userDetail.Email = registerUserDetail.Email;
+            userDetail.Name = registerUserDetail.Name;
+            userDetail.PhoneNumber = registerUserDetail.PhoneNumber;
+            userDetail.IsActive = true;
+            userDetail.RoleID = 1;
+
+            var result = _userDetailRepository.Create(userDetail);
+
+            return (result);
+        }
+
+        public UserDetail RegisterAdminWithoutToken(RegisterUserDTO registerUserDetail)
+        {
+            UserDetail userDetail = new();
+            string newSalt = _hashingService.GenerateSalt();
+            string newHash = _hashingService.HashPassword(registerUserDetail.Password, newSalt);
+            userDetail.PasswordSalt = newSalt;
+            userDetail.PasswordHash = newHash;
+            userDetail.Email = registerUserDetail.Email;
+            userDetail.Name = registerUserDetail.Name;
+            userDetail.PhoneNumber = registerUserDetail.PhoneNumber;
+            userDetail.IsActive = true;
+            userDetail.RoleID = 2;
+
+            var result = _userDetailRepository.Create(userDetail);
+
+            return (result);
+        }
+
         public string Login(LoginUserDTO loginUserDetail)
         {
             var user = _userDetailRepository.GetByEmail(loginUserDetail.Email);
@@ -141,7 +177,7 @@ namespace H3CinemaBooking.Repository.Service
                 );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return jwt;
+            return (jwt);
         }
 
 
@@ -229,7 +265,7 @@ namespace H3CinemaBooking.Repository.Service
 
         private bool IsValidPhoneNumber(string phoneNumber)
         {
-            var phoneRegex = @"^[23456789]\d{7}$";
+            var phoneRegex = @"^[123456789]\d{7}$";
             return Regex.IsMatch(phoneNumber, phoneRegex);
         }
 

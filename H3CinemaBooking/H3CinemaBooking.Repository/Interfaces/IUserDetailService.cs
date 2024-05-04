@@ -17,6 +17,8 @@ namespace H3CinemaBooking.Repository.Interfaces
         bool DeleteUserdetail(int id);
 
         string RegisterUser(RegisterUserDTO registerUserDetail);
+        UserDetail RegisterAdminWithoutToken(RegisterUserDTO registerUserDetail);
+        public UserDetail RegisterCostumerWithoutToken(RegisterUserDTO registerUserDetail);
         bool CheckIfUserExistsFromEmail(string email);
         bool CheckIfUserExistsFromNumber(string phoneNumber);
 

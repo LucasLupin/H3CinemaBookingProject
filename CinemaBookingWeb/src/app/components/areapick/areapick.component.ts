@@ -33,6 +33,8 @@ export class AreapickComponent {
       const cityDataString = JSON.stringify(cityData);
       localStorage.setItem('selectedArea', cityDataString);
       this.storageService.handleLocalStorage();
+
+      this.router.navigateByUrl("/");
     }
   }  
 }

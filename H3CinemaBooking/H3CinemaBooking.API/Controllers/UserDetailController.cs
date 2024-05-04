@@ -79,6 +79,40 @@ namespace H3CinemaBooking.API.Controllers
             return Ok(jwt);
         }
 
+        [HttpPost("registerAdminOutToken")]
+        public ActionResult<UserDetail> RegisterAdminWithOutToken(RegisterUserDTO registerUserDetail)
+        {
+            List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);
+            if (errors.Any())
+            {
+                return BadRequest(string.Join(", ", errors));
+            }
+            if (_userDetailService.CheckIfUserExistsFromEmail(registerUserDetail.Email) || _userDetailService.CheckIfUserExistsFromNumber(registerUserDetail.PhoneNumber))
+            {
+                return BadRequest("Email or Phonenumber already exists");
+            }
+            var result = _userDetailService.RegisterAdminWithoutToken(registerUserDetail);
+            
+            return Ok(result);
+        }
+
+        [HttpPost("registerCostumerOutToken")]
+        public ActionResult<UserDetail> RegisterCostumerWithOutToken(RegisterUserDTO registerUserDetail)
+        {
+            List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);
+            if (errors.Any())
+            {
+                return BadRequest(string.Join(", ", errors));
+            }
+            if (_userDetailService.CheckIfUserExistsFromEmail(registerUserDetail.Email) || _userDetailService.CheckIfUserExistsFromNumber(registerUserDetail.PhoneNumber))
+            {
+                return BadRequest("Email or Phonenumber already exists");
+            }
+            var result = _userDetailService.RegisterCostumerWithoutToken(registerUserDetail);
+
+            return Ok(result);
+        }
+
         [HttpPost("login")]
         public ActionResult<UserDetail> Login(LoginUserDTO loginUserDetail)
         {
