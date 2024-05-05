@@ -61,7 +61,6 @@ export class AdminshowComponent {
       onDateTimeChange(event: any) {
         const utcDate = new Date(Date.UTC(event.value.getFullYear(), event.value.getMonth(), event.value.getDate(), event.value.getHours(), event.value.getMinutes()));
         this.datetime.setValue(utcDate.toISOString());
-        console.log("datetime: ", this.datetime);
       }
     
       editShow(show: Show): void {

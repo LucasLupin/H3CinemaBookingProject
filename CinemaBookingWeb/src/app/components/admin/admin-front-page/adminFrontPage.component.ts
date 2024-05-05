@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/models/movie/movie';
+import { VisibilityService } from 'src/app/services/visibility.service';
 
 @Component({
   selector: 'appadminfrontpage',
@@ -7,5 +8,10 @@ import { Movie } from 'src/app/models/movie/movie';
   styleUrls: ['./adminFrontPage.component.css']
 })
 export class AdminFrontPageComponent {
-  movies: Movie[] = [];
+
+  constructor(public visibilityService: VisibilityService) {}
+
+  toggleUserDetails() {
+    this.visibilityService.toggleUserDetailsVisibility();
+  }
 }
