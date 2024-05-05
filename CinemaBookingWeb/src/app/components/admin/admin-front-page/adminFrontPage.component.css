@@ -27,8 +27,11 @@
   }
   
   .menu-item-expand {
-      list-style-type: none;
-    }
+    position: relative;
+    list-style-type: none;
+    z-index: 2;
+  }
+  
   
   .icon-bio {
       font-family: "Inter-Black", sans-serif;
@@ -45,25 +48,66 @@
       justify-content: space-between;
       padding: 40px;
       background-color: #1d4eb4;
+      position: relative;
+      z-index: 3;
+  }
+  
+  .cinema-list ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  .cinema-list li {
+    padding: 10px 20px;
+    color: #333;
+    cursor: pointer;
+    font-size: 1rem;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; 
+    color: inherit; 
+    width: 100%;
+    display: block;
+  }
+
+  .cinema-list li:hover {
+    background-color: #ccc;
+  }
+
+  .cinema-list li:first-child {
+    border-bottom: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .cinema-list li:first-child {
+    border-bottom: none;
+    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  
+  .cinema-list li:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
   
   .cinema-list {
-    display: none; 
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap; 
-    background: #121223;
-    list-style-type: none;
     position: absolute;
-    width: 800px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    font-size: 1rem;
-    z-index: 1;
-    }
+    background: #fff; 
+    border-radius: 20px;
+    width: auto; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    top: 140%;
+    left: 0;
+    flex-direction: column;
+  }
   
     .cinema-column {
-      width: 25%; 
+      width: 100%; 
       padding: 8px;
       box-sizing: border-box; 
     }
