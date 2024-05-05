@@ -89,31 +89,32 @@ export class GenericService<Tentity> {
 export class LocalStorageGeneric {
   constructor(private service: GenericService<any>, private router: Router) {
   }
-  handleLocalStorage(): void {
+  async handleLocalStorage(): Promise<boolean> {
     const selectedArea = this.getItem('selectedArea');
     console.log("Localstorage selectedArea from generic service:", selectedArea);
     
     if (selectedArea) {
       if (typeof selectedArea === 'object' && 'name' in selectedArea && 'id' in selectedArea) {
-        this.checkAreaExists(selectedArea.id);
+        return await this.checkAreaExists(selectedArea.id);
       } else {
         console.error("Data format is incorrect:", selectedArea);
         this.removeItem('selectedArea');
-        this.router.navigate(['/areapick']);
+        return false;
       }
     } else {
       console.warn("No data found for 'selectedArea'");
-      this.router.navigate(['/areapick']);
+      return false;
     }
   }
   
-  async checkAreaExists(areaID: number): Promise<void> {
+  async checkAreaExists(areaID: number): Promise<boolean> {
     try {
       const result: Area | boolean | undefined = await this.service.exists('Area', areaID).toPromise();
       if (result === null || result === undefined || typeof result === 'boolean') {
         console.log("Handling the 404 scenario.");
         this.removeItem('selectedArea');
         this.router.navigate(['/areapick']);
+        return false;
       } else {
         const formattedResult = {
           id: result.areaID,
@@ -121,12 +122,13 @@ export class LocalStorageGeneric {
         };
         console.log("formattedResult:", formattedResult);
         this.setItem('selectedArea', formattedResult);
-        this.router.navigate(['/']);
+        return true;
       }
     } catch (error) {
       this.removeItem('selectedArea');
       this.router.navigate(['/areapick']);
       console.error("An error occurred:", error);
+      return false;
     }
   }
   

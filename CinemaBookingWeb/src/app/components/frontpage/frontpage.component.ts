@@ -64,6 +64,19 @@ export class FrontpageComponent {
 
 
   ngOnInit() {
+    this.storageService.handleLocalStorage().then(areaExists => {
+      console.log("handleLocalStorage Result from app component:", areaExists);
+      if (!areaExists) {
+        console.log('No valid area selected, user redirected to area pick.');
+        this.router.navigate(['/areapick']);
+      } else {
+        console.log('Valid area selected, user can proceed in the app.');
+      }
+    }).catch(error => {
+      console.error('Error handling in localStorage service:', error);
+      this.router.navigate(['/areapick']);
+    });
+    
     this.isAuthenticated = this.authService.isAuthenticated();
 
     if (this.isAuthenticated) {
