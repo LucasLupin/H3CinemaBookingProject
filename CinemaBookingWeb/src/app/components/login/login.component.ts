@@ -15,6 +15,7 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log("login site init")
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: [''], 
@@ -26,6 +27,7 @@ export class LoginComponent {
       name: [''],
       phoneNumber: [''],
     });
+    console.log("login after form create")
   }
 
   onLogin() {

@@ -15,15 +15,19 @@ export class AuthService {
   private name: string | null = null;
   private email: string | null = null;
   private jwtHelper = new JwtHelperService();
+  public isLoggedIn = false;
 
-  constructor(private http: HttpClient, private router: Router) {
-    // Initialize from local storage if available
+  constructor(private http: HttpClient) {
     const token = localStorage.getItem('authToken');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       this.authToken = token;
       this.decodeToken(token);
-    } else {
-      this.logout();  // Clean up if token is invalid
+    } else if(token && this.jwtHelper.isTokenExpired(token)) {
+      this.logout();  
+    }
+    else {
+      this.isLoggedIn = false;
+      console.log("No token found in local storage, isLoggedIn: ", this.isLoggedIn)
     }
   }
 
@@ -53,6 +57,7 @@ export class AuthService {
     this.authToken = token;
     localStorage.setItem('authToken', token);
     this.decodeToken(token);
+    this.isLoggedIn = true;
   }
 
   decodeToken(token: string): void {
@@ -79,6 +84,7 @@ export class AuthService {
     this.userRole = null;
     this.name = null;
     this.email = null;
+    this.isLoggedIn = false;
     localStorage.removeItem('authToken');
     // this.router.navigate(['/login']);
   }
