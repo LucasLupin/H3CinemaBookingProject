@@ -16,6 +16,7 @@ import { AdminroleComponent } from './components/admin/adminrole/adminrole.compo
 import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
 import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
+import { MoviePageComponent } from './components/movie-page/movie-page.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'adminseat', component: AdminseatComponent},
   { path: 'adminshow', component:AdminshowComponent},
   { path: 'adminuserdetail', component:AdminuserdetailComponent},
+  { path: 'moviepage', component:MoviePageComponent},
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 

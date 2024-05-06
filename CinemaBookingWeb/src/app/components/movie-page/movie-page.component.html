@@ -1,0 +1,100 @@
+<title>Movie Component</title>
+<div class="movie-layout">
+    <div class="movie-container">
+        <div class="left-column">
+            <img src="../../../static/assets/images/Challenger_Movie.jpeg" alt="Challengers Movie Poster">
+            <iframe src="https://www.youtube.com/embed/AI1mL_LjYyU?start=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="right-column">
+            <h1 class="node-title"><span class="field field-name-title">Challengers</span></h1>
+            <h2 class="node-title-city">Se den i Storkøbenhavn</h2>
+            <div class="cta-buttons">
+                <div class="reserve-button">Se tider <fa-icon [icon]="faTicket"></fa-icon></div>
+                <div class="watch-list-link">Tilføj til watchlist</div>
+            </div>
+            <div class="extra-info">
+                <div class="row1">
+                    <div class="info-row">
+                        <div class="field-group">
+                            <span class="field-label">Aldergrænse:</span>
+                            <span class="field-item">Tilladt for børn over 11 år</span>
+                        </div>
+                        <div class="field-group">
+                            <span class="field-label">Filmlængde:</span>
+                            <span class="field-item">2 timer 11 min</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="field-group">
+                            <span class="field-label">Original titel:</span>
+                            <span class="field-item">Challengers</span>
+                        </div>
+                        <div class="field-group">
+                            <span class="field-label">Premiere:</span>
+                            <span class="field-item">25. april</span>
+                        </div>
+                    </div>
+                    <div *ngIf="!toggleDetail">
+                        <a (click)="toggleDetails()" class="details-link">Vis flere detaljer ▼</a>
+                    </div>
+                </div>
+
+                <div *ngIf="toggleDetail">
+                    <div class="row2">
+                        <div class="info-row">
+                            <div class="field-group">
+                                <span class="field-label">Genre:</span>
+                                <span class="field-item">Fantasy</span>
+                                <span class="field-item">Action</span>
+                            </div>
+                            <div class="field-group">
+                                <span class="field-label">Instruktør:</span>
+                                <span class="field-item">Luca Guadagnino</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="field-group">
+                                <span class="field-label"></span>
+                                <span class="field-item"></span>
+                            </div>
+                            <div class="field-group">
+                                <span class="field-label">Skuespilllere:</span>
+                                <span class="field-item">Zendaya</span>
+                                <span class="field-item">Josh O'Connor</span>
+                                <span class="field-item">Mike Faist</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="field-group">
+                                <span class="field-label">Copyright:</span>
+                                <span class="field-item">Warner Brothers (1)</span>
+                            </div>
+                        </div>
+                        <a (click)="toggleDetails()" class="details-link">Vis mindre detaljer &#9650;</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="body-info">
+                <div class="field field-name-body">
+                    <div class="row1">
+                        <p>Bacon ipsum dolor amet chicken venison ground round, chuck kielbasa strip steak beef pastrami turkey ham shoulder biltong. </p>
+                        <p>Andouille salami pastrami, frankfurter ribeye pancetta chicken. Corned beef cupim filet mignon swine, tenderloin short loin pork tail boudin tongue porchetta capicola landjaeger ham. Ground round porchetta ham drumstick swine.</p>
+                        <div *ngIf="!toggleBody">
+                            <a (click)="toggleBodys()" class="details-link">Vis mere ▼</a>
+                        </div>
+                    </div>
+                    <div *ngIf="toggleBody">
+                        <div class="row2">
+                            <p>Picanha kielbasa filet mignon turkey tail, sirloin kevin pig jowl meatball.</p>
+                            <p>Strip steak filet mignon short ribs, cow biltong fatback capicola sirloin picanha short loin chuck chicken.</p>
+                            <p>Pork chop pastrami jowl brisket. Burgdoggen pig chicken landjaeger, turkey ball tip jerky tri-tip leberkas pastrami flank capicola ham hock prosciutto. Shank pork belly capicola short ribs.</p>
+                            <a (click)="toggleBodys()" class="details-link">Vis mindre &#9650;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

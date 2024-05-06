@@ -37,6 +37,7 @@ import {
   NgxMatTimepickerModule 
 } from '@angular-material-components/datetime-picker';
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
+import { MoviePageComponent } from './components/movie-page/movie-page.component';
 
 
 
@@ -63,6 +64,7 @@ import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adm
     AdminshowComponent,
     AdminshowComponent,
     AdminuserdetailComponent,
+    MoviePageComponent,
   ],
   imports: [
     BrowserModule,
