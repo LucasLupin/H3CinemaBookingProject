@@ -38,6 +38,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 
 
@@ -65,6 +66,7 @@ import { MoviePageComponent } from './components/movie-page/movie-page.component
     AdminshowComponent,
     AdminuserdetailComponent,
     MoviePageComponent,
+    BookingComponent,
   ],
   imports: [
     BrowserModule,

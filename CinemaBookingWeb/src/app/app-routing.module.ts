@@ -17,6 +17,7 @@ import { AdminseatComponent } from './components/admin/adminseat/adminseat.compo
 import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -35,7 +36,10 @@ const routes: Routes = [
   { path: 'adminshow', component:AdminshowComponent},
   { path: 'adminuserdetail', component:AdminuserdetailComponent},
   { path: 'moviepage/:movieId', component: MoviePageComponent },
-  { path: 'unauthorized', component: UnauthorizedComponent }
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'booking', component: BookingComponent}
+
 ];
 
 @NgModule({
