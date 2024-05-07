@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'adminseat', component: AdminseatComponent},
   { path: 'adminshow', component:AdminshowComponent},
   { path: 'adminuserdetail', component:AdminuserdetailComponent},
-  { path: 'moviepage', component:MoviePageComponent},
+  { path: 'moviepage/:movieId', component: MoviePageComponent },
   { path: 'unauthorized', component: UnauthorizedComponent }
 ];
 

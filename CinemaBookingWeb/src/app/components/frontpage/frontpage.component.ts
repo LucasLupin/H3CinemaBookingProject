@@ -151,6 +151,10 @@ export class FrontpageComponent {
       this.showCinemaList = !this.showCinemaList;
   }
 
+  goToMoviePage(movieId: string) {
+    this.router.navigate(['/moviepage', movieId]);
+  }
+
   onAreaChange(event: any): void {
     const selectedAreaID = event.target.value;
     const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID);
@@ -199,7 +203,7 @@ export class FrontpageComponent {
     dropdownKeys.forEach(key => {
       this.selectedGenreId = '';
       this.selectedMovieId = '';
-      this.selectedCinemaId = ''; //TODO: Lucas denne skal laves Genersik so den kan bruges til alle 3 dropdowns
+      this.selectedCinemaId = '';
       this.storageService.removeItem(key);
     });
     this.filterMoviesDisplayed();

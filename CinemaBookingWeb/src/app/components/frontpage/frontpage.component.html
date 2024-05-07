@@ -54,7 +54,7 @@
 
           <div class="field-item large">
             <div class="video-container">
-              <video autoplay="autoplay" loop="loop" muted="muted">
+              <video autoplay="autoplay" loop="loop" muted="muted" (click)="goToMoviePage('2')">
                 <source src="static/assets/videos/Challenger.mp4" type="video/mp4" autoplay="autoplay">
               </video>
             </div>
@@ -65,7 +65,7 @@
               </div>
               <div class="col2">
                 <a href="">
-                  <div class="frontpage-link-title">Find billetter  <fa-icon [icon]="faTicket"></fa-icon></div>
+                  <div class="frontpage-link-title" (click)="goToMoviePage('2')">Find billetter  <fa-icon [icon]="faTicket"></fa-icon></div>
                 </a>
               </div>
             </div>
