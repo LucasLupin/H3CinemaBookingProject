@@ -28,6 +28,9 @@ builder.Services.AddScoped<IGenericRepository<Roles>, GenericRepository<Roles>>(
 
 //Add service to Services, And add services to the container
 builder.Services.AddScoped<IUserDetailService, UserDetailService>();
+//Add IShowService 
+builder.Services.AddScoped<IShowService, ShowService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<HashingService>();
 
 

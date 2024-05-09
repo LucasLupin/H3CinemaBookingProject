@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { inject } from '@angular/core';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
 
 
 
@@ -45,7 +44,15 @@ export class GenericService<Tentity> {
   }
 
   getAll(endpoint: string): Observable<Tentity[]> {
-    return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`, httpOptions);
+    return this.http.get<Tentity[]>(`${environment.apiUrl}${endpoint}`, httpOptions).pipe(
+      catchError(this.handleError)
+      );
+  }
+
+  getById(endpoint: string, id: number): Observable<Tentity> {
+    return this.http.get<Tentity>(`${environment.apiUrl}${endpoint}/${id}`, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   create(endpoint: string, data: Tentity): Observable<Tentity> {
@@ -79,6 +86,14 @@ export class GenericService<Tentity> {
 
   exists(endpoint: string, id: number): Observable<Area | boolean> { 
     return this.http.get<Area | boolean>(`${environment.apiUrl}${endpoint}/${id}`);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 404) {
+      return throwError(() => new Error('Resource not found'));
+    } else {
+      return throwError(() => new Error('An unknown error occurred'));
+    }
   }
 
 }

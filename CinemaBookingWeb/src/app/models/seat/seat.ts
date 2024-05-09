@@ -4,4 +4,5 @@ export class Seat
   hallID?: number
   seatNumber?: number
   seatRow?: string
+  seatStatus?: string
 }

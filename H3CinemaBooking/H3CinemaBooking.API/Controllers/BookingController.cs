@@ -2,6 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
+using H3CinemaBooking.Repository.Models.DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,7 +13,12 @@ namespace H3CinemaBooking.API.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingRepository _bookingRepository;
-        public BookingController(IBookingRepository bookingRepository) => _bookingRepository = bookingRepository;
+        private readonly IBookingService _bookingService;
+        public BookingController(IBookingRepository bookingRepository, IBookingService bookingService)  
+        { 
+            _bookingRepository = bookingRepository;
+            _bookingService = bookingService;
+        }
 
         //TODO: Make a Get all here
         // GET: api/<BookingController>
@@ -33,6 +39,15 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             return Ok(booking);
+        }
+
+        // POST api/<BookingController>
+        [HttpPost("reserve")]
+        public ActionResult<ReserveSeatDTO> Post(ReserveSeatDTO reserveSeat)
+        {
+            ////_bookingRepository.Create(booking);
+            _bookingService.ReserveSeats(reserveSeat);
+            return Ok("Customer created successfully.");
         }
 
         // POST api/<BookingController>

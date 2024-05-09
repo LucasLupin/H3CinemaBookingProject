@@ -160,6 +160,7 @@ namespace H3CinemaBooking.Repository.Service
             var roleInfo = _userDetailRepository.GetRole(userDetail.RoleID);
             List<Claim> claims = new List<Claim>
             {
+                new Claim(ClaimTypes.Sid, userDetail.UserDetailID.ToString()),
                 new Claim(ClaimTypes.Email, userDetail.Email),
                 new Claim(ClaimTypes.Name, userDetail.Name),
                 new Claim(ClaimTypes.MobilePhone, userDetail.PhoneNumber)
