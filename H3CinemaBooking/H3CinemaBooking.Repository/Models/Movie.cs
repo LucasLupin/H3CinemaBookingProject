@@ -15,6 +15,7 @@ namespace H3CinemaBooking.Repository.Models
         public int Duration { get; set; }
         public string Director { get; set; }
         public string MovieLink { get; set; }
+        public string TrailerLink { get; set; }
         public List<Genre> ?Genres { get; set; }
     }
 }

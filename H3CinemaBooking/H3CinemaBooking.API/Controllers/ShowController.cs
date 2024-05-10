@@ -81,14 +81,22 @@ namespace H3CinemaBooking.API.Controllers
             return Ok(show);
         }
 
-        //[HttpGet("filtered")]
-        //public ActionResult<Dictionary<string, List<ShowDetailsDTO>>> GetFilteredShows([FromQuery] string movieId, [FromQuery] string areaId)
-        //{
-        //    var shows = _showRepository.GetFilteredShowsByDate(movieId, areaId);
-        //    if (shows.Count == 0)
-        //        return NotFound("No shows available for the specified filters.");
-        //    return Ok(shows);
-        //}
+        [HttpGet("filtered")]
+        public ActionResult<Dictionary<string, Dictionary<DateTime, List<ShowDetailsDTO>>>> GetFilteredShowsByArea(int areaId, int movieId)
+        {
+            try
+            {
+                var shows = _showService.GetFilteredShowsByCinemaAndDate(areaId, movieId);
+                if (shows == null || shows.Count == 0)
+                    return NotFound("No shows available for the specified area.");
+                return Ok(shows);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
 
     }
 }

@@ -12,6 +12,10 @@ C:\Users\lukr\Desktop\H3\6Uger\H3CinemaBooking\H3CinemaBooking.Repository\obj\De
 C:\Users\lukr\Desktop\H3\6Uger\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.pdb
 C:\Users\lukr\Desktop\H3\6Uger\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.genruntimeconfig.cache
 C:\Users\lukr\Desktop\H3\6Uger\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\ref\H3CinemaBooking.Repository.dll
+C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.deps.json
+C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.runtimeconfig.json
+C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.dll
+C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.pdb
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.csproj.AssemblyReference.cache
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.AssemblyInfoInputs.cache
@@ -21,9 +25,5 @@ C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.dll
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\refint\H3CinemaBooking.Repository.dll
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.pdb
-C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.deps.json
-C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.runtimeconfig.json
-C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.dll
-C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\bin\Debug\net8.0\H3CinemaBooking.Repository.pdb
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\H3CinemaBooking.Repository.genruntimeconfig.cache
 C:\Users\lukr\Desktop\H3\H3CinemaBookingProject\H3CinemaBooking\H3CinemaBooking.Repository\obj\Debug\net8.0\ref\H3CinemaBooking.Repository.dll

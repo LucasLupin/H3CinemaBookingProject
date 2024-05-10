@@ -9,7 +9,8 @@ namespace H3CinemaBooking.Repository.Models.DTO_s
 {
     public class ShowDetailsDTO
     {
-        public string ShowId { get; set; }
+        public int ShowId { get; set; }
+        public int CinemaID { get; set; }
         public string CinemaName { get; set; }
         public string HallName { get; set; }
         public DateTime ShowDateTime { get; set; }

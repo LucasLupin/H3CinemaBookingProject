@@ -3,7 +3,7 @@
         <div class="movie-container">
             <div class="left-column">
                 <img src={{selectedMovie?.movieLink}} alt="Challengers Movie Poster">
-                <iframe src="https://www.youtube.com/embed/AI1mL_LjYyU?start=0" frameborder="0" allowfullscreen></iframe>
+                <iframe src={{selectedMovie?.trailerLink}} frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="right-column">
                 <h1 class="node-title"><span class="field field-name-title">{{selectedMovie?.title}}</span></h1>
@@ -100,43 +100,51 @@
             <div class="movie-header">
                 <div class="header-content">
                     <span class="movie-header-text">Planlæg dit biografbesøg i {{SelectedCityName}}</span>
+
                     <div class="filter-container">
-                        <select class="filter-dropdown">
+                        <select class="filter-dropdown" [(ngModel)]="selectedCinemaName" (change)="onCinemaChange($event)">
                             <option value="" disabled selected>Vælg Biograf</option>
-                            <ng-container *ngFor="let cinema of cinemaInSelectedArea">
-                                <option value="cinema.cinemaID">{{cinema.name}}</option>
-                            </ng-container>
-                        </select> 
-                        <select class="filter-dropdown">
+                              <option *ngFor="let cinema of cinemaInSelectedArea" [value]="cinema.name" [selected]="cinema.name === selectedCinemaName">
+                                {{cinema.name}}
+                              </option>
+                          </select>   
+
+                          <select class="filter-dropdown" [(ngModel)]="selectedDate" (ngModelChange)="onDateChange(selectedDate)">
                             <option value="" disabled selected>Vælg dag</option>
-                            <ng-container *ngFor="let day of nextTenDays">
-                                <option value="day.toISOString()">{{ day | date:'EEEE, d MMMM y' }}</option>
+                            <ng-container *ngFor="let cinemaName of objectKeys(showsByCinemaAndDateFiltered)">
+                                <ng-container *ngFor="let day of objectKeys(showsByCinemaAndDateFiltered[cinemaName])">
+                                <option [value]="day">
+                                    {{ day | date:'EEEE, d MMMM y' }}
+                                </option>
+                                </ng-container>
                             </ng-container>
                         </select>                        
-                        <button class="reset-filter-button"><fa-icon [icon]="faRefresh"></fa-icon> Nulstil Filter</button>
+                        <button (click)="resetDropdowns()" class="reset-filter-button"><fa-icon [icon]="faRefresh"></fa-icon> Nulstil Filter</button>
                     </div>
                 </div>
             </div>
         </div>
 
             <div class="movie-time-display-container">
-                <div class="cinema" *ngFor="let cinema of cinemaInSelectedArea">
+                <div class="cinema" *ngFor="let cinemaName of objectKeys(showsByCinemaAndDateFiltered)">
                     <div class="cinema-content">
                         <div class="header">
-                            <h1>{{cinema.name}}</h1>
+                            <h1>{{cinemaName}}</h1>
                             <p>{{SelectedCityName}}</p>
                         </div>
                         <div class="schedule">
                             <!-- Eksempel for én dag -->
-                            <div class="day" *ngFor="let days of nextTenDays">
-                                <h2> {{ getDayAbbreviation(days) }}, {{ days | date: 'd/M' }}</h2>
-                                <div class="times" *ngIf="showsByDay[days.toDateString()]">
-                                    <div *ngFor="let show of showsByDay[days.toDateString()]">
-                                        <div class="time">  
-                                            <span>{{show.hallID}}</span>
-                                            <span class="movie-time">{{show.showDateTime | date:'HH:mm'}}</span>
-                                            <span>2D</span>
-                                        </div>
+                            <div class="day" *ngFor="let date of objectKeys(showsByCinemaAndDateFiltered[cinemaName])" [class.blurred]="shouldBlur(date)">
+                                <h2> {{ getDayAbbreviation(date) }}, {{ date | date: 'd/M' }}</h2>
+                                <div class="times">
+                                    <div *ngFor="let show of showsByCinemaAndDateFiltered[cinemaName][date]">
+                                        <a (click)="resetDropdowns()" class="show-btn" [href]="'booking/' + show.showId">
+                                            <div class="time">  
+                                                <span>{{show.hallName}}</span>
+                                                <span class="movie-time">{{show.showDateTime | date:'HH:mm'}}</span>
+                                                <span>2D</span>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using H3CinemaBooking.Repository.Models.DTO;
+using H3CinemaBooking.Repository.Models.DTO_s;
 using H3CinemaBooking.Repository.Repositories;
 using System;
 using System.Collections.Generic;
@@ -106,5 +107,64 @@ namespace H3CinemaBooking.Repository.Service
             }
             return bookShow;
         }
+
+        public Dictionary<string, Dictionary<DateTime, List<ShowDetailsDTO>>> GetFilteredShowsByCinemaAndDate(int areaId, int movieId)
+        {
+            var today = DateTime.Today;
+            var endDay = today.AddDays(10);
+
+            // Retrieve all shows that are within the next 10 days and match the movie ID
+            var shows = _showRepository.GetAll()
+                                       .Where(s => s.ShowDateTime.Date >= today && s.ShowDateTime.Date <= endDay && s.MovieID == movieId)
+                                       .ToList();
+
+            var result = new Dictionary<string, Dictionary<DateTime, List<ShowDetailsDTO>>>();
+
+            foreach (var show in shows)
+            {
+                var cinemaHall = _cinemaHallRepository.GetById(show.HallID);
+                var cinema = _cinemaRepository.GetById(cinemaHall.CinemaID);
+
+                // Filter cinemas by the specified area
+                if (cinema.AreaID != areaId)
+                    continue;
+
+                var cinemaName = cinema.Name;
+
+                if (!result.ContainsKey(cinemaName))
+                {
+                    result[cinemaName] = new Dictionary<DateTime, List<ShowDetailsDTO>>();
+                }
+
+                for (int i = 0; i <= 10; i++)
+                {
+                    var date = today.AddDays(i);
+                    if (!result[cinemaName].ContainsKey(date))
+                    {
+                        result[cinemaName][date] = new List<ShowDetailsDTO>();
+                    }
+
+                    if (show.ShowDateTime.Date == date)
+                    {
+                        var showDetails = new ShowDetailsDTO
+                        {
+                            ShowId = show.ShowID,
+                            CinemaID = cinema.CinemaID,
+                            CinemaName = cinemaName,
+                            HallName = cinemaHall.HallName,
+                            ShowDateTime = show.ShowDateTime,
+                            MovieTitle = _movieRepository.GetById(show.MovieID).Title
+                        };
+
+                        result[cinemaName][date].Add(showDetails);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+
     }
 }

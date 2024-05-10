@@ -442,3 +442,5 @@ FodyWeavers.xsd
 /H3CinemaBooking/H3CinemaBooking.API/appsettings.json
 /H3CinemaBooking/H3CinemaBooking.API/appsettings.Development.json
 /CinemaBookingWeb/.angular/cache
+H3CinemaBooking/H3CinemaBooking.API/Migrations/20240510165837_CinemaBooking.cs
+H3CinemaBooking/H3CinemaBooking.API/Migrations/20240510165837_CinemaBooking.Designer.cs

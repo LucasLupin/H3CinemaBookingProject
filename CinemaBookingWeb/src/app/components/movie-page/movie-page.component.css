@@ -342,7 +342,7 @@ iframe {
 .schedule {
     display: flex;
     gap: 10px;
-    width: 63%;
+    width: 66%;
     overflow-x: scroll;
     padding: 2rem;
     margin: 0 5rem;
@@ -408,6 +408,21 @@ iframe {
 .schedule::-webkit-scrollbar-thumb:hover {
     background-color: #555;
 }
+
+.show-btn {
+    text-decoration: none;
+}
+
+.time:hover {
+    background-color: rgba(44, 177, 106, 0.6);
+}
+
+.blurred {
+    filter: blur(4px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
 
 
 @media (max-width: 800px) {

@@ -1,11 +1,13 @@
   import { Component } from '@angular/core';
   import { ActivatedRoute, Router } from '@angular/router';
   import { faTicket, faRefresh } from '@fortawesome/free-solid-svg-icons';
-import { EMPTY, catchError, switchMap } from 'rxjs';
+  import { EMPTY, catchError, finalize, switchMap } from 'rxjs';
   import { Cinema } from 'src/app/models/cinema/cinema';
   import { Movie } from 'src/app/models/movie/movie';
   import { Show } from 'src/app/models/show/show';
   import { GenericService, LocalStorageGeneric } from 'src/app/services/generic.services';
+  import { ShowService } from 'src/app/services/show.service';
+  import { CinemaShowMap } from '../../services/show.service';
 
   interface RouteState {
     movieId: string;
@@ -25,6 +27,9 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
     selectedAreaID: string = ""
     SelectedCityName: string = "";
     movieId: string | null = null;
+    selectedCinemaName: string | null = null;
+    selectedDate: string = '';
+
     toggleDetail: boolean = false;
     toggleBody: Boolean = false;
     showsList: Show[] = [];
@@ -34,11 +39,14 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
     moviesList: Movie[] = [];
     nextTenDays: Date[] = [];
     showsByDay: { [key: string]: Show[] } = {};
+    showsByCinemaAndDate: CinemaShowMap = {};
+    showsByCinemaAndDateFiltered: CinemaShowMap = {};
+
     filteredShows: Show[] = [];
     
 
 
-    constructor(private router: Router, private route: ActivatedRoute, private showService:GenericService<Show>, private cinemaService:GenericService<Cinema>, private movieService:GenericService<Movie>, private storageService: LocalStorageGeneric) {}
+    constructor(private router: Router, private route: ActivatedRoute, private showService:GenericService<Show>, private showshowService: ShowService, private cinemaService:GenericService<Cinema>, private movieService:GenericService<Movie>, private storageService: LocalStorageGeneric) {}
 
     ngOnInit() {
       // Handling local storage and navigation based on the selected area
@@ -53,6 +61,9 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
         console.error('Error handling in localStorage service:', error);
         this.router.navigate(['/areapick']);
       });
+
+      this.selectedCinemaName = localStorage.getItem('SelectedCinemaName') || '';  
+      this.selectedDate = localStorage.getItem('SelectedDate') || '';  
 
   //Fetching Data before The Executing Methods
   this.movieService.getAll("movie").pipe(
@@ -82,15 +93,58 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
   ).subscribe(cinemas => {
     this.cinemasList = cinemas;
     console.log("CinemasList: ", this.cinemasList);
-
-    // After all asynchronous operations are complete, run these methods:
     this.FindCinemaBySelectedArea();
-    this.filterShowsByDate();
+
+    if (this.movieId && this.selectedAreaID) {
+      this.fetchFilteredShowsAndSort(parseInt(this.selectedAreaID), parseInt(this.movieId));
+      
+    } else {
+      console.error('Area ID or movie ID is null');
+      // handle error, maybe navigate away or show a message
+    }
   });
 
+  this.filterShowDisplayed();
   this.getSelectedArea();
   this.getNextTenDays();
 }
+
+objectKeys(obj: any): string[] {
+  return Object.keys(obj);
+}
+
+toggleDetails(): void {
+this.toggleDetail = !this.toggleDetail;
+}
+
+toggleBodys(): void {
+this.toggleBody = !this.toggleBody;
+}
+
+fetchFilteredShowsAndSort(areaId: number, movieId: number): void {
+  console.log("Test");
+  
+  this.showshowService.getFilteredShows("Show", areaId, movieId).subscribe({
+    next: (cinemaShowMap) => {
+      // Iterate over each cinema
+      for (const cinema in cinemaShowMap) {
+        // Iterate over each date within a cinema
+        for (const date in cinemaShowMap[cinema]) {
+          // Sort the shows by time
+          cinemaShowMap[cinema][date] = cinemaShowMap[cinema][date]
+            .sort((a, b) => new Date(a.showDateTime).getTime() - new Date(b.showDateTime).getTime());
+        }
+      }
+      this.showsByCinemaAndDate = cinemaShowMap;
+      this.filterShowDisplayed();
+
+      console.log("Sorted and Filtered Shows by Cinema and Date And Movie: ", this.showsByCinemaAndDate);
+      
+    },
+    error: (error) => console.error('Error fetching filtered shows:', error)
+  });
+}
+
 
 
   getNextTenDays(): void {
@@ -102,65 +156,53 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
     }
   }
 
-  getDayAbbreviation(date: Date): string {
+  getDayAbbreviation(dateStr: string): string {
+    const date = new Date(dateStr);
     const days = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
     return days[date.getDay()];
-  }
+}
 
-  filterShowsByDate(): void {
-    if (!this.selectedMovie) {
-      console.error('No selected movie.');
-      this.filteredShows = [];
-      return;
+onCinemaChange(event: Event): void {
+  const element = event.target as HTMLSelectElement;
+  if (element) {
+    this.selectedCinemaName = element.value;
+    localStorage.setItem('SelectedCinemaName', this.selectedCinemaName);
+    this.filterShowDisplayed();
+  }
+}
+
+onDateChange(selectedDateString: string): void {
+  this.selectedDate = selectedDateString;
+  localStorage.setItem('SelectedDate', this.selectedDate);
+}
+
+// Determine if the day should be blurred
+shouldBlur(date: string): boolean {
+  return !!this.selectedDate && date !== this.selectedDate;
+}
+
+
+
+filterShowDisplayed(): void {
+  // Clear previous filters
+  this.showsByCinemaAndDateFiltered = {};
+
+  if (this.selectedCinemaName) {
+    // Filter to shows from the selected cinema
+    if (this.showsByCinemaAndDate[this.selectedCinemaName]) {
+      this.showsByCinemaAndDateFiltered[this.selectedCinemaName] = this.showsByCinemaAndDate[this.selectedCinemaName];
+    } else {
+      console.error('No shows found for the selected cinema:', this.selectedCinemaName);
     }
-  
-    const selectedMovieId = this.selectedMovie.movieID;
-    const dateRange = this.nextTenDays.map(day => day.toDateString());
-    console.log("DateRange: ", dateRange);
-    
-  
-    this.filteredShows = this.showsList.filter(show => {
-      if (!show.showDateTime) {
-        return false; // Skip this show if the date-time is undefined
-      }
-      
-      //Makes a string of the shows date that
-      const showDateStr = new Date(show.showDateTime).toDateString();
-      return show.movieID === selectedMovieId && dateRange.includes(showDateStr);
+  } 
+  else {
+    // If no cinema is selected, show all shows for all cinemas
+    Object.keys(this.showsByCinemaAndDate).forEach(cinemaName => {
+      this.showsByCinemaAndDateFiltered[cinemaName] = this.showsByCinemaAndDate[cinemaName];
     });
-
-    console.log("FilteredShows: ", this.filteredShows);
     
-  
-    this.organizeShowsByDate(); // Organize the filtered shows by date for display
   }
-  
-  
-
-  organizeShowsByDate(): void {
-    this.showsByDay = {}; // Resetting the map
-  
-    this.filteredShows.forEach(show => {
-      // Ensure that showDateTime is defined before attempting to use it.
-      if (show.showDateTime) {
-        const showDate = new Date(show.showDateTime).toDateString(); // Safely format the date to a simple string
-  
-        if (!this.showsByDay[showDate]) {
-          this.showsByDay[showDate] = []; // Initialize an empty array if no entry exists
-        }
-  
-        this.showsByDay[showDate].push(show); // Push the show into the correct date entry
-      } else {
-        // Optionally handle or log cases where showDateTime is undefined
-        console.warn("Skipping show with undefined showDateTime:", show);
-      }
-      
-    });
-    console.log("showByDay: ", this.showsByDay);
-  }
-  
-  
-
+}
 
   getSelectedArea(): void {
     const selectedCityData = this.storageService.getItem('selectedArea');
@@ -197,17 +239,17 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
         return String(cinema.areaID) === String(this.selectedAreaID); 
       });
 
-      console.log("CinemaInSelectedArea: ", this.cinemaInSelectedArea);
-      
+      console.log("CinemaInSelectedArea: ", this.cinemaInSelectedArea);  
     }
 
-
-
-  toggleDetails(): void {
-    this.toggleDetail = !this.toggleDetail;
-  }
-
-  toggleBodys(): void {
-    this.toggleBody = !this.toggleBody;
-  }
+    resetDropdowns(): void {
+      const dropdownKeys = ['SelectedCinemaName', 'SelectedDate'];
+    
+      dropdownKeys.forEach(key => {
+        this.selectedCinemaName = '';
+        this.selectedDate = '';
+        this.storageService.removeItem(key);
+      });
+      this.filterShowDisplayed(); 
+    }
   }

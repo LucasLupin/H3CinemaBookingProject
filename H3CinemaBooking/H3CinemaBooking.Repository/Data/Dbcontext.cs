@@ -96,7 +96,7 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Genre>().HasData(new Genre { GenreID = 1, GenreName = "Action" }, new Genre { GenreID = 2, GenreName = "Sci-Fi" }, new Genre { GenreID = 3, GenreName = "Fantasy" });
 
             //Movie Sheet
-            modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "Jagt Sæson 2", Duration = 123, Director = "Peter Molde-Amelung", MovieLink = "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg" }, new Movie { MovieID = 2, Title = "Challenger", Duration = 251, Director = "Luca Guadagnino", MovieLink = "/static/assets/images/Challenger_Movie.jpeg" }, new Movie { MovieID = 3, Title = "Kung-Fu Panda 4", Duration = 126, Director = "Mike Mitchell", MovieLink = "/static/assets/images/Kungfu-Panda4.jpeg" });
+            modelBuilder.Entity<Movie>().HasData(new Movie { MovieID = 1, Title = "Jagt Sæson 2", Duration = 123, Director = "Peter Molde-Amelung", MovieLink = "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg", TrailerLink = "https://www.youtube.com/watch?v=s16LRoDE7ow?start=0" }, new Movie { MovieID = 2, Title = "Challenger", Duration = 251, Director = "Luca Guadagnino", MovieLink = "/static/assets/images/Challenger_Movie.jpeg", TrailerLink = "https://www.youtube.com/embed/AI1mL_LjYyU?start=0" }, new Movie { MovieID = 3, Title = "Kung-Fu Panda 4", Duration = 126, Director = "Mike Mitchell", MovieLink = "/static/assets/images/Kungfu-Panda4.jpeg", TrailerLink = "https://www.youtube.com/watch?v=L0iKmb7q_Lg?start=0"}, new Movie { MovieID = 4, Title ="The Fall Guy", Duration = 96, Director = "David Leitch", MovieLink = "/static/assets/images/FallGuy.jpeg", TrailerLink = "https://www.youtube.com/watch?v=j7jPnwVGdZ8?start=0" });
 
             //Region Sheet
             modelBuilder.Entity<Region>().HasData(new Region { RegionID = 1, RegionName = "Storkøbenhavn" }, new Region { RegionID = 2, RegionName = "Jylland" }, new Region { RegionID = 3, RegionName = "Sjælland og Øer" }, new Region { RegionID = 4, RegionName = "Fyn" });
@@ -111,12 +111,12 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Cinema>().HasData(new Cinema { CinemaID = 1, Name = "Palads", Location = "NørreBro", NumberOfHalls = 8, AreaID = 1 }, new Cinema { CinemaID = 2, Name = "Fields", Location = "Fields", NumberOfHalls = 12, AreaID = 1 }, new Cinema { CinemaID = 3, Name = "Falkoner Bio", Location = "Falkoner", NumberOfHalls = 6, AreaID = 1 }, new Cinema { CinemaID = 4, Name = "Aalborg City Syd", Location = "City Syd", NumberOfHalls = 6, AreaID = 2}, new Cinema { CinemaID = 5, Name = "Trøjborg", Location = "Aarhus", NumberOfHalls = 8, AreaID = 3}, new Cinema { CinemaID = 6, Name = "Dagmar", Location = "Dagmar Gade", NumberOfHalls = 6, AreaID = 1}, new Cinema { CinemaID = 7, Name = "Imperial", Location = "København", NumberOfHalls = 8, AreaID = 1}, new Cinema { CinemaID = 8, Name = "Lyngby Kinopalæet", Location = "Lyngby", NumberOfHalls = 12, AreaID = 1}, new Cinema { CinemaID = 9, Name = "Taastrup", Location = "Taastrup", NumberOfHalls = 10, AreaID = 1}, new Cinema { CinemaID = 10, Name = "Waves", Location = "Greve", NumberOfHalls = 6, AreaID = 1}, new Cinema { CinemaID = 11, Name = "Aalborg Kennedy", Location = "Aalborg", NumberOfHalls = 8, AreaID = 2}, new Cinema { CinemaID = 12, Name = "Aarhus C", Location = "Aarhus", NumberOfHalls = 6, AreaID = 3}, new Cinema { CinemaID = 13, Name = "Esbjerg Broen", Location = "Esbjerg", NumberOfHalls = 4, AreaID = 4}, new Cinema { CinemaID = 14, Name = "Herning", Location = "Herning", NumberOfHalls = 8, AreaID = 6}, new Cinema { CinemaID = 15, Name = "Kolding", Location = "Kolding", NumberOfHalls = 8, AreaID = 8}, new Cinema { CinemaID = 16, Name = "Randers", Location = "Randers", NumberOfHalls = 6, AreaID = 13}, new Cinema {CinemaID = 17, Name = "Viborg", Location = "Viborg", NumberOfHalls = 6, AreaID = 14 }, new Cinema { CinemaID = 18, Name = "Frederikssund", Location = "Frederikssund", NumberOfHalls = 6, AreaID = 5}, new Cinema { CinemaID = 19, Name = "Hillerød", Location = "Hillerød", NumberOfHalls = 6, AreaID = 7}, new Cinema { CinemaID = 20, Name = "Køge", Location = "Køge", NumberOfHalls = 6, AreaID = 9}, new Cinema { CinemaID = 21, Name = "Nykøbing Falster", Location = "Nykøbing Falster", NumberOfHalls = 2, AreaID = 10}, new Cinema {CinemaID = 22, Name="Næstved", Location = "Næstved", NumberOfHalls = 4, AreaID = 11}, new Cinema { CinemaID = 23, Name ="Odense", Location = "Odense", NumberOfHalls = 8, AreaID = 12});
 
             //CinemaHall Sheet
-            modelBuilder.Entity<CinemaHall>().HasData(new CinemaHall { HallsID = 1, CinemaID = 1, HallName = "Sal 1" }, new CinemaHall { HallsID = 2, CinemaID = 2, HallName = "Sal 1" }, new CinemaHall { HallsID = 3, CinemaID = 3, HallName = "Sal 1" }, new CinemaHall { HallsID = 4, CinemaID = 4, HallName = "Sal 1"}, new CinemaHall { HallsID = 5, CinemaID = 5, HallName = "Sal 1"});
+            modelBuilder.Entity<CinemaHall>().HasData(new CinemaHall { HallsID = 1, CinemaID = 1, HallName = "Sal 1" }, new CinemaHall { HallsID = 2, CinemaID = 2, HallName = "Sal 1" }, new CinemaHall { HallsID = 3, CinemaID = 3, HallName = "Sal 1" }, new CinemaHall { HallsID = 4, CinemaID = 4, HallName = "Sal 1"}, new CinemaHall { HallsID = 5, CinemaID = 5, HallName = "Sal 1"}, new CinemaHall { HallsID = 6, CinemaID = 4, HallName = "Sal 2"}, new CinemaHall { HallsID = 7, CinemaID = 11, HallName = "Sal 2"});
 
             //Seats Sheet
 
             var seats = new List<Seat>();
-            var HallIds = new List<int> { 1, 2, 3, 4, 5 };
+            var HallIds = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
             int seatId = 1;
 
             foreach (var hallId in HallIds)
@@ -137,11 +137,35 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Seat>().HasData(seats.ToList());
 
             //Show Sheet
-            DateTime showDateTime = new DateTime(2023, 5, 11, 19, 0, 0); // 2023 11/5 19:00:00
-            DateTime showDateTime1 = new DateTime(2024, 4, 20, 19, 0, 0); // 2024 20/4 19:00:00
-            DateTime showDateTime2 = new DateTime(2024, 4, 20, 15, 0, 0); // 2024 20/4 15:00:00
-            DateTime showDateTime3 = new DateTime(2024, 4, 20, 11, 30, 0); // 2024 20/4 11:30:00
-            modelBuilder.Entity<Show>().HasData(new Show { ShowID = 1, HallID = 1, MovieID = 1, Price = 125, ShowDateTime = showDateTime }, new Show { ShowID = 2, HallID = 2, MovieID = 2, Price = 110, ShowDateTime = showDateTime1}, new Show { ShowID = 3, HallID = 3, MovieID = 3, Price = 100, ShowDateTime = showDateTime2}, new Show { ShowID = 4, HallID = 4, MovieID = 3, Price = 100, ShowDateTime = showDateTime3}, new Show { ShowID = 5, HallID = 5, MovieID = 3, Price = 100, ShowDateTime = showDateTime1}, new Show { ShowID = 6, HallID = 1, MovieID = 2, Price = 100, ShowDateTime = showDateTime}, new Show { ShowID = 7, HallID = 1, MovieID = 3, Price = 120, ShowDateTime = showDateTime1});
+            List<Show> shows = new List<Show>();
+            Random rnd = new Random();
+
+            DateTime startDate = DateTime.Today;
+            DateTime endDate = startDate.AddDays(11);
+
+            // Initialize id to a negative value
+            int id = 1;
+
+            foreach (int hallId in HallIds)
+            {
+                for (int movieId = 1; movieId <= 4; movieId++)
+                {
+                    for (DateTime date = startDate; date < endDate; date = date.AddDays(1))
+                    {
+                        int numberOfShows = rnd.Next(1, 4);
+
+                        for (int i = 0; i < numberOfShows; i++)
+                        {
+                            int hour = rnd.Next(8, 23);
+
+                            shows.Add(new Show { ShowID = id++, HallID = hallId, MovieID = movieId, ShowDateTime = new DateTime(date.Year, date.Month, date.Day, hour, 0, 0), Price = 100 });
+                        }
+                    }
+
+                }
+            }
+            modelBuilder.Entity<Show>().HasData(shows.ToArray());
+
 
             //Role Sheet
             modelBuilder.Entity<Roles>().HasData(new Roles { RoleID = 1, RoleName = "Costumer" }, new Roles { RoleID = 2, RoleName = "Admin" });
@@ -179,7 +203,7 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<UserDetail>().HasData(UserDetails);
             
             //Booking Sheet
-            modelBuilder.Entity<Booking>().HasData(new Booking { BookingID = 1, ShowID = 1, UserDetailID = 1, Price = 125, NumberOfSeats = 8, IsActive = true }, new Booking { BookingID = 2, ShowID = 2, UserDetailID = 2, Price = 110, NumberOfSeats = 12, IsActive = true }, new Booking { BookingID = 3, ShowID = 3, UserDetailID = 3, Price = 100, NumberOfSeats = 6, IsActive = true }); ;
+            //modelBuilder.Entity<Booking>().HasData(new Booking { BookingID = 1, ShowID = 1, UserDetailID = 1, Price = 125, NumberOfSeats = 8, IsActive = true }, new Booking { BookingID = 2, ShowID = 2, UserDetailID = 2, Price = 110, NumberOfSeats = 12, IsActive = true }, new Booking { BookingID = 3, ShowID = 3, UserDetailID = 3, Price = 100, NumberOfSeats = 6, IsActive = true }); ;
 
             //BookingSeat Sheet
 

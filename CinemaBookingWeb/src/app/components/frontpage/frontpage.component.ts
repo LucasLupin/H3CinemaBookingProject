@@ -39,13 +39,12 @@ export class FrontpageComponent {
   selectedAreaId: string = "";
   chosenCity: string = '';
   showCinemaList: boolean = false;
-  isLoggedIn = false;
 
   //Auth Global Variables
   isAuthenticated!: boolean;
-  userRole!: string;
-  email!: string;
-  name!: string;
+  userRole!: string | null;
+  email!: string | null;
+  name!: string | null;
 
 
 
@@ -123,6 +122,15 @@ export class FrontpageComponent {
       this.FindCinemaBySelectedArea();
       this.filterMoviesDisplayed();
     });
+  }
+
+    //Handle logout
+  logout() {
+    this.authService.logout();
+    this.isAuthenticated = false;
+    this.name = null;
+    this.email = null;
+    this.userRole = null;
   }
   
   mapCinemasToRegions() {
@@ -240,4 +248,5 @@ export class FrontpageComponent {
         );
     }
 }
+
 }

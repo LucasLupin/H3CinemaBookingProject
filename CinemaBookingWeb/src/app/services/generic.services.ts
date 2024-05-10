@@ -8,8 +8,7 @@ import { throwError } from 'rxjs';
 import { inject } from '@angular/core';
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-
+import { Show } from '../models/show/show';
 
 interface Area {
   areaID: number;

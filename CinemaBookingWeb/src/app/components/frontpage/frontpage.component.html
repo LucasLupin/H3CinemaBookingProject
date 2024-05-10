@@ -39,8 +39,8 @@
             
           </div>
           
-          <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
-          <a *ngIf="isLoggedIn" routerLink="/logout" routerLinkActive="active">Logout</a>
+          <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="isAuthenticated" (click)="logout()" routerLink="/" routerLinkActive="active">Logout</a>
         </div>
 
       </nav>
@@ -64,16 +64,14 @@
                 <div class="frontpage-field-subtitle">Zendaya i sexet trekantsdrama</div>
               </div>
               <div class="col2">
-                <a href="">
                   <div class="frontpage-link-title" (click)="goToMoviePage('2')">Find billetter  <fa-icon [icon]="faTicket"></fa-icon></div>
-                </a>
               </div>
             </div>
           </div>
   
           <div class="field-item small top">
             <div class="image-container">
-              <img src="static/assets/images/Jagtsaeson2Frontpage.jpg" alt="Jagtsaeson" width="312" height="162" loading="lazy">
+              <img (click)="goToMoviePage('1')" src="static/assets/images/Jagtsaeson2Frontpage.jpg" alt="Jagtsaeson" width="312" height="162" loading="lazy">
             </div>
             <div class="frontpage-content">
               <div class="Col1">
@@ -81,16 +79,14 @@
                 <div class="frontpage-field-subtitle-Small">Eva kaster sig ud i en dum plan</div>
               </div>
               <div class="Col2">
-                <a href="">
-                  <fa-icon [icon]="faTicket" class="ticket"></fa-icon>
-                </a>
+                  <fa-icon (click)="goToMoviePage('1')" [icon]="faTicket" class="ticket"></fa-icon>
               </div>
             </div>
           </div>
 
           <div class="field-item small bottom">
             <div class="image-container">
-              <img src="static/assets/images/KungfuPanda4Frontpage.jpg" width="312" height="162" alt="KungfuPanda4" loading="lazy">
+              <img (click)="goToMoviePage('3')" src="static/assets/images/KungfuPanda4Frontpage.jpg" width="312" height="162" alt="KungfuPanda4" loading="lazy">
             </div>
             <div class="frontpage-content">
               <div class="Col1">
@@ -98,9 +94,7 @@
                 <div class="frontpage-field-subtitle-Small">Vil Po mestre sin chi?</div>
               </div>
               <div class="Col2">
-                <a href="">
-                  <fa-icon [icon]="faTicket" class="ticket"></fa-icon>
-                </a>
+                  <fa-icon (click)="goToMoviePage('3')" [icon]="faTicket" class="ticket"></fa-icon>
               </div>
             </div>
           </div>
@@ -139,13 +133,13 @@
           <div class="movie-container">
             <div *ngFor="let movie of displayedMovies" class="movie-entry">
               <div class="movie-image">
-                <img [src]="movie.movieLink" alt="{{ movie.title }}" width="220" height="330" />
+                <img (click)="goToMoviePage(movie.movieID!.toString())" [src]="movie.movieLink" alt="{{ movie.title }}" width="220" height="330" />
               </div>
               <div class="movie-info">
                 <h2>
                   <span class="Movie-Title">{{ movie.title }}</span>
                 </h2>
-                <button class="buy-button">Køb <fa-icon [icon]="faTicket"></fa-icon></button>
+                <button (click)="goToMoviePage(movie.movieID!.toString())" class="buy-button">Køb <fa-icon [icon]="faTicket"></fa-icon></button>
               </div>
             </div>
           </div>

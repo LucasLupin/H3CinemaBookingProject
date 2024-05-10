@@ -12,5 +12,6 @@ namespace H3CinemaBooking.Repository.Interfaces
     public interface IShowService
     {
         BookShow SetBookShowObjekt(int showId);
+        public Dictionary<string, Dictionary<DateTime, List<ShowDetailsDTO>>> GetFilteredShowsByCinemaAndDate(int areaId, int movieId);
     }
 }

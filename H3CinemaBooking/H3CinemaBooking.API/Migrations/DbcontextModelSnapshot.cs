@@ -138,9 +138,6 @@ namespace H3CinemaBooking.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingID"));
 
-                    b.Property<int>("CostumerID")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -153,42 +150,16 @@ namespace H3CinemaBooking.API.Migrations
                     b.Property<int>("ShowID")
                         .HasColumnType("int");
 
-                    b.HasKey("BookingID");
+                    b.Property<int>("UserDetailID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CostumerID");
+                    b.HasKey("BookingID");
 
                     b.HasIndex("ShowID");
 
-                    b.ToTable("Bookings");
+                    b.HasIndex("UserDetailID");
 
-                    b.HasData(
-                        new
-                        {
-                            BookingID = 1,
-                            CostumerID = 1,
-                            IsActive = true,
-                            NumberOfSeats = 8,
-                            Price = 125.0,
-                            ShowID = 1
-                        },
-                        new
-                        {
-                            BookingID = 2,
-                            CostumerID = 2,
-                            IsActive = true,
-                            NumberOfSeats = 12,
-                            Price = 110.0,
-                            ShowID = 2
-                        },
-                        new
-                        {
-                            BookingID = 3,
-                            CostumerID = 3,
-                            IsActive = true,
-                            NumberOfSeats = 6,
-                            Price = 100.0,
-                            ShowID = 3
-                        });
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.BookingSeat", b =>
@@ -483,6 +454,18 @@ namespace H3CinemaBooking.API.Migrations
                             HallsID = 5,
                             CinemaID = 5,
                             HallName = "Sal 1"
+                        },
+                        new
+                        {
+                            HallsID = 6,
+                            CinemaID = 4,
+                            HallName = "Sal 2"
+                        },
+                        new
+                        {
+                            HallsID = 7,
+                            CinemaID = 11,
+                            HallName = "Sal 2"
                         });
                 });
 
@@ -543,6 +526,10 @@ namespace H3CinemaBooking.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TrailerLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MovieID");
 
                     b.ToTable("Movies");
@@ -554,7 +541,8 @@ namespace H3CinemaBooking.API.Migrations
                             Director = "Peter Molde-Amelung",
                             Duration = 123,
                             MovieLink = "/static/assets/images/Jagtsaeson2_ImedgangogModgang.jpeg",
-                            Title = "Jagt Sæson 2"
+                            Title = "Jagt Sæson 2",
+                            TrailerLink = "https://www.youtube.com/watch?v=s16LRoDE7ow?start=0"
                         },
                         new
                         {
@@ -562,7 +550,8 @@ namespace H3CinemaBooking.API.Migrations
                             Director = "Luca Guadagnino",
                             Duration = 251,
                             MovieLink = "/static/assets/images/Challenger_Movie.jpeg",
-                            Title = "Challenger"
+                            Title = "Challenger",
+                            TrailerLink = "https://www.youtube.com/embed/AI1mL_LjYyU?start=0"
                         },
                         new
                         {
@@ -570,7 +559,17 @@ namespace H3CinemaBooking.API.Migrations
                             Director = "Mike Mitchell",
                             Duration = 126,
                             MovieLink = "/static/assets/images/Kungfu-Panda4.jpeg",
-                            Title = "Kung-Fu Panda 4"
+                            Title = "Kung-Fu Panda 4",
+                            TrailerLink = "https://www.youtube.com/watch?v=L0iKmb7q_Lg?start=0"
+                        },
+                        new
+                        {
+                            MovieID = 4,
+                            Director = "David Leitch",
+                            Duration = 96,
+                            MovieLink = "/static/assets/images/FallGuy.jpeg",
+                            Title = "The Fall Guy",
+                            TrailerLink = "https://www.youtube.com/watch?v=j7jPnwVGdZ8?start=0"
                         });
                 });
 
@@ -7666,6 +7665,2806 @@ namespace H3CinemaBooking.API.Migrations
                             HallID = 5,
                             SeatNumber = 20,
                             SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1001,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1002,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1003,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1004,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1005,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1006,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1007,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1008,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1009,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1010,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1011,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1012,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1013,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1014,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1015,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1016,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1017,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1018,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1019,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1020,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1021,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1022,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1023,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1024,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1025,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1026,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1027,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1028,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1029,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1030,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1031,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1032,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1033,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1034,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1035,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1036,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1037,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1038,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1039,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1040,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1041,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1042,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1043,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1044,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1045,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1046,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1047,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1048,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1049,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1050,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1051,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1052,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1053,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1054,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1055,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1056,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1057,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1058,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1059,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1060,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1061,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1062,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1063,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1064,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1065,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1066,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1067,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1068,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1069,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1070,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1071,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1072,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1073,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1074,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1075,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1076,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1077,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1078,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1079,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1080,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1081,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1082,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1083,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1084,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1085,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1086,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1087,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1088,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1089,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1090,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1091,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1092,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1093,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1094,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1095,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1096,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1097,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1098,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1099,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1100,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1101,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1102,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1103,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1104,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1105,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1106,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1107,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1108,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1109,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1110,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1111,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1112,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1113,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1114,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1115,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1116,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1117,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1118,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1119,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1120,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1121,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1122,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1123,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1124,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1125,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1126,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1127,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1128,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1129,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1130,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1131,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1132,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1133,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1134,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1135,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1136,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1137,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1138,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1139,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1140,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1141,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1142,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1143,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1144,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1145,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1146,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1147,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1148,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1149,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1150,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1151,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1152,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1153,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1154,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1155,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1156,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1157,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1158,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1159,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1160,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1161,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1162,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1163,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1164,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1165,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1166,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1167,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1168,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1169,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1170,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1171,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1172,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1173,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1174,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1175,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1176,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1177,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1178,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1179,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1180,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1181,
+                            HallID = 6,
+                            SeatNumber = 1,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1182,
+                            HallID = 6,
+                            SeatNumber = 2,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1183,
+                            HallID = 6,
+                            SeatNumber = 3,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1184,
+                            HallID = 6,
+                            SeatNumber = 4,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1185,
+                            HallID = 6,
+                            SeatNumber = 5,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1186,
+                            HallID = 6,
+                            SeatNumber = 6,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1187,
+                            HallID = 6,
+                            SeatNumber = 7,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1188,
+                            HallID = 6,
+                            SeatNumber = 8,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1189,
+                            HallID = 6,
+                            SeatNumber = 9,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1190,
+                            HallID = 6,
+                            SeatNumber = 10,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1191,
+                            HallID = 6,
+                            SeatNumber = 11,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1192,
+                            HallID = 6,
+                            SeatNumber = 12,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1193,
+                            HallID = 6,
+                            SeatNumber = 13,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1194,
+                            HallID = 6,
+                            SeatNumber = 14,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1195,
+                            HallID = 6,
+                            SeatNumber = 15,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1196,
+                            HallID = 6,
+                            SeatNumber = 16,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1197,
+                            HallID = 6,
+                            SeatNumber = 17,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1198,
+                            HallID = 6,
+                            SeatNumber = 18,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1199,
+                            HallID = 6,
+                            SeatNumber = 19,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1200,
+                            HallID = 6,
+                            SeatNumber = 20,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1201,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1202,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1203,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1204,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1205,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1206,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1207,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1208,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1209,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1210,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1211,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1212,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1213,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1214,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1215,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1216,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1217,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1218,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1219,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1220,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "A"
+                        },
+                        new
+                        {
+                            SeatID = 1221,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1222,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1223,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1224,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1225,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1226,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1227,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1228,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1229,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1230,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1231,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1232,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1233,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1234,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1235,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1236,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1237,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1238,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1239,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1240,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "B"
+                        },
+                        new
+                        {
+                            SeatID = 1241,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1242,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1243,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1244,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1245,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1246,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1247,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1248,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1249,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1250,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1251,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1252,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1253,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1254,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1255,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1256,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1257,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1258,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1259,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1260,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "C"
+                        },
+                        new
+                        {
+                            SeatID = 1261,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1262,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1263,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1264,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1265,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1266,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1267,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1268,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1269,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1270,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1271,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1272,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1273,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1274,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1275,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1276,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1277,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1278,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1279,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1280,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "D"
+                        },
+                        new
+                        {
+                            SeatID = 1281,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1282,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1283,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1284,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1285,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1286,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1287,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1288,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1289,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1290,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1291,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1292,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1293,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1294,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1295,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1296,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1297,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1298,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1299,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1300,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "E"
+                        },
+                        new
+                        {
+                            SeatID = 1301,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1302,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1303,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1304,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1305,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1306,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1307,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1308,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1309,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1310,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1311,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1312,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1313,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1314,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1315,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1316,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1317,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1318,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1319,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1320,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "F"
+                        },
+                        new
+                        {
+                            SeatID = 1321,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1322,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1323,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1324,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1325,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1326,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1327,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1328,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1329,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1330,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1331,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1332,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1333,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1334,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1335,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1336,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1337,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1338,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1339,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1340,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "G"
+                        },
+                        new
+                        {
+                            SeatID = 1341,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1342,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1343,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1344,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1345,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1346,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1347,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1348,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1349,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1350,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1351,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1352,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1353,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1354,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1355,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1356,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1357,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1358,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1359,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1360,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "H"
+                        },
+                        new
+                        {
+                            SeatID = 1361,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1362,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1363,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1364,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1365,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1366,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1367,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1368,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1369,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1370,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1371,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1372,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1373,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1374,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1375,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1376,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1377,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1378,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1379,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1380,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "I"
+                        },
+                        new
+                        {
+                            SeatID = 1381,
+                            HallID = 7,
+                            SeatNumber = 1,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1382,
+                            HallID = 7,
+                            SeatNumber = 2,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1383,
+                            HallID = 7,
+                            SeatNumber = 3,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1384,
+                            HallID = 7,
+                            SeatNumber = 4,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1385,
+                            HallID = 7,
+                            SeatNumber = 5,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1386,
+                            HallID = 7,
+                            SeatNumber = 6,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1387,
+                            HallID = 7,
+                            SeatNumber = 7,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1388,
+                            HallID = 7,
+                            SeatNumber = 8,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1389,
+                            HallID = 7,
+                            SeatNumber = 9,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1390,
+                            HallID = 7,
+                            SeatNumber = 10,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1391,
+                            HallID = 7,
+                            SeatNumber = 11,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1392,
+                            HallID = 7,
+                            SeatNumber = 12,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1393,
+                            HallID = 7,
+                            SeatNumber = 13,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1394,
+                            HallID = 7,
+                            SeatNumber = 14,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1395,
+                            HallID = 7,
+                            SeatNumber = 15,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1396,
+                            HallID = 7,
+                            SeatNumber = 16,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1397,
+                            HallID = 7,
+                            SeatNumber = 17,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1398,
+                            HallID = 7,
+                            SeatNumber = 18,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1399,
+                            HallID = 7,
+                            SeatNumber = 19,
+                            SeatRow = "J"
+                        },
+                        new
+                        {
+                            SeatID = 1400,
+                            HallID = 7,
+                            SeatNumber = 20,
+                            SeatRow = "J"
                         });
                 });
 
@@ -7703,56 +10502,5112 @@ namespace H3CinemaBooking.API.Migrations
                             ShowID = 1,
                             HallID = 1,
                             MovieID = 1,
-                            Price = 125.0,
-                            ShowDateTime = new DateTime(2023, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 2,
-                            HallID = 2,
-                            MovieID = 2,
-                            Price = 110.0,
-                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 3,
-                            HallID = 3,
-                            MovieID = 3,
+                            HallID = 1,
+                            MovieID = 1,
                             Price = 100.0,
-                            ShowDateTime = new DateTime(2024, 4, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 4,
-                            HallID = 4,
-                            MovieID = 3,
+                            HallID = 1,
+                            MovieID = 1,
                             Price = 100.0,
-                            ShowDateTime = new DateTime(2024, 4, 20, 11, 30, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 5, 11, 8, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 5,
-                            HallID = 5,
-                            MovieID = 3,
+                            HallID = 1,
+                            MovieID = 1,
                             Price = 100.0,
-                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 6,
                             HallID = 1,
-                            MovieID = 2,
+                            MovieID = 1,
                             Price = 100.0,
-                            ShowDateTime = new DateTime(2023, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            ShowDateTime = new DateTime(2024, 5, 12, 22, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ShowID = 7,
                             HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 8,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 9,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 10,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 11,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 12,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 13,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 14,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 15,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 16,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 17,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 18,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 19,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 20,
+                            HallID = 1,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 21,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 22,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 23,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 24,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 25,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 26,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 27,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 28,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 29,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 30,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 31,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 32,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 33,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 34,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 35,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 36,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 37,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 38,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 39,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 40,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 41,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 42,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 43,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 44,
+                            HallID = 1,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 45,
+                            HallID = 1,
                             MovieID = 3,
-                            Price = 120.0,
-                            ShowDateTime = new DateTime(2024, 4, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 46,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 47,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 48,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 49,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 50,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 51,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 52,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 53,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 54,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 55,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 56,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 57,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 58,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 59,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 60,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 61,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 62,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 63,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 64,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 65,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 66,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 67,
+                            HallID = 1,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 68,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 69,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 70,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 71,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 72,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 73,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 74,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 75,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 76,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 77,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 78,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 79,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 80,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 81,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 82,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 83,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 84,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 85,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 86,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 87,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 88,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 89,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 90,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 91,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 92,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 93,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 94,
+                            HallID = 1,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 95,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 96,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 97,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 98,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 99,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 100,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 101,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 102,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 103,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 104,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 105,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 106,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 107,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 108,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 109,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 110,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 111,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 112,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 113,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 114,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 115,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 116,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 117,
+                            HallID = 2,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 118,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 119,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 120,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 121,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 122,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 123,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 124,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 125,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 126,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 127,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 128,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 129,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 130,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 131,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 132,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 133,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 134,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 135,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 136,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 137,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 138,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 139,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 140,
+                            HallID = 2,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 141,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 142,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 143,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 144,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 145,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 146,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 147,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 148,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 149,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 150,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 151,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 152,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 153,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 154,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 155,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 156,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 157,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 158,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 159,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 160,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 161,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 162,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 163,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 164,
+                            HallID = 2,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 165,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 166,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 167,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 168,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 169,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 170,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 171,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 172,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 173,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 174,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 175,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 176,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 177,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 178,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 179,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 180,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 181,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 182,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 183,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 184,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 185,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 186,
+                            HallID = 2,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 187,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 188,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 189,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 190,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 191,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 192,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 193,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 194,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 195,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 196,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 197,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 198,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 199,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 200,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 201,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 202,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 203,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 204,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 205,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 206,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 207,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 208,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 209,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 210,
+                            HallID = 3,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 211,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 212,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 213,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 214,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 215,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 216,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 217,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 218,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 219,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 220,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 221,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 222,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 223,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 224,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 225,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 226,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 227,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 228,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 229,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 230,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 231,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 232,
+                            HallID = 3,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 233,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 234,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 235,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 236,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 237,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 238,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 239,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 240,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 241,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 242,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 243,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 244,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 245,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 246,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 247,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 248,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 249,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 250,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 251,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 252,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 253,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 254,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 255,
+                            HallID = 3,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 256,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 257,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 258,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 259,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 260,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 261,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 262,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 263,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 264,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 265,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 266,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 267,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 268,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 269,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 270,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 271,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 272,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 273,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 274,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 275,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 276,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 277,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 278,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 279,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 280,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 281,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 282,
+                            HallID = 3,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 283,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 284,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 285,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 286,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 287,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 288,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 289,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 290,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 291,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 292,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 293,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 294,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 295,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 296,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 297,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 298,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 299,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 300,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 301,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 302,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 303,
+                            HallID = 4,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 304,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 305,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 306,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 307,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 308,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 309,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 310,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 311,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 312,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 313,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 314,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 315,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 316,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 317,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 318,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 319,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 320,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 321,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 322,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 323,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 324,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 325,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 326,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 327,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 328,
+                            HallID = 4,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 329,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 330,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 331,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 332,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 333,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 334,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 335,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 336,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 337,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 338,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 339,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 340,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 341,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 342,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 343,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 344,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 345,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 346,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 347,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 348,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 349,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 350,
+                            HallID = 4,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 351,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 352,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 353,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 354,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 355,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 356,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 357,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 358,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 359,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 360,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 361,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 362,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 363,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 364,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 365,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 366,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 367,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 368,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 369,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 370,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 371,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 372,
+                            HallID = 4,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 373,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 374,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 375,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 376,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 377,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 378,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 379,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 380,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 381,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 382,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 383,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 384,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 385,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 386,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 387,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 388,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 389,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 390,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 391,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 392,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 393,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 394,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 395,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 396,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 397,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 398,
+                            HallID = 5,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 399,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 400,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 401,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 402,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 403,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 404,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 405,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 406,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 407,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 408,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 409,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 410,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 411,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 412,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 413,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 414,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 415,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 416,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 417,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 418,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 419,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 420,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 421,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 422,
+                            HallID = 5,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 423,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 424,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 425,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 426,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 427,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 428,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 429,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 430,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 431,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 432,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 433,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 434,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 435,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 436,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 437,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 438,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 439,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 440,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 441,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 442,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 443,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 444,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 445,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 446,
+                            HallID = 5,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 447,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 448,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 449,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 450,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 451,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 452,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 453,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 454,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 455,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 456,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 457,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 458,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 459,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 460,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 461,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 462,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 463,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 464,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 465,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 466,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 467,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 468,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 469,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 470,
+                            HallID = 5,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 471,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 472,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 473,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 474,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 475,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 476,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 477,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 478,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 479,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 480,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 481,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 482,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 483,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 484,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 485,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 486,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 487,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 488,
+                            HallID = 6,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 489,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 490,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 491,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 492,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 493,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 494,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 495,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 496,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 497,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 498,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 499,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 500,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 501,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 502,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 503,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 504,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 505,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 506,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 507,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 508,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 509,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 510,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 511,
+                            HallID = 6,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 512,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 513,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 514,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 515,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 516,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 517,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 518,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 519,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 520,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 521,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 522,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 523,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 524,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 525,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 526,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 527,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 528,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 529,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 530,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 531,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 532,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 533,
+                            HallID = 6,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 534,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 535,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 536,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 537,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 538,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 539,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 540,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 541,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 542,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 543,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 544,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 545,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 546,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 547,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 548,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 549,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 550,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 551,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 552,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 553,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 554,
+                            HallID = 6,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 555,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 556,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 557,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 558,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 559,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 560,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 561,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 562,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 563,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 564,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 565,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 566,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 567,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 568,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 569,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 570,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 571,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 572,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 573,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 574,
+                            HallID = 7,
+                            MovieID = 1,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 575,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 576,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 577,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 578,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 579,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 580,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 581,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 582,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 583,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 584,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 585,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 11, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 586,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 587,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 588,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 589,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 590,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 591,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 592,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 593,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 594,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 595,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 596,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 597,
+                            HallID = 7,
+                            MovieID = 2,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 598,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 599,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 600,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 601,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 602,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 603,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 604,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 605,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 606,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 607,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 608,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 609,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 610,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 611,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 612,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 613,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 614,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 615,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 616,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 617,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 618,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 619,
+                            HallID = 7,
+                            MovieID = 3,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 620,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 10, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 621,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 11, 19, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 622,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 623,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 12, 9, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 624,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 13, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 625,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 12, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 626,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 14, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 627,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 628,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 15, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 629,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 16, 20, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 630,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 17, 21, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 631,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 632,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 18, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 633,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 18, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 634,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 635,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 636,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 19, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 637,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 15, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 638,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 22, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ShowID = 639,
+                            HallID = 7,
+                            MovieID = 4,
+                            Price = 100.0,
+                            ShowDateTime = new DateTime(2024, 5, 20, 8, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -7800,8 +15655,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "TestAdmin@gmail.com",
                             IsActive = true,
                             Name = "AdminGod",
-                            PasswordHash = "om9vTchWYaGrQ26KjjryZg==",
-                            PasswordSalt = "zulwpSPQqHwkHgX4Ib5ZAg==",
+                            PasswordHash = "3X0oOvS8VXT8oUNLEbJEDQ==",
+                            PasswordSalt = "MJ4Nug+XQPgXl7gy6aNuJA==",
                             PhoneNumber = "56895423",
                             RoleID = 2
                         },
@@ -7811,8 +15666,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test2@example.com",
                             IsActive = true,
                             Name = "Lucas2",
-                            PasswordHash = "c9Q7q1DG+mKs9VUb71UARg==",
-                            PasswordSalt = "r5lkM804hYnqNVtBRsRX1Q==",
+                            PasswordHash = "TbFVaVFHhLO3xwR2bDT9pA==",
+                            PasswordSalt = "BMheSYcaRgGP5OuiLF0n7w==",
                             PhoneNumber = "123457892",
                             RoleID = 1
                         },
@@ -7822,8 +15677,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test3@example.com",
                             IsActive = true,
                             Name = "Lucas3",
-                            PasswordHash = "WT3uHjKIOdgde88DNLc0mA==",
-                            PasswordSalt = "QA9CsfXVCnMz0mRMp3ZnPA==",
+                            PasswordHash = "HBJdNLQ2ulRsHxO/B3f1Tw==",
+                            PasswordSalt = "SeTPWXIGyD6r+O/2/BEgIQ==",
                             PhoneNumber = "123457893",
                             RoleID = 1
                         },
@@ -7833,8 +15688,8 @@ namespace H3CinemaBooking.API.Migrations
                             Email = "test4@example.com",
                             IsActive = true,
                             Name = "Lucas4",
-                            PasswordHash = "LMeWWb+GP5EKZX3ZwPSxcw==",
-                            PasswordSalt = "sNIPzJzRgFS91zk1jiklfw==",
+                            PasswordHash = "YarP3WA5KDvpCL8YKkaqjA==",
+                            PasswordSalt = "C+Tymh6OQUSfJ628BvfQfA==",
                             PhoneNumber = "123457894",
                             RoleID = 1
                         });
@@ -7866,21 +15721,21 @@ namespace H3CinemaBooking.API.Migrations
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.Booking", b =>
                 {
-                    b.HasOne("H3CinemaBooking.Repository.Models.UserDetail", "Costumer")
-                        .WithMany("Bookings")
-                        .HasForeignKey("CostumerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("H3CinemaBooking.Repository.Models.Show", "Show")
                         .WithMany("Bookings")
                         .HasForeignKey("ShowID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Costumer");
+                    b.HasOne("H3CinemaBooking.Repository.Models.UserDetail", "userDetail")
+                        .WithMany("Bookings")
+                        .HasForeignKey("UserDetailID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Show");
+
+                    b.Navigation("userDetail");
                 });
 
             modelBuilder.Entity("H3CinemaBooking.Repository.Models.BookingSeat", b =>

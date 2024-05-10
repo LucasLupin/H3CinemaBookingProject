@@ -7,5 +7,6 @@ export class Movie
     duration?: number
     director?: string
     movieLink?: string
+    trailerLink?: string
     genres?: Genre[];
 }
