@@ -444,3 +444,9 @@ FodyWeavers.xsd
 /CinemaBookingWeb/.angular/cache
 H3CinemaBooking/H3CinemaBooking.API/Migrations/20240510165837_CinemaBooking.cs
 H3CinemaBooking/H3CinemaBooking.API/Migrations/20240510165837_CinemaBooking.Designer.cs
+H3CinemaBooking/.vs/ProjectEvaluation/h3cinemabooking.projects.v7.bin
+CinemaBookingWeb/node_modules/.package-lock.json
+H3CinemaBooking/H3CinemaBooking.API/Migrations/20240424114149_Cinemabooking.cs
+H3CinemaBooking/H3CinemaBooking.API/Migrations/20240422064104_Cinemabooking.Designer.cs
+H3CinemaBooking/H3CinemaBooking.API/Migrations/20240424114149_Cinemabooking.Designer.cs
+*.dll
