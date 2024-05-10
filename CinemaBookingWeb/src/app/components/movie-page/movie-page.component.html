@@ -3,7 +3,7 @@
         <div class="movie-container">
             <div class="left-column">
                 <img src={{selectedMovie?.movieLink}} alt="Challengers Movie Poster">
-                <iframe src={{selectedMovie?.trailerLink}} frameborder="0" allowfullscreen></iframe>
+                <iframe *ngIf="selectedMovie?.trailerLink" [src]="sanitizeUrl(selectedMovie?.trailerLink || '')" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="right-column">
                 <h1 class="node-title"><span class="field field-name-title">{{selectedMovie?.title}}</span></h1>

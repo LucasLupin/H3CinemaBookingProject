@@ -8,6 +8,7 @@
   import { GenericService, LocalStorageGeneric } from 'src/app/services/generic.services';
   import { ShowService } from 'src/app/services/show.service';
   import { CinemaShowMap } from '../../services/show.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
   interface RouteState {
     movieId: string;
@@ -46,7 +47,7 @@
     
 
 
-    constructor(private router: Router, private route: ActivatedRoute, private showService:GenericService<Show>, private showshowService: ShowService, private cinemaService:GenericService<Cinema>, private movieService:GenericService<Movie>, private storageService: LocalStorageGeneric) {}
+    constructor(private router: Router, private route: ActivatedRoute, private showService:GenericService<Show>, private showshowService: ShowService, private cinemaService:GenericService<Cinema>, private movieService:GenericService<Movie>, private storageService: LocalStorageGeneric, private sanitizer: DomSanitizer) {}
 
     ngOnInit() {
       // Handling local storage and navigation based on the selected area
@@ -224,6 +225,11 @@ filterShowDisplayed(): void {
         
       }
   }
+
+  sanitizeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+  
 
   formatMinutesToHoursAndMinutes(minutes: number | undefined): string {
     if (minutes === undefined || minutes === null) {
