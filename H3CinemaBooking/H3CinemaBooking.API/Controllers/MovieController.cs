@@ -52,20 +52,28 @@ namespace H3CinemaBooking.API.Controllers
         {
             try
             {
-                var genreNames = movie.Genres
-                                      .SelectMany(g => g.GenreName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                                      .Select(gn => gn.Trim())
-                                      .ToList();
-                movie.Genres = null; // Clear genres to avoid processing existing references
+                // Initialize an empty list to hold all genre names from all genres
+                List<string> allGenreNames = new List<string>();
 
-                var resultMovie = _movieRepository.CreateComplex(movie, genreNames);
-                return Ok(resultMovie); 
+                foreach (var genre in movie.Genres)
+                {
+                    allGenreNames.AddRange(genre.GenreName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                          .Select(gn => gn.Trim()));
+                }
+
+                // Clear genres to avoid processing existing references
+                movie.Genres = null;
+
+                var resultMovie = _movieRepository.CreateComplex(movie, allGenreNames);
+
+                return Ok(resultMovie);
             }
             catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
 
 
         //Update Api Movie with Genre

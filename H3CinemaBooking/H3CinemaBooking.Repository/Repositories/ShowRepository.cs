@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using H3CinemaBooking.Repository.Models.DTO_s;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -61,5 +62,6 @@ namespace H3CinemaBooking.Repository.Repositories
                 context.SaveChanges();
             }
         }
+
     }
 }

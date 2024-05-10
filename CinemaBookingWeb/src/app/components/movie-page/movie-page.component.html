@@ -106,7 +106,7 @@
                             <ng-container *ngFor="let cinema of cinemaInSelectedArea">
                                 <option value="cinema.cinemaID">{{cinema.name}}</option>
                             </ng-container>
-                        </select>
+                        </select> 
                         <select class="filter-dropdown">
                             <option value="" disabled selected>Vælg dag</option>
                             <ng-container *ngFor="let day of nextTenDays">
@@ -120,279 +120,29 @@
         </div>
 
             <div class="movie-time-display-container">
-                <div class="cinema">
+                <div class="cinema" *ngFor="let cinema of cinemaInSelectedArea">
                     <div class="cinema-content">
                         <div class="header">
-                            <h1>Imperial</h1>
-                            <p>København</p>
+                            <h1>{{cinema.name}}</h1>
+                            <p>{{SelectedCityName}}</p>
                         </div>
                         <div class="schedule">
                             <!-- Eksempel for én dag -->
-                            <div class="day">
-                                <h2> {{ getDayAbbreviation(nextTenDays[0]) }}, {{ nextTenDays[0] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[1]) }}, {{ nextTenDays[1] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[2]) }}, {{ nextTenDays[2] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[3]) }}, {{ nextTenDays[3] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[4]) }}, {{ nextTenDays[4] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span>15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[5]) }}, {{ nextTenDays[5] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[6]) }}, {{ nextTenDays[6] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[7]) }}, {{ nextTenDays[7] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>{{ getDayAbbreviation(nextTenDays[9]) }}, {{ nextTenDays[9] | date: 'd/M' }}</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
+                            <div class="day" *ngFor="let days of nextTenDays">
+                                <h2> {{ getDayAbbreviation(days) }}, {{ days | date: 'd/M' }}</h2>
+                                <div class="times" *ngIf="showsByDay[days.toDateString()]">
+                                    <div *ngFor="let show of showsByDay[days.toDateString()]">
+                                        <div class="time">  
+                                            <span>{{show.hallID}}</span>
+                                            <span class="movie-time">{{show.showDateTime | date:'HH:mm'}}</span>
+                                            <span>2D</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-        
-                <div class="cinema">
-                    <div class="cinema-content">
-                        <div class="header">
-                            <h1>Taastrup</h1>
-                            <p>København</p>
-                        </div>
-                        <div class="schedule">
-                            <!-- Eksempel for én dag -->
-                            <div class="day">
-                                <h2>Tir, 7/5</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="day">
-                                <h2>Tir, 7/5</h2>
-                                <div class="times">
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                    <div class="time">
-                                        <span>Bio 1</span>
-                                        <span class="movie-time">15.40</span>
-                                        <span>2D</span>
-                                    </div>
-                                </div>
-                            </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </body>

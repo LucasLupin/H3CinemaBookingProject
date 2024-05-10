@@ -3,6 +3,7 @@ using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using H3CinemaBooking.Repository.Repositories;
+using H3CinemaBooking.Repository.Models.DTO_s;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -65,5 +66,15 @@ namespace H3CinemaBooking.API.Controllers
             _showRepository.UpdateByID(id, show);
             return Ok(show);
         }
+
+        //[HttpGet("filtered")]
+        //public ActionResult<Dictionary<string, List<ShowDetailsDTO>>> GetFilteredShows([FromQuery] string movieId, [FromQuery] string areaId)
+        //{
+        //    var shows = _showRepository.GetFilteredShowsByDate(movieId, areaId);
+        //    if (shows.Count == 0)
+        //        return NotFound("No shows available for the specified filters.");
+        //    return Ok(shows);
+        //}
+
     }
 }

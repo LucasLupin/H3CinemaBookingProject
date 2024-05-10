@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Genre } from 'src/app/models/genre/genre';
 import { Movie } from 'src/app/models/movie/movie';
 import { GenericService } from 'src/app/services/generic.services';
@@ -11,6 +11,7 @@ import { GenericService } from 'src/app/services/generic.services';
   
 })
 export class AdminMovieComponent {
+dropdownOpen: Boolean = false;
 movieForm!: FormGroup;
 movieList: Movie[] = [];
 genreList: Genre[] =[];
@@ -26,14 +27,11 @@ initForm(movie?: Movie): void {
     duration: new FormControl(movie ? movie.duration : '', Validators.required),
     director: new FormControl(movie ? movie.director : '', Validators.required),
     movieLink: new FormControl(movie ? movie.movieLink : '', Validators.required),
-    genre: new FormGroup({
-      genreID: new FormControl(movie && movie.genres && movie.genres.length > 0 ? movie.genres[0].genreID : ''),
-      genreName: new FormControl(movie && movie.genres && movie.genres.length > 0 ? movie.genres[0].genreName : '')
-    })
+    genreIDs: this.fb.array([])
   });
 }
 
-constructor(private movieService: GenericService<Movie>, private genreSerice: GenericService<Genre>) {
+constructor(private fb: FormBuilder, private movieService: GenericService<Movie>, private genreSerice: GenericService<Genre>) {
   this.initForm();
 }
   ngOnInit() {
@@ -77,10 +75,30 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
     this.showList = !this.showForm;
   }
 
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;   
+  }
+
+  onGenreChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const genreArray: FormArray = this.movieForm.get('genreIDs') as FormArray;
+    // Clear the current array
+    genreArray.clear();
+
+    // Create a new control for each selected option
+    Array.from(selectElement.selectedOptions).forEach((option) => {
+      genreArray.push(new FormControl(option.value));
+    });
+  }
+
   public save(): void {
     if (this.movieForm.valid) {
       const formdata = this.movieForm.value;
-      const selectedGenre = this.genreList.find(genre => genre.genreID == formdata.genre.genreID);
+
+      const selectedGenres = formdata.genreIDs.map((genreID: string) => 
+        this.genreList.find(genre => genre.genreID?.toString() === genreID)
+      ).filter((genre: Genre | undefined) => genre !== undefined);
+
       const movieId = this.isEditMode ? formdata.movieID : 0;
 
       const movieData = {
@@ -89,10 +107,10 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
         duration: parseInt(formdata.duration, 10),
         director: formdata.director,
         movieLink: formdata.movieLink,
-        genres: [{
-          genreID: selectedGenre?.genreID,
-          genreName: selectedGenre?.genreName
-        }]
+        genres: selectedGenres.map((genre: Genre) => ({
+          genreID: genre.genreID,
+          genreName: genre.genreName
+        }))
       };
       
       if (this.isEditMode == true && movieData.movieId) {  
@@ -110,7 +128,7 @@ constructor(private movieService: GenericService<Movie>, private genreSerice: Ge
       }
          else
          {
-          if (selectedGenre) {
+          if (selectedGenres) {
             this.movieService.create('movie/Complex', movieData).subscribe({
               next: (response) => {
                 console.log('Complex movie saved:', response);

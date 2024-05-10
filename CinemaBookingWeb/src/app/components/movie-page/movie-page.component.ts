@@ -29,9 +29,12 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
     toggleBody: Boolean = false;
     showsList: Show[] = [];
     cinemaInSelectedArea: Cinema[] = [];
+    dayShowsList: any[] = [];
     cinemasList: Cinema[] = [];
     moviesList: Movie[] = [];
     nextTenDays: Date[] = [];
+    showsByDay: { [key: string]: Show[] } = {};
+    filteredShows: Show[] = [];
     
 
 
@@ -82,6 +85,7 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
 
     // After all asynchronous operations are complete, run these methods:
     this.FindCinemaBySelectedArea();
+    this.filterShowsByDate();
   });
 
   this.getSelectedArea();
@@ -102,6 +106,61 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
     const days = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
     return days[date.getDay()];
   }
+
+  filterShowsByDate(): void {
+    if (!this.selectedMovie) {
+      console.error('No selected movie.');
+      this.filteredShows = [];
+      return;
+    }
+  
+    const selectedMovieId = this.selectedMovie.movieID;
+    const dateRange = this.nextTenDays.map(day => day.toDateString());
+    console.log("DateRange: ", dateRange);
+    
+  
+    this.filteredShows = this.showsList.filter(show => {
+      if (!show.showDateTime) {
+        return false; // Skip this show if the date-time is undefined
+      }
+      
+      //Makes a string of the shows date that
+      const showDateStr = new Date(show.showDateTime).toDateString();
+      return show.movieID === selectedMovieId && dateRange.includes(showDateStr);
+    });
+
+    console.log("FilteredShows: ", this.filteredShows);
+    
+  
+    this.organizeShowsByDate(); // Organize the filtered shows by date for display
+  }
+  
+  
+
+  organizeShowsByDate(): void {
+    this.showsByDay = {}; // Resetting the map
+  
+    this.filteredShows.forEach(show => {
+      // Ensure that showDateTime is defined before attempting to use it.
+      if (show.showDateTime) {
+        const showDate = new Date(show.showDateTime).toDateString(); // Safely format the date to a simple string
+  
+        if (!this.showsByDay[showDate]) {
+          this.showsByDay[showDate] = []; // Initialize an empty array if no entry exists
+        }
+  
+        this.showsByDay[showDate].push(show); // Push the show into the correct date entry
+      } else {
+        // Optionally handle or log cases where showDateTime is undefined
+        console.warn("Skipping show with undefined showDateTime:", show);
+      }
+      
+    });
+    console.log("showByDay: ", this.showsByDay);
+  }
+  
+  
+
 
   getSelectedArea(): void {
     const selectedCityData = this.storageService.getItem('selectedArea');
@@ -141,6 +200,7 @@ import { EMPTY, catchError, switchMap } from 'rxjs';
       console.log("CinemaInSelectedArea: ", this.cinemaInSelectedArea);
       
     }
+
 
 
   toggleDetails(): void {

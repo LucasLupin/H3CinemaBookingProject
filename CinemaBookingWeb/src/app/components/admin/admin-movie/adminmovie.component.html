@@ -48,15 +48,18 @@
       <input type="text" placeholder="Director" id="director" formControlName="director">
       <span>MovieLink</span>
       <input type="text" placeholder="movieLink" id="movieLink" formControlName="movieLink">
-      <div formGroupName="genre">
+      <div class="dropdown">
         <span>Genre</span>
-        <select formControlName="genreID" id="genreID">
-          <option value="">Select Genre</option>
-          <option *ngFor="let genre of genreList" [value]="genre.genreID">
-            {{ genre.genreName }}
-          </option>
-        </select>
+        <div class="dropdown-placeholder" [class.open]="dropdownOpen" (click)="toggleDropdown()">
+          Select Genre
+        </div>
+        <div *ngIf="dropdownOpen">
+          <select id="genreSelect" multiple (change)="onGenreChange($event)">
+            <option *ngFor="let genre of genreList" [value]="genre.genreID">{{ genre.genreName }}</option>
+          </select>
+        </div>
       </div>
+      
       <button type="submit">Save</button>
       <button class="cancel-btn" type="cancel" (click)="toggleSave()">Cancel</button>
       <small>

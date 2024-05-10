@@ -342,15 +342,28 @@ iframe {
 .schedule {
     display: flex;
     gap: 10px;
-    width: 60%;
+    width: 63%;
     overflow-x: scroll;
     padding: 2rem;
     margin: 0 5rem;
+    border: solid 2px red;
 }
 
 .day h2 {
     font-size: 16px;
     margin: 0 0 10px 0;
+}
+
+.day {
+    flex: 0 0 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.times {
+    width: 100%;
 }
 
 .time {
