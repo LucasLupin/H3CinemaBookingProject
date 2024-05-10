@@ -13,5 +13,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         Booking GetById(int id);
         List<Booking> GetAll();
         void DeleteByID(int id);
+        List<BookingSeat> GetBookingSeatsByShowId(int showId);
+        List<BookingSeat> CreateBookingSeat(Booking booking);
     }
 }

@@ -39,7 +39,8 @@ import {
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
 import { BookingComponent } from './components/booking/booking.component';
-
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 
@@ -67,6 +68,8 @@ import { BookingComponent } from './components/booking/booking.component';
     AdminuserdetailComponent,
     MoviePageComponent,
     BookingComponent,
+    NotfoundComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

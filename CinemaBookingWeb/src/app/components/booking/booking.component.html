@@ -1,30 +1,60 @@
+<div class="login-modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="toggleModal()">&times;</span>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <span class="form-input-name"><h1>E-mail</h1></span>
+        <input formControlName="email" class="login-modal-inputs" type="email" required>
+        <span class="form-input-name"><h1>Adgangskode</h1></span>
+        <input formControlName="password" class="login-modal-inputs" type="password" required>
+        <div *ngIf="loginError">
+            <span class="login-error">Forkert e-mail eller adgangskode</span>
+        </div>
+        <div class="submit-section">
+            <div class="remember-me-section">
+                <input class="remember-me-input" type="checkbox" id="rememberMe" name="rememberMe">
+                <label class="remember-me-label" for="rememberMe">Husk mig</label>
+            </div>
+            <button class="login-modal-inputs submit" type="submit">Log ind</button>
+        </div>
+      </form>
+    </div>
+  </div>
 <nav class="booking-nav">
     <a href="/" class="logo">
         <img src="/static/assets/images/logo.png" alt="logo">
     </a>
     <div class="movie-info-mid">
         <div class="movie-desc">
-            <h1 class="movie-title">The Dark Knight</h1>
-            <p class="movie-info">1 time 41 min</p>
+            <h1 class="movie-title">{{ bookShow.movie.title }}</h1>
+            <p class="movie-info">{{ bookShow.movie.duration }}</p>
         </div>
         <div class="bio-info">
-            <p class="bio">Falkoner Bio</p>
+            <p class="bio">{{ bookShow.cinemaName }} bio</p>
             <p class="bio-movie-info">
-                <span>Bio 5</span>
-                <span>Onsdag, 8 maj.</span>
-                <span>11:30 - 13:31</span>
-                <span>2D Dansk tale</span>
+                <span>{{ bookShow.hallName }}</span>
+                <span>-</span>
+                <span>{{ bookShow.showDateTime | date:'EEEE, d MMMM' }}</span>
+                <span>-</span>
+                <span>{{ bookShow.showDateTime | date:'HH:mm' }}</span>
+                <!-- <span>2D Dansk tale</span> -->
             </p>
         </div>
     </div>
 </nav>
 <div class="body-container">
     <div class="booking-container">
-        <div class="member-announce">
+        <div class="member-announce" *ngIf="!isAuthenticated">
             <h1>Er du CMPlus medlem?</h1>
             <span>
                 <p>Log ind for at se tilbud og for at bruge et abbonoment</p>
-                <button class="member-btn">Log ind</button>
+                <button class="member-btn" (click)="toggleModal()">Log ind</button>
+            </span>
+        </div>
+        <div class="member-announce" *ngIf="isAuthenticated">
+            <h1>Hej {{ name }}!</h1>
+            <span>
+                <p>Velkommen tilbage til booking</p>
+                <button class="member-btn" (click)="logout()">Log ud</button>
             </span>
         </div>
         <h1 class="choose-headline">Vælg biletter</h1>
@@ -34,9 +64,9 @@
                 <p class="seat-price">130 DKK/billet</p>
             </div>
             <div class="left-site">
-                <button class="ticket-btn minus">-</button>
-                <span>0</span>
-                <button class="ticket-btn plus">+</button>
+                <button class="ticket-btn minus" (click)="decreaseTicketCnt()">-</button>
+                <span id="ticket-cnt">{{ticketCnt}}</span>
+                <button class="ticket-btn plus" (click)="increaseTicketCnt()">+</button>
             </div>
         </div>
         <div class="ticket">
@@ -64,251 +94,53 @@
     </div>
     <div class="cinema-container">
         <div class="cinema">
-            <h1 class="choose-headline">Vælg siddepladser</h1>
+            <!-- <h1 class="choose-headline">Vælg siddepladser</h1> -->
             <div class="screen"></div>
             <span class="screen-name">LÆRRED</span>
-            <div class="seats">
-                <div class="row">
-                    <span class="row-name">01</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">01</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">02</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">02</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">03</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">03</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">04</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">04</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">05</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">06</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">07</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">07</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">08</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">08</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">09</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">09</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">10</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <span class="row-name right">10</span>
-                </div>
-                <div class="row">
-                    <span class="row-name">11</span>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faCouch" class="seat"></fa-icon>
-                    <fa-icon [icon]="faWheelchairMove" class="seat seatwheelchair"></fa-icon>
-                    <fa-icon [icon]="faWheelchairMove" class="seat seatwheelchair"></fa-icon>
-                    <fa-icon [icon]="faWheelchairMove" class="seat seatwheelchair"></fa-icon>
-                    <span class="row-name right">11</span>
-                </div>
+            <div id="seats" class="seats">
+                <div *ngFor="let row of rows" class="row">
+                    <span class="row-name">{{ row.row }}</span>
+                    <div *ngFor="let seat of row.seats" id="seat-id-{{seat.seatID}}" (click)="toggleSeat(seat)">
+                        <fa-icon [icon]="faCouch" class="seat" [ngClass]="{'available': seat.seatStatus === 'Available', 'selected': seat.seatStatus === 'Selected', 'reserved': seat.seatStatus === 'Reserved', 'booked': seat.seatStatus === 'Booked'}"></fa-icon>
+                    </div>
+                    <span class="row-name right">{{ row.row }}</span>
+                  </div>
             </div>
         </div>
+        <div class="seat-design-examples">
+            <div class="seat-design-example">
+                <fa-icon [icon]="faCouch" class="seat available seat-design"></fa-icon>
+                <span>Normal Sæde</span>
+            </div>
+            <div class="seat-design-example">
+                <fa-icon [icon]="faCouch" class="seat selected seat-design"></fa-icon>
+                <span>Valgt Sæde</span>
+            </div>
+            <div class="seat-design-example">
+                <fa-icon [icon]="faCouch" class="seat reserved seat-design"></fa-icon>
+                <span>Reserveret Sæde</span>
+            </div>
+            <div class="seat-design-example">
+                <fa-icon [icon]="faCouch" class="seat booked seat-design"></fa-icon>
+                <span>Booket Sæde</span>
+            </div>
+        </div>
+    </div>
+    <div class="booking-footer">
+        <div class="chosen-tickets" [ngClass]="{'hasEntries' : bookShow.selectedSeats}">
+            <div *ngFor="let seat of bookShow.selectedSeats" class="chosen-ticket">
+                <div class="chosen-ticket-content">
+                    <span>Række</span>
+                    <div class="chosen-ticket-details">{{ seat.seatRow }}</div>
+                    <span>Sæde</span>
+                    <div class="chosen-ticket-details">{{ seat.seatNumber }}</div>
+                </div>
+            </div>
+        </div>        
+        <div class="ticket-info">
+            <span id="footer-ticket-cnt">{{ ticketCnt }} billetter</span>
+            <span id="footer-basket-price">{{ basketPrice }} kr</span>
+        </div>
+        <button class="next-button" [disabled]="ticketCnt <= 0" (click)="continueToPayment()">Næste</button>
     </div>
 </div>

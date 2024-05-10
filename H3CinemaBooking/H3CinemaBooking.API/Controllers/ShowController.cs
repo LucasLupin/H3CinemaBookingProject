@@ -14,7 +14,11 @@ namespace H3CinemaBooking.API.Controllers
     public class ShowController : ControllerBase
     {
         private readonly IShowRepository _showRepository;
-        public ShowController(IShowRepository showRepository) => _showRepository = showRepository;
+        private readonly IShowService _showService;
+        public ShowController(IShowRepository showRepository, IShowService showService) { 
+            _showRepository = showRepository; 
+            _showService = showService;
+        }
 
         //TODO: Make a Get all here
         // GET: api/<ShowController>
@@ -27,15 +31,25 @@ namespace H3CinemaBooking.API.Controllers
 
         // GET api/<ShowController>/id
         [HttpGet("{id}")]
-        public ActionResult<Show>GetByID(int id)
+        public ActionResult<Show> GetByID(int id)
         {
             var show = _showRepository.GetById(id);
-            if(show == null)
+            if (show == null)
             {
                 return NotFound();
             }
             return Ok(show);
         }
+
+        [HttpGet("bookInfo/{id}")]
+        public ActionResult<BookShow> Get(int id)
+        {
+            var bookShow = _showService.SetBookShowObjekt(id);
+            if (bookShow == null)
+                return NotFound();
+            return Ok(bookShow);
+        }
+ 
 
         // POST api/<Showtroller>
         [HttpPost]

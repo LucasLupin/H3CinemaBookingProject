@@ -18,6 +18,8 @@ import { AdminshowComponent } from './components/admin/adminshow/adminshow.compo
 import { AdminuserdetailComponent } from './components/admin/adminuserdetail/adminuserdetail.component';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -38,8 +40,10 @@ const routes: Routes = [
   { path: 'moviepage/:movieId', component: MoviePageComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: 'booking', component: BookingComponent}
-
+  { path: 'booking/:id', component: BookingComponent},
+  { path: 'payment', component: PaymentComponent, canActivate : [authGuard]},
+  { path: '404', component: NotfoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

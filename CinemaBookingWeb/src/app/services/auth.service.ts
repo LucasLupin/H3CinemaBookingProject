@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  private userId: string | null = null;
   private authToken: string | null = null;
   private userRole: string | null = null;
   private name: string | null = null;
@@ -64,15 +65,18 @@ export class AuthService {
     const decodedToken = this.jwtHelper.decodeToken(token);
 
     // Define the keys for the claims
+    const sId = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid";
     const emailKey = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress";
     const nameKey = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
     const roleKey = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
 
     // Extract the claims
+    this.userId = decodedToken[sId] || '';
     this.name = decodedToken[nameKey] || '';
     this.userRole = decodedToken[roleKey] || '';
     this.email = decodedToken[emailKey] || '';
 
+    console.log("Decoded userId", this.userId);
     console.log("Decoded name", this.name);
     console.log("Decoded role", this.userRole);
     console.log("Decoded email", this.email);
@@ -80,6 +84,7 @@ export class AuthService {
 
 
   logout(): void {
+    this.userId = null;
     this.authToken = null;
     this.userRole = null;
     this.name = null;
@@ -97,6 +102,10 @@ export class AuthService {
     return this.authToken;
   }
 
+  getUserId(): string | null {
+    return this.userId;
+  }
+  
   getUserRole(): string | null {
     return this.userRole;
   }

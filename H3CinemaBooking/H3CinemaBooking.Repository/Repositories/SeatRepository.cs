@@ -32,7 +32,7 @@ namespace H3CinemaBooking.Repository.Repositories
                 return seats;
             }
 
-        public Seat GetById(int Id)
+            public Seat GetById(int Id)
             {
                 var result = context.Seats.FirstOrDefault(c => c.SeatID == Id);
                 return result;
@@ -42,6 +42,12 @@ namespace H3CinemaBooking.Repository.Repositories
             public List<Seat> GetAll()
             {
                 var result = context.Seats.ToList();
+                return result;
+            }
+
+            public List<Seat> GetAllSeatsFromHall(int hallID)
+            {
+                var result = context.Seats.Where(s => s.HallID == hallID).ToList();
                 return result;
             }
 
