@@ -2,6 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using H3CinemaBooking.Repository.Models.DTO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +14,29 @@ namespace H3CinemaBooking.Repository.Repositories
         public class BookingRepository : IBookingRepository
         {
             private readonly Dbcontext context;
+            private readonly IPropertyValidationService validationService;
 
-            public BookingRepository(Dbcontext _context)
+        public BookingRepository(Dbcontext _context, IPropertyValidationService _validationService)
             {
                 context = _context;
+                validationService = _validationService;
+        }
+
+        public Booking Create(Booking booking)
+        {
+            string[] propertiesToSkip = { "BookingSeats", "Show", "userDetail", "BookingID" };
+
+            if (!validationService.ValidateProperties(booking, propertiesToSkip))
+            {
+                throw new InvalidOperationException("Invalid booking data.");
             }
 
-            public Booking Create(Booking booking)
-            {
-                context.Bookings.Add(booking);
-                context.SaveChanges();
-                return booking;
-            }
-            public Booking GetById(int Id)
+            context.Bookings.Add(booking);
+            context.SaveChanges();
+            return booking;
+        }
+
+        public Booking GetById(int Id)
             {
                 var result = context.Bookings.FirstOrDefault(c => c.BookingID == Id);
                 return result;
@@ -38,49 +49,65 @@ namespace H3CinemaBooking.Repository.Repositories
                 return result;
             }
 
-            public void DeleteByID(int Id)
+        public bool DeleteByID(int Id)
+        {
+            var booking = context.Bookings.FirstOrDefault(c => c.BookingID == Id);
+            if (booking != null)
             {
-                var booking = context.Bookings.FirstOrDefault(c => c.BookingID == Id);
-                if (booking != null)
-                {
-                    context.Remove(booking);
-                    context.SaveChanges();
-                }
+                context.Remove(booking);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public List<BookingSeat> GetBookingSeatsByShowId(int showId)
+        {
+            // First, get all BookingIDs for the specified showId
+            var bookingIds = context.Bookings
+                                    .Where(b => b.ShowID == showId)
+                                    .Select(b => b.BookingID)
+                                    .ToList(); // This will execute the query and return a List<int>
+
+            // Then, filter BookingSeats by the obtained BookingIDs
+            var result = context.BookingSeats
+                                .Where(bs => bookingIds.Contains(bs.BookingID))
+                                .ToList();
+
+            if (!result.Any())
+            {
+                throw new InvalidOperationException($"No booking seats found for show ID {showId}.");
             }
 
-            public List<BookingSeat> GetBookingSeatsByShowId(int showId)
+            return result;
+        }
+
+        public List<BookingSeat> CreateBookingSeat(Booking booking)
+        {
+            List<BookingSeat> bookingSeatList = new List<BookingSeat>();
+
+            // Check if BookingSeats is not null and not empty
+            if (booking.BookingSeats != null && booking.BookingSeats.Any())
             {
-                // First, get all BookingIDs for the specified showId
-                var bookingIds = context.Bookings
-                                        .Where(b => b.ShowID == showId)
-                                        .Select(b => b.BookingID)
-                                        .ToList(); // This will execute the query and return a List<int>
-
-                // Then, filter BookingSeats by the obtained BookingIDs
-                var result = context.BookingSeats
-                                    .Where(bs => bookingIds.Contains(bs.BookingID))
-                                    .ToList();
-
-                return result;
-            }
-
-            public List<BookingSeat> CreateBookingSeat(Booking booking)
-            {
-                List<BookingSeat> bookingSeatList = new List<BookingSeat>();
-                if (booking.BookingSeats != null)
+                foreach (var bookingSeat in booking.BookingSeats)
                 {
-                    foreach (var bookingSeat in booking.BookingSeats)
+                    // Use validation service to check each bookingSeat, except the BookingSeatID
+                    if (!validationService.ValidateProperties(bookingSeat, new string[] { "BookingSeatID", "BookingID", "Booking", "Seat" }))
                     {
-                        //Check if the seatId already exists as bookingId
-                        //If seatID already exists, continue
+                        throw new InvalidOperationException("Invalid booking seat data.");
+                    }
                         context.BookingSeats.Add(bookingSeat);
                         bookingSeatList.Add(bookingSeat);
-                    }
-                    context.SaveChanges();  // Gem alle ændringer på én gang
-                    return bookingSeatList;
                 }
-                return null;
+                context.SaveChanges();  // Save all changes at once
+                return bookingSeatList;
             }
+            else
+            {
+                throw new InvalidOperationException("Booking must have at least one seat.");
+            }
+        }
+
 
 
     }

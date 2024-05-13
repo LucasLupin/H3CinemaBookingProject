@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace H3CinemaBooking.Repository.Models
@@ -16,9 +17,11 @@ namespace H3CinemaBooking.Repository.Models
         public int NumberOfSeats { get; set; }
         public double Price { get; set; }
         public bool IsActive { get; set; }
+        [JsonIgnore]
         public virtual List<BookingSeat> ?BookingSeats { get; set; }
-
-        public Show ?Show { get; set; } 
+        [JsonIgnore]
+        public Show ?Show { get; set; }
+        [JsonIgnore]
         public UserDetail ?userDetail { get; set; }
     }
 }
