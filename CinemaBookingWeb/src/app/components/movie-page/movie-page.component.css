@@ -121,11 +121,12 @@ iframe {
 
 .node-title, .node-title-city, .cta-buttons, .extra-info, .body-info {
     margin-bottom: 20px;
+    font-family: "Guardian-Bold",sans-serif;
 }
 
 .node-title {
     color: #fff;
-    font-size: 44px;
+    font-size: 40px;
     font-weight: bold;
 }
 

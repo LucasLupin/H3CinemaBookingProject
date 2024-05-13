@@ -13,7 +13,7 @@ namespace H3CinemaBooking.Repository.Models
         [Key]
         public int SeatID { get; set; }
         public int HallID { get; set; }
-        public int SeatNumber { get; set; }
+        public int SeatNumber { get; set; } 
         public char SeatRow { get; set; }
         [JsonIgnore]
         public CinemaHall ?CinemaHall { get; set; }
