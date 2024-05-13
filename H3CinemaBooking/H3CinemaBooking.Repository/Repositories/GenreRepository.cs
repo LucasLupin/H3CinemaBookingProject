@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using Humanizer.Localisation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,20 @@ namespace H3CinemaBooking.Repository.Repositories
     public class GenreRepository : IGenreRepository
     {
         private readonly Dbcontext context;
+        private readonly IPropertyValidationService validationService;
 
-        public GenreRepository(Dbcontext _context)
+        public GenreRepository(Dbcontext _context, IPropertyValidationService _validationService)
         {
             context = _context;
+            validationService = _validationService;
         }
         public Genre Create(Genre Genre)
+        {
+            if (!validationService.ValidateProperties(Genre, new string[] { "GenreID", "Movies" }))
             {
+                throw new ArgumentException("Invalid genre properties.");
+            }
+
             context.Genres.Add(Genre);
             context.SaveChanges();
             return Genre;
@@ -37,6 +45,11 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public void UpdateByID(int Id, Genre updatedGenre)
         {
+            if (!validationService.ValidateProperties(updatedGenre, new string[] { "GenreID", "Movies" }))
+            {
+                throw new ArgumentException("Invalid genre properties.");
+            }
+
             var genre = context.Genres.FirstOrDefault(g => g.GenreID == Id);
 
             if (genre != null)
@@ -45,16 +58,22 @@ namespace H3CinemaBooking.Repository.Repositories
 
                 context.SaveChanges();
             }
+            else
+            {
+                throw new InvalidOperationException($"No genre found with ID {Id}.");
+            }
         }
 
-        public void DeleteGenreByID(int Id)
+        public bool DeleteGenreByID(int Id)
         {
             var genre = context.Genres.FirstOrDefault(c => c.GenreID == Id);
             if (genre != null)
             {
                 context.Remove(genre);
                 context.SaveChanges();
+                return true;
             }
+            return false;
         }
     }
 }

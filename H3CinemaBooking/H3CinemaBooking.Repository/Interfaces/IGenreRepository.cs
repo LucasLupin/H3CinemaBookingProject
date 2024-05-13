@@ -12,7 +12,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         Genre Create(Genre Genre);
         Genre GetById(int Id);
         List<Genre> GetAll();
-        void DeleteGenreByID(int Id);
+        bool DeleteGenreByID(int Id);
         void UpdateByID(int Id, Genre updatedGenre);
     }
 }
