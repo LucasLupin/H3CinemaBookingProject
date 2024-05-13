@@ -63,6 +63,8 @@ export class FrontpageComponent {
 
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.storageService.handleLocalStorage().then(areaExists => {
       console.log("handleLocalStorage Result from app component:", areaExists);
       if (!areaExists) {

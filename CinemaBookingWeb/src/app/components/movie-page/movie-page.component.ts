@@ -50,6 +50,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     constructor(private router: Router, private route: ActivatedRoute, private showService:GenericService<Show>, private showshowService: ShowService, private cinemaService:GenericService<Cinema>, private movieService:GenericService<Movie>, private storageService: LocalStorageGeneric, private sanitizer: DomSanitizer) {}
 
     ngOnInit() {
+      window.scrollTo(0, 0);
+
       // Handling local storage and navigation based on the selected area
       this.storageService.handleLocalStorage().then(areaExists => {
         if (!areaExists) {
