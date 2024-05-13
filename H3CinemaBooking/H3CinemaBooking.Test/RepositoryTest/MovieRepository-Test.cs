@@ -27,7 +27,7 @@ namespace H3CinemaBooking.Test.Test_Repositories
             context.Database.EnsureDeleted(); // Remove database if Found
 
             //Populate data 
-            Movie m1 = new Movie(){ MovieID = 1, Title = "Underverden", Duration = 2, Director = "Lucas den store", MovieLink = "random", TrailerLink = "Test", Genres = new List<Genre>() };
+            Movie m1 = new Movie() { MovieID = 1, Title = "Underverden", Duration = 2, Director = "Lucas den store", MovieLink = "random", TrailerLink = "Test", Genres = new List<Genre>() };
             Movie m2 = new Movie() { MovieID = 2, Title = "Klovn", Duration = 2, Director = "Lucas dn mellem", MovieLink = "random", TrailerLink = "Test", Genres = new List<Genre>() };
             Movie m3 = new Movie() { MovieID = 3, Title = "DummyMovie", Duration = 2, Director = "Lucas den lille", MovieLink = "random", TrailerLink = "Test", Genres = new List<Genre>() };
 
@@ -81,7 +81,7 @@ namespace H3CinemaBooking.Test.Test_Repositories
             MovieRepository repo = new MovieRepository(context);
             //Act       - call method
             var result = repo.GetById(2);
-            
+
             //Assert    - verify I get the right result back
             Assert.Equal(2, result.MovieID);
 
