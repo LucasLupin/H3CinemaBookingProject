@@ -2,9 +2,13 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,10 +25,36 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public Movie Create(Movie movie)
         {
+            if (!CheckNullProperties(movie, ["Genres"]))
+                return null;
+            
             context.Movies.Add(movie);
             context.SaveChanges();
             return movie;
         }
+
+        public static bool CheckNullProperties(dynamic objekt, string[] propertySkip)
+        {
+            if (objekt == null) return false;
+            foreach (PropertyInfo property in objekt.GetType().GetProperties())
+            {
+                foreach (string skip in propertySkip)
+                {
+
+                    if (property.Name == skip)
+                    {
+                        continue;
+                    }
+                }
+
+                var value = property.GetValue(objekt);
+                if (value == null || (value is int intValue && intValue <= 0) || (value is string stringValue && string.IsNullOrEmpty(stringValue)))
+                    return false;
+            }
+
+            return true;
+        }
+
         public Movie CreateComplex(Movie movie, List<string> genreNames)
         {
             context.Movies.Add(movie);
@@ -91,14 +121,16 @@ namespace H3CinemaBooking.Repository.Repositories
             }
         }
 
-            public void DeleteByID(int Id)
+            public bool DeleteByID(int Id)
             {
             var movie = context.Movies.FirstOrDefault(c => c.MovieID == Id);
             if (movie != null)
             {
                 context.Remove(movie);
                 context.SaveChanges();
+                return true;
             }
+            return false;
         }
     }
 }

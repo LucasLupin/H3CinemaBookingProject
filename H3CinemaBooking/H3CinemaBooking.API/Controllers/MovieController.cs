@@ -88,8 +88,11 @@ namespace H3CinemaBooking.API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _movieRepository.DeleteByID(id);
-            return Ok();
+            if (_movieRepository.DeleteByID(id))
+            {
+                return Ok();
+            }
+            return BadRequest("ID was not found!");
         }
     }
 }
