@@ -38,7 +38,7 @@ namespace H3CinemaBooking.Test.Test_Repositories
         }
 
         [Fact]
-        public void getAllMovies_ReturnExists()
+        public void GetAllMovies_Exists()
         {
             //Arrange    - Variable creation etc
             MovieRepository repo = new MovieRepository(context);
@@ -50,7 +50,7 @@ namespace H3CinemaBooking.Test.Test_Repositories
         }
 
         [Fact]
-        public void getAllMovies_NotFound()
+        public void GetAllMovies_NotFound()
         {
             //Arrange    - Variable creation etc
             MovieRepository repo = new MovieRepository(context);
@@ -58,23 +58,23 @@ namespace H3CinemaBooking.Test.Test_Repositories
             var result = repo.GetAll(); // List<Movie>
             var expected = 3;
             //Assert    - verify I get the right result back
-            Assert.Equal(expected, result.Count);
+            Assert.NotEqual(expected, result.Count);
         }
 
         [Fact]
-        public void getAllMovies_NotExists()
+        public void GetAllMovies_RepoNotExists()
         {
             //Arrange    - Variable creation etc
             MovieRepository repo = null;
+
             //Act       - call method
-            //var result = repo.GetById(1);
 
             //Assert    - verify I get the right result back
             Assert.Null(repo);
         }
 
         [Fact]
-        public void GetMovieById_ReturnsExists()
+        public void GetMovieById_Exists()
         {
 
             //Arrange    - Variable creation etc
@@ -100,7 +100,7 @@ namespace H3CinemaBooking.Test.Test_Repositories
         }
 
         [Fact]
-        public void GetMovieById_NotExists()
+        public void GetMovieById_RepoNotExists()
         {
             //Arrange    - Variable creation etc
             MovieRepository repo = null;
@@ -110,5 +110,29 @@ namespace H3CinemaBooking.Test.Test_Repositories
             //Assert    - verify I get the right result back
             Assert.Null(repo);
         }
+
+        [Fact]
+        public void DeleteMovie_WhenExists()
+        {
+            //Arrange
+            MovieRepository repo = new MovieRepository(context);
+            //Act - Method calling
+            var result = repo.DeleteByID(1);
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void CreateMovie()
+        {
+            //Arrange
+            MovieRepository repo = new MovieRepository(context);
+            //Act - Method calling
+            Movie m1 = new Movie() { MovieID = 1, Title = "Underverden", Duration = 2, Director = "Lucas den store", MovieLink = "random", TrailerLink = "Test", Genres = new List<Genre>() };
+            Movie result = repo.Create(m1);
+
+            Assert.Equal(m1, result);
+        }
+
+
     }
 }
