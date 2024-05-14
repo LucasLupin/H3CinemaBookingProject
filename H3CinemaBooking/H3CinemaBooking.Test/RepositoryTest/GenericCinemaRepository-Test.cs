@@ -61,10 +61,10 @@ namespace H3CinemaBooking.Test.RepositoryTest
         {
             // Arrange
             var repository = new GenericRepository<Cinema>(context, validationService);
-            var invalidArea = new Cinema { Name = "Midtown" }; // Missing RegionID
+            var invalidCinema = new Cinema { Name = "Midtown" }; // Missing RegionID
 
             // Act & Assert
-            var exception = Assert.Throws<ArgumentException>(() => repository.Create(invalidArea));
+            var exception = Assert.Throws<ArgumentException>(() => repository.Create(invalidCinema));
             Assert.Equal("Invalid properties", exception.Message);
         }
 
