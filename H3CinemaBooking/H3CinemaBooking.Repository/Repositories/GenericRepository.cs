@@ -25,7 +25,7 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public TEntity Create(TEntity entity)
         {
-            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "CinemaID", "Area", "Seats", "HallsID" }))
+            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "CinemaID", "Area", "Seats", "HallsID", "RegionID", "Areas" }))
             {
                 throw new ArgumentException("Invalid properties");
             }
@@ -52,7 +52,7 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public void Update(TEntity entity)
         {
-            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "Area", "Seats", "HallsID" }))
+            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "Area", "Seats", "HallsID", "RegionID", "Areas" }))
             {
                 throw new ArgumentException("Invalid properties");
             }

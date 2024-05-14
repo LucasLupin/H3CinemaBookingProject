@@ -24,6 +24,7 @@ namespace H3CinemaBooking.Repository.Data
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Region> Regions { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
