@@ -13,7 +13,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         public IEnumerable<Seat> CreateBulk(IEnumerable<Seat> seats);
         Seat GetById(int id);
         List<Seat> GetAll();
-        void DeleteByID(int id);
+        bool DeleteByID(int id);
 
         List<Seat> GetAllSeatsFromHall(int hallID);
     }

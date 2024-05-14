@@ -12,21 +12,36 @@ namespace H3CinemaBooking.Repository.Repositories
         public class SeatRepository : ISeatRepository
         {
             private readonly Dbcontext context;
+            private readonly IPropertyValidationService validationService;
 
-            public SeatRepository(Dbcontext _context)
+        public SeatRepository(Dbcontext _context, IPropertyValidationService _validationService)
             {
                 context = _context;
-            }
+            validationService = _validationService;
+        }
 
             public Seat Create(Seat seat)
             {
-                context.Seats.Add(seat);
+            if (!validationService.ValidateProperties(seat, new string[] { "SeatID", "CinemaHall", "BookingSeats" }))
+            {
+                throw new ArgumentException("Invalid seat properties.");
+            }
+            context.Seats.Add(seat);
                 context.SaveChanges();
                 return seat;
             }
 
+
             public IEnumerable<Seat> CreateBulk(IEnumerable<Seat> seats)
             {
+                foreach (var seat in seats) 
+                {
+                    if (!validationService.ValidateProperties(seat, new string[] { "SeatID", "CinemaHall", "BookingSeats" }))
+                    {
+                        throw new ArgumentException("Invalid seats properties.");
+                    }
+                }
+                
                 context.Seats.AddRange(seats);
                 context.SaveChanges();
                 return seats;
@@ -51,14 +66,16 @@ namespace H3CinemaBooking.Repository.Repositories
                 return result;
             }
 
-            public void DeleteByID(int Id)
+            public bool DeleteByID(int Id)
             {
                 var seat = context.Seats.FirstOrDefault(c => c.SeatID == Id);
                 if (seat != null)
                 {
                     context.Remove(seat);
                     context.SaveChanges();
+                return true;
                 }
+                return false;
             }
         }
     }
