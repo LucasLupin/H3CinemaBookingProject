@@ -10,6 +10,6 @@ namespace H3CinemaBooking.Repository.Interfaces
         TEntity GetById(int id);
         public Task<List<TEntity>> GetAllAsync();
         public void Update(TEntity entity);
-        void DeleteById(int id);
+        bool DeleteById(int id);
     }
 }

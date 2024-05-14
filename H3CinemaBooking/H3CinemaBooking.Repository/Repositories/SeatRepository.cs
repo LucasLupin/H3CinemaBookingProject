@@ -17,7 +17,7 @@ namespace H3CinemaBooking.Repository.Repositories
         public SeatRepository(Dbcontext _context, IPropertyValidationService _validationService)
             {
                 context = _context;
-            validationService = _validationService;
+                validationService = _validationService;
         }
 
             public Seat Create(Seat seat)

@@ -1,6 +1,7 @@
 ﻿using H3CinemaBooking.Repository.Data;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
+using Humanizer.Localisation;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,22 @@ namespace H3CinemaBooking.Repository.Repositories
     {
         private readonly Dbcontext context;
         private readonly DbSet<TEntity> dbSet;
+        private readonly IPropertyValidationService validationService;
 
-        public GenericRepository(Dbcontext _context)
+        public GenericRepository(Dbcontext _context, IPropertyValidationService _validationService)
         {
             context = _context;
             dbSet = context.Set<TEntity>();
+            validationService = _validationService;
         }
 
         public TEntity Create(TEntity entity)
         {
+            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "CinemaID", "Area" }))
+            {
+                throw new ArgumentException("Invalid properties");
+            }
+
             dbSet.Add(entity);
             context.SaveChanges();
             return entity;
@@ -44,20 +52,30 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public void Update(TEntity entity)
         {
-            context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+            if (!validationService.ValidateProperties(entity, new string[] { "AreaID", "Cinemas", "Area" }))
+            {
+                throw new ArgumentException("Invalid properties");
+            }
+
+            if (entity != null)
+            {
+                context.Entry(entity).State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
 
 
 
-        public void DeleteById(int id)
+        public bool DeleteById(int id)
         {
             var entity = dbSet.Find(id);
             if (entity != null)
             {
                 dbSet.Remove(entity);
                 context.SaveChanges();
+                return true;
             }
+            return false;
         }
 
     }
