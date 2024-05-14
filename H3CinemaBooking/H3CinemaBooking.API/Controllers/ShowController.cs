@@ -69,7 +69,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
 
-            _showRepository.DeleteByID(id, show);
+            _showRepository.DeleteByID(id);
             return Ok();
         }
 

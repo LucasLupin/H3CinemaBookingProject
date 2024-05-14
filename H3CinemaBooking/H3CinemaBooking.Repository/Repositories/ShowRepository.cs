@@ -14,14 +14,21 @@ namespace H3CinemaBooking.Repository.Repositories
     public class ShowRepository : IShowRepository
     {
         private readonly Dbcontext context;
+        private readonly IPropertyValidationService validationService;
 
-        public ShowRepository(Dbcontext _context)
+        public ShowRepository(Dbcontext _context, IPropertyValidationService _validationService)
         {
             context = _context;
+            validationService = _validationService;
         }
 
         public Show Create(Show show)
         {
+            if (!validationService.ValidateProperties(show, new string[] { "ShowID" }))
+            {
+                throw new ArgumentException("Invalid show properties.");
+            }
+
             context.Shows.Add(show);
             context.SaveChanges();
             return show;
@@ -41,6 +48,11 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public void UpdateByID(int Id, Show updatedShow)
         {
+            if (!validationService.ValidateProperties(updatedShow, new string[] { "ShowID" }))
+            {
+                throw new ArgumentException("Invalid show properties.");
+            }
+
             var show = context.Shows.FirstOrDefault(s => s.ShowID == Id);
 
             if (show != null)
@@ -52,15 +64,22 @@ namespace H3CinemaBooking.Repository.Repositories
 
                 context.SaveChanges();
             }
+            else
+            {
+                throw new InvalidOperationException($"No show found with ID {Id}.");
+            }
         }
 
-        public void DeleteByID(int Id, Show show)
+        public bool DeleteByID(int Id)
         {
+            var show = context.Shows.FirstOrDefault(c => c.ShowID == Id);
             if (show != null)
             {
                 context.Remove(show);
                 context.SaveChanges();
+                return true;
             }
+            return false;
         }
 
     }

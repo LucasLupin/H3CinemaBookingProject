@@ -74,11 +74,6 @@ namespace H3CinemaBooking.Repository.Repositories
                                 .Where(bs => bookingIds.Contains(bs.BookingID))
                                 .ToList();
 
-            if (!result.Any())
-            {
-                throw new InvalidOperationException($"No booking seats found for show ID {showId}.");
-            }
-
             return result;
         }
 
