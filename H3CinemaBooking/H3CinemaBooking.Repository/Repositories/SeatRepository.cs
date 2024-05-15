@@ -26,7 +26,7 @@ namespace H3CinemaBooking.Repository.Repositories
             {
                 throw new ArgumentException("Invalid seat properties.");
             }
-            context.Seats.Add(seat);
+                context.Seats.Add(seat);
                 context.SaveChanges();
                 return seat;
             }

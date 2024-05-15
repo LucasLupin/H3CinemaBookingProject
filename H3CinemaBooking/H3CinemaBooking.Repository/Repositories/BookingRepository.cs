@@ -16,10 +16,10 @@ namespace H3CinemaBooking.Repository.Repositories
             private readonly Dbcontext context;
             private readonly IPropertyValidationService validationService;
 
-        public BookingRepository(Dbcontext _context, IPropertyValidationService _validationService)
-            {
-                context = _context;
-                validationService = _validationService;
+        public BookingRepository(Dbcontext context, IPropertyValidationService validationService)
+        {
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.validationService = validationService ?? throw new ArgumentNullException(nameof(validationService));
         }
 
         public Booking Create(Booking booking)
@@ -51,10 +51,10 @@ namespace H3CinemaBooking.Repository.Repositories
 
         public bool DeleteByID(int Id)
         {
-            var booking = context.Bookings.FirstOrDefault(c => c.BookingID == Id);
+            var booking = context.Bookings.Include(b => b.BookingSeats).FirstOrDefault(c => c.BookingID == Id);
             if (booking != null)
             {
-                context.Remove(booking);
+                context.Bookings.Remove(booking);
                 context.SaveChanges();
                 return true;
             }
@@ -68,6 +68,12 @@ namespace H3CinemaBooking.Repository.Repositories
                                     .Where(b => b.ShowID == showId)
                                     .Select(b => b.BookingID)
                                     .ToList(); // This will execute the query and return a List<int>
+
+            // Throw an exception if no bookings are found for the given showId
+            if (bookingIds.Count == 0)
+            {
+                throw new InvalidOperationException($"No bookings found for show ID {showId}");
+            }
 
             // Then, filter BookingSeats by the obtained BookingIDs
             var result = context.BookingSeats

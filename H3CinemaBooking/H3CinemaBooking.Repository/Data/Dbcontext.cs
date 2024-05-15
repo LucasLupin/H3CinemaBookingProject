@@ -67,7 +67,8 @@ namespace H3CinemaBooking.Repository.Data
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.userDetail)
                 .WithMany(c => c.Bookings)
-                .HasForeignKey(b => b.UserDetailID);
+                .HasForeignKey(b => b.UserDetailID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Show)

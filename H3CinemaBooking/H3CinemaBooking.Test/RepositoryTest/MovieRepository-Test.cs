@@ -10,7 +10,7 @@ using H3CinemaBooking.Repository.Models;
 using H3CinemaBooking.Repository.Repositories;
 using NuGet.ContentModel;
 
-namespace H3CinemaBooking.Test.Test_Repositories
+namespace H3CinemaBooking.Test.RepositoryTest
 {
     public class MovieRepository_Test
     {

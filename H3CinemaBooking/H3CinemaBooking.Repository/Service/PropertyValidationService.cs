@@ -25,6 +25,7 @@ namespace H3CinemaBooking.Repository.Service
                 object value = property.GetValue(obj);
                 if (value == null || (value is int intValue && intValue <= 0) || (value is string stringValue && string.IsNullOrWhiteSpace(stringValue)))
                 {
+                    Console.WriteLine($"Property {property.Name} is null");
                     return false;
                 }
             }
