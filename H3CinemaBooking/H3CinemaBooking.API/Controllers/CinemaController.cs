@@ -2,7 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Collections.Generic;
-using H3CinemaBooking.Repository.Repositories;
+using System.Threading.Tasks;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -22,6 +22,10 @@ namespace H3CinemaBooking.API.Controllers
         public async Task<ActionResult<IEnumerable<Cinema>>> GetAll()
         {
             var cinemas = await _cinemaRepository.GetAllAsync();
+            if (cinemas == null || cinemas.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(cinemas);
         }
 
@@ -49,24 +53,29 @@ namespace H3CinemaBooking.API.Controllers
             return Ok(cinema);
         }
 
-        //Update Api Movie with Genre
+        // PUT api/<CinemaController>/5
         [HttpPut("{id}")]
-        public ActionResult Update(int id, Cinema cinema)
+        public ActionResult Update(int id, [FromBody] Cinema cinema)
         {
-            var existingCinema = _cinemaRepository.GetById(id);
-
-            if (existingCinema != null)
+            if (cinema == null)
             {
-                existingCinema.Name = cinema.Name;
-                existingCinema.Location = cinema.Location;
-                existingCinema.NumberOfHalls = cinema.NumberOfHalls;
-                existingCinema.AreaID = cinema.AreaID;
-
+                return BadRequest();
             }
-            _cinemaRepository.Update(existingCinema);
-            return Ok();
-        }
 
+            var existingCinema = _cinemaRepository.GetById(id);
+            if (existingCinema == null)
+            {
+                return NotFound();
+            }
+
+            existingCinema.Name = cinema.Name;
+            existingCinema.Location = cinema.Location;
+            existingCinema.NumberOfHalls = cinema.NumberOfHalls;
+            existingCinema.AreaID = cinema.AreaID;
+
+            _cinemaRepository.Update(existingCinema);
+            return Ok(existingCinema);
+        }
 
         // DELETE api/<CinemaController>/5
         [HttpDelete("{id}")]
@@ -78,7 +87,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _cinemaRepository.DeleteById(id);
-            return Ok();
+            return Ok(new { message = "Cinema deleted successfully" });
         }
     }
 }
