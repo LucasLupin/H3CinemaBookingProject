@@ -2,7 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Collections.Generic;
-using H3CinemaBooking.Repository.Repositories;
+using System.Threading.Tasks;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -22,6 +22,10 @@ namespace H3CinemaBooking.API.Controllers
         public async Task<ActionResult<IEnumerable<Region>>> GetAll()
         {
             var regions = await _regionRepository.GetAllAsync();
+            if (regions == null || regions.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(regions);
         }
 
@@ -43,27 +47,34 @@ namespace H3CinemaBooking.API.Controllers
         {
             if (region == null)
             {
-                return BadRequest("Cinema data is required");
+                return BadRequest("Region data is required");
             }
             _regionRepository.Create(region);
             return Ok(region);
         }
 
-        //Update Api Movie with Genre
+        // PUT api/<RegionController>/5
         [HttpPut("{id}")]
-        public ActionResult Update(int id, Region region)
+        public ActionResult Update(int id, [FromBody] Region region)
         {
-            var existingRegion = _regionRepository.GetById(id);
-
-            if (existingRegion != null)
+            if (region == null)
             {
-                existingRegion.RegionName = region.RegionName;
+                return BadRequest();
             }
+
+            var existingRegion = _regionRepository.GetById(id);
+            if (existingRegion == null)
+            {
+                return NotFound();
+            }
+
+            existingRegion.RegionName = region.RegionName;
+
             _regionRepository.Update(existingRegion);
             return Ok(existingRegion);
         }
 
-        // DELETE api/<CinemaController>/5
+        // DELETE api/<RegionController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -73,7 +84,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _regionRepository.DeleteById(id);
-            return Ok();
+            return Ok(new { message = "Region deleted successfully" });
         }
     }
 }
