@@ -22,6 +22,10 @@ namespace H3CinemaBooking.API.Controllers
         public async Task<ActionResult<IEnumerable<Area>>> GetAll()
         {
             var areas = await _areaRepository.GetAllAsync();
+            if (areas == null || areas.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(areas);
         }
 
@@ -49,19 +53,26 @@ namespace H3CinemaBooking.API.Controllers
             return Ok(area);
         }
 
-        //Update Api Movie with Genre
+        // PUT api/<AreaController>/5
         [HttpPut("{id}")]
-        public ActionResult Update(int id, Area area)
+        public ActionResult Update(int id, [FromBody] Area area)
         {
-            var existingarea = _areaRepository.GetById(id);
-
-            if (existingarea != null)
+            if (area == null)
             {
-                existingarea.AreaName = area.AreaName;
-                existingarea.RegionID = area.RegionID;
+                return BadRequest();
             }
-            _areaRepository.Update(existingarea);
-            return Ok();
+
+            var existingArea = _areaRepository.GetById(id);
+            if (existingArea == null)
+            {
+                return NotFound();
+            }
+
+            existingArea.AreaName = area.AreaName;
+            existingArea.RegionID = area.RegionID;
+
+            _areaRepository.Update(existingArea);
+            return Ok(existingArea);
         }
 
         // DELETE api/<AreaController>/5
@@ -74,7 +85,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _areaRepository.DeleteById(id);
-            return Ok();
+            return Ok(new { message = "Area deleted successfully" });
         }
     }
 }
