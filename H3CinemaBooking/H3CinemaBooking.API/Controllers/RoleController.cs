@@ -2,7 +2,7 @@
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Collections.Generic;
-using H3CinemaBooking.Repository.Repositories;
+using System.Threading.Tasks;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -17,15 +17,19 @@ namespace H3CinemaBooking.API.Controllers
             _roleRepository = roleRepository;
         }
 
-        // GET: api/<CinemaController>
+        // GET: api/<RoleController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Roles>>> GetAll()
         {
             var roles = await _roleRepository.GetAllAsync();
+            if (roles == null || roles.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(roles);
         }
 
-        // GET api/<CinemaController>/5
+        // GET api/<RoleController>/5
         [HttpGet("{id}")]
         public ActionResult<Roles> GetById(int id)
         {
@@ -37,34 +41,40 @@ namespace H3CinemaBooking.API.Controllers
             return Ok(role);
         }
 
-        // POST api/<CinemaController>
+        // POST api/<RoleController>
         [HttpPost]
         public ActionResult<Roles> Post([FromBody] Roles role)
         {
             if (role == null)
             {
-                return BadRequest("Cinema data is required");
+                return BadRequest("Role data is required");
             }
             _roleRepository.Create(role);
             return Ok(role);
         }
 
-        //Update Api Movie with Genre
+        // PUT api/<RoleController>/5
         [HttpPut("{id}")]
         public ActionResult Update(int id, [FromBody] Roles role)
         {
-            var existingRole = _roleRepository.GetById(id);
-
-            if (existingRole != null)
+            if (role == null)
             {
-                existingRole.RoleName = role.RoleName;
+                return BadRequest();
             }
+
+            var existingRole = _roleRepository.GetById(id);
+            if (existingRole == null)
+            {
+                return NotFound();
+            }
+
+            existingRole.RoleName = role.RoleName;
+
             _roleRepository.Update(existingRole);
-            return Ok();
+            return Ok(existingRole);
         }
 
-
-        // DELETE api/<CinemaController>/5
+        // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -74,7 +84,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _roleRepository.DeleteById(id);
-            return Ok();
+            return Ok(new { message = "Role deleted successfully" });
         }
     }
 }
