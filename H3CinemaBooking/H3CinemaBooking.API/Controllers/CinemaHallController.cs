@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
-using System.Security.Cryptography;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -23,15 +22,19 @@ namespace H3CinemaBooking.API.Controllers
         public async Task<ActionResult<IEnumerable<CinemaHall>>> GetAll()
         {
             var cinemaHalls = await _cinemaHallRepository.GetAllAsync();
+            if (cinemaHalls == null || cinemaHalls.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(cinemaHalls);
         }
 
         // GET api/<CinemaHallController>/id
         [HttpGet("{id}")]
-        public ActionResult<CinemaHall>GetByID(int id)
+        public ActionResult<CinemaHall> GetByID(int id)
         {
             var cinemaHall = _cinemaHallRepository.GetById(id);
-            if(cinemaHall == null)
+            if (cinemaHall == null)
             {
                 return NotFound();
             }
@@ -40,13 +43,39 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<CinemaHallController>
         [HttpPost]
-        public ActionResult<CinemaHall>Post(CinemaHall cinemaHall)
-        {   
+        public ActionResult<CinemaHall> Post([FromBody] CinemaHall cinemaHall)
+        {
+            if (cinemaHall == null)
+            {
+                return BadRequest("CinemaHall data is required");
+            }
             _cinemaHallRepository.Create(cinemaHall);
             return Ok(cinemaHall);
         }
 
-        // DELETE api/<CinemaController>/5
+        // PUT api/<CinemaHallController>/5
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, [FromBody] CinemaHall cinemaHall)
+        {
+            if (cinemaHall == null)
+            {
+                return BadRequest();
+            }
+
+            var existingCinemaHall = _cinemaHallRepository.GetById(id);
+            if (existingCinemaHall == null)
+            {
+                return NotFound();
+            }
+
+            existingCinemaHall.HallName = cinemaHall.HallName;
+            existingCinemaHall.CinemaID = cinemaHall.CinemaID;
+
+            _cinemaHallRepository.Update(existingCinemaHall);
+            return Ok(existingCinemaHall);
+        }
+
+        // DELETE api/<CinemaHallController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -56,24 +85,7 @@ namespace H3CinemaBooking.API.Controllers
                 return NotFound();
             }
             _cinemaHallRepository.DeleteById(id);
-            return Ok();
-        }
-
-
-        //Update Api Movie with Genre
-        [HttpPut("{id}")]
-        public ActionResult Update(int id, CinemaHall cinemahall)
-        {
-            var existingCinemahall = _cinemaHallRepository.GetById(id);
-
-            if (existingCinemahall != null)
-            {
-                existingCinemahall.HallName = cinemahall.HallName;
-                existingCinemahall.CinemaID = cinemahall.CinemaID;
-
-            }
-            _cinemaHallRepository.Update(existingCinemahall);
-            return Ok(existingCinemahall);
+            return Ok(new { message = "CinemaHall deleted successfully" });
         }
     }
 }
