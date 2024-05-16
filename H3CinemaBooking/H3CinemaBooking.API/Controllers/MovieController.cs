@@ -1,7 +1,8 @@
 ﻿using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,12 +19,15 @@ namespace H3CinemaBooking.API.Controllers
             _movieRepository = movieRepository;
         }
 
-        //TODO: Make a Get all here
         // GET: api/<MovieController>
         [HttpGet]
         public ActionResult<List<Movie>> GetAll()
         {
             var result = _movieRepository.GetAll();
+            if (result == null || result.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(result);
         }
 
@@ -36,13 +40,17 @@ namespace H3CinemaBooking.API.Controllers
             {
                 return NotFound();
             }
-            return Ok($"Hello from MovieController Get {movie}");
+            return Ok(movie);
         }
 
         // POST api/<MovieController>
         [HttpPost("Simple")]
         public ActionResult<Movie> Post(Movie movie)
         {
+            if (movie == null)
+            {
+                return BadRequest("Movie data is required");
+            }
             _movieRepository.Create(movie);
             return Ok("Movie created successfully.");
         }
@@ -50,15 +58,23 @@ namespace H3CinemaBooking.API.Controllers
         [HttpPost("Complex")]
         public ActionResult<Movie> PostComplex(Movie movie)
         {
+            if (movie == null)
+            {
+                return BadRequest("Movie data is required");
+            }
+
             try
             {
                 // Initialize an empty list to hold all genre names from all genres
                 List<string> allGenreNames = new List<string>();
 
-                foreach (var genre in movie.Genres)
+                if (movie.Genres != null)
                 {
-                    allGenreNames.AddRange(genre.GenreName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                                          .Select(gn => gn.Trim()));
+                    foreach (var genre in movie.Genres)
+                    {
+                        allGenreNames.AddRange(genre.GenreName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                              .Select(gn => gn.Trim()));
+                    }
                 }
 
                 // Clear genres to avoid processing existing references
@@ -74,25 +90,34 @@ namespace H3CinemaBooking.API.Controllers
             }
         }
 
-
-
-        //Update Api Movie with Genre
+        // PUT api/<MovieController>/5
         [HttpPut("{id}")]
-        public ActionResult Update(int id, Movie movie)
+        public ActionResult Update(int id, [FromBody] Movie movie)
         {
+            if (movie == null)
+            {
+                return BadRequest();
+            }
+
+            var existingMovie = _movieRepository.GetById(id);
+            if (existingMovie == null)
+            {
+                return NotFound();
+            }
+
             _movieRepository.UpdateByID(id, movie);
-            return Ok();
+            return Ok(movie);
         }
 
-        // DELETE api/<MovieController>/ID
+        // DELETE api/<MovieController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             if (_movieRepository.DeleteByID(id))
             {
-                return Ok();
+                return Ok(new { message = "Movie deleted successfully" });
             }
-            return BadRequest("ID was not found!");
+            return NotFound("ID was not found!");
         }
     }
 }
