@@ -70,10 +70,10 @@ namespace H3CinemaBooking.Repository.Repositories
                                     .ToList(); // This will execute the query and return a List<int>
 
             // Throw an exception if no bookings are found for the given showId
-            if (bookingIds.Count == 0)
-            {
-                throw new InvalidOperationException($"No bookings found for show ID {showId}");
-            }
+            //if (bookingIds.Count == 0)
+            //{
+            //    throw new InvalidOperationException($"No bookings found for show ID {showId}");
+            //}
 
             // Then, filter BookingSeats by the obtained BookingIDs
             var result = context.BookingSeats
