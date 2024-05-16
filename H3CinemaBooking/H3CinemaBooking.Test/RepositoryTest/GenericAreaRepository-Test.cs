@@ -61,7 +61,7 @@ namespace H3CinemaBooking.Test.RepositoryTest
         {
             // Arrange
             var repository = new GenericRepository<Area>(context, validationService);
-            var invalidArea = new Area { AreaName = "Midtown" }; // Missing RegionID
+            var invalidArea = new Area { AreaName = "" }; // Missing RegionID
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() => repository.Create(invalidArea));
