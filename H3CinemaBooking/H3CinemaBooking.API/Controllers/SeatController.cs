@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
-using System.Security.Cryptography;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Collections.Generic;
+using System.Linq;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -14,21 +13,24 @@ namespace H3CinemaBooking.API.Controllers
         private readonly ISeatRepository _seatRepository;
         public SeatController(ISeatRepository seatRepository) => _seatRepository = seatRepository;
 
-        //TODO: Make a Get all here
         // GET: api/<SeatController>
         [HttpGet]
         public ActionResult<List<Seat>> GetAll()
         {
             var result = _seatRepository.GetAll();
+            if (result == null || result.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(result);
         }
 
         // GET api/<SeatController>/id
         [HttpGet("{id}")]
-        public ActionResult<Seat>GetByID(int id)
+        public ActionResult<Seat> GetByID(int id)
         {
             var seat = _seatRepository.GetById(id);
-            if(seat == null)
+            if (seat == null)
             {
                 return NotFound();
             }
@@ -37,15 +39,24 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<SeatController>
         [HttpPost]
-        public ActionResult<Seat>Post(Seat seat)
+        public ActionResult<Seat> Post([FromBody] Seat seat)
         {
+            if (seat == null)
+            {
+                return BadRequest("Seat data is required");
+            }
             _seatRepository.Create(seat);
-            return Ok();
+            return Ok(seat);
         }
 
+        // POST api/<SeatController>/bulk
         [HttpPost("bulk")]
         public IActionResult PostBulk([FromBody] List<Seat> seats)
         {
+            if (seats == null || seats.Count == 0)
+            {
+                return BadRequest("Seat data is required");
+            }
             _seatRepository.CreateBulk(seats);
             return Ok(seats);
         }
@@ -54,16 +65,33 @@ namespace H3CinemaBooking.API.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
+            var seat = _seatRepository.GetById(id);
+            if (seat == null)
+            {
+                return NotFound();
+            }
             _seatRepository.DeleteByID(id);
-            return Ok();
+            return Ok(new { message = "Seat deleted successfully" });
         }
 
-
-        //TODO: Make a update here
-        // PUT api/<CostumerController>/5
+        // PUT api/<SeatController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Update([FromBody] Seat seat)
         {
+            if (seat == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var updatedSeat = _seatRepository.UpdateByID(seat.SeatID, seat);
+                return Ok(updatedSeat);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

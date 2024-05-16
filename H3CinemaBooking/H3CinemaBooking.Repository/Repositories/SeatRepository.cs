@@ -65,7 +65,6 @@ namespace H3CinemaBooking.Repository.Repositories
                 var result = context.Seats.Where(s => s.HallID == hallID).ToList();
                 return result;
             }
-
             public bool DeleteByID(int Id)
             {
                 var seat = context.Seats.FirstOrDefault(c => c.SeatID == Id);
@@ -77,5 +76,26 @@ namespace H3CinemaBooking.Repository.Repositories
                 }
                 return false;
             }
-        }
+
+            public Seat UpdateByID(int id, Seat seat)
+            {
+                var existingSeat = context.Seats.FirstOrDefault(c => c.SeatID == id);
+                if (existingSeat == null)
+                {
+                    throw new ArgumentException("Seat not found.");
+                }
+
+                if (!validationService.ValidateProperties(seat, new string[] { "SeatID", "CinemaHall", "BookingSeats" }))
+                {
+                    throw new ArgumentException("Invalid seat properties.");
+                }
+
+                existingSeat.HallID = seat.HallID;
+                existingSeat.SeatNumber = seat.SeatNumber;
+                existingSeat.SeatRow = seat.SeatRow;
+
+                context.SaveChanges();
+                return existingSeat;
+            }
+    }
     }
