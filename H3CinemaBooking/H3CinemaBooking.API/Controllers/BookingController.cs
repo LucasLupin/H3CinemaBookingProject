@@ -4,6 +4,7 @@ using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using H3CinemaBooking.Repository.Models.DTO;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace H3CinemaBooking.API.Controllers
