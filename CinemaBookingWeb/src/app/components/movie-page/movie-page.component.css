@@ -4,6 +4,93 @@ body {
     margin: 0;
 }
 
+nav#menu {
+    width: 100%;
+    z-index: 3;
+}
+
+.region.region-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: #1d4eb4;
+}
+
+.Area-select {
+    background-color: transparent; 
+    border-radius: 0.25rem;
+    border-color: transparent;
+    padding: 0.250rem 0.350rem 0.250rem 0.50rem; 
+    font-size: 1rem; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none; 
+    font-family: "Inter-Black", sans-serif;
+    font-size: 1.2rem;
+    color:white;
+    margin-right: 30px;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.Area-Select-Option {
+    background-color: #121223;
+}
+
+.sitebranding {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: calc(50% - 40px);
+    width: 80px;
+    z-index: 0;
+}
+
+.logo img {
+    margin-top: -10px;
+    width: 5.5rem;
+}
+
+.navbar-right {
+    position: absolute;
+    right: 0;
+    top: -15px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.navbar-right a {
+    text-decoration: none;
+    padding: 15px 0px;
+    font-family: "Inter-Black", sans-serif;
+    font-size: 1.2rem;
+    color:white;
+    margin-right: 30px;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.timeButton {
+    background-color: transparent;
+    border: transparent;
+}
+
+.navbar-right a:hover {
+    background-color: #0056b3;
+}
+
+.navbar-right a.router-link-active {
+    background-color: #0056b3;
+}
+
+
 
 .movie-layout {
     width: 100%;
@@ -15,7 +102,6 @@ body {
     align-items: center;
     transition: top 400ms;
     margin: 0;
-    border: solid 4px purple;
 }
 
 .extra-info {
@@ -31,6 +117,26 @@ body {
     transition: all ease-in-out 0.5s;
     transition: height ease-in-out 0.5s;
 }
+
+.extra-info .row2 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+  
+  .extra-info.expanded .row2 {
+    max-height: 1000px; /* Adjust this value based on your content */
+  }
+
+  
+  .extra-info .row2,
+.body-info .row2 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+
 
 .info-row {
     display: flex;
@@ -75,7 +181,6 @@ body {
     display: flex;
     justify-content: space-between;
     width: 57%;
-    border: solid 2px yellow;
     margin: 20px;
     margin-top: 40px;
     height: auto;
@@ -87,7 +192,6 @@ body {
 
 .left-column {
     max-width: 30%;
-    border: 2px solid green;    
 }
 
 .left-column img {
@@ -101,7 +205,6 @@ body {
 
 .right-column {
     max-width: 70%;
-    border: solid 2px red;
     padding: 50px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -177,6 +280,7 @@ iframe {
 
 
 
+/* Default button style */
 .watch-list-link {
     font-size: 20px;
     font-family: "Inter-Medium", sans-serif;
@@ -190,8 +294,28 @@ iframe {
     position: relative;
     align-items: center;
     cursor: pointer;
+    text-align: center;
+    justify-content: center;
     transition: all 400ms ease;
-}
+  }
+  
+  /* Style when movie is in the watch list */
+  .watch-list-link.added {
+    background-color: white;
+    color: rgb(69, 69, 238);
+  }
+  
+  
+  .watch-list-link.added:hover {
+    background-color: #151516b2;
+  }
+  
+  /* Default hover style */
+  .watch-list-link:hover {
+    background-color: #151516b2;
+    cursor: pointer;
+  }
+  
 
 .field-name-body {
     font-size: 18px;
@@ -235,7 +359,7 @@ iframe {
     margin-top: -20px;
     display: flex;
     justify-content: center;
-    border-bottom: 2px solid #1c273a;;
+    border-bottom: 2px solid #ccc;
 }
 
 .movie-header {
@@ -244,7 +368,6 @@ iframe {
     margin: 10px auto; 
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border: solid 2px pink;
 }
 
 .movie-header-Text {
@@ -275,7 +398,6 @@ iframe {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: solid 2px yellow;
 }
 
 .reset-filter-button {
@@ -302,7 +424,6 @@ iframe {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: solid green 2px;
 }
 
 .cinema {
@@ -310,7 +431,6 @@ iframe {
     padding: 20px;
     display: flex;
     justify-content: center;
-    border: solid 2px red;
 }
 
 .cinema:nth-child(odd) {
@@ -319,7 +439,6 @@ iframe {
 
 .cinema-content {
     width: 58%;
-    border: solid 2px yellow;
     display: flex;
     justify-content: center;
 }
@@ -347,7 +466,6 @@ iframe {
     overflow-x: scroll;
     padding: 2rem;
     margin: 0 5rem;
-    border: solid 2px red;
 }
 
 .day h2 {
@@ -361,7 +479,15 @@ iframe {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    border-right: solid 1px #ccc;
+    padding-right: 10px; /* Add space between columns */
 }
+
+.day:first-child {
+    padding-left: 10px;
+    border-left: solid 1px #ccc;
+}
+
 
 .times {
     width: 100%;
@@ -423,6 +549,135 @@ iframe {
     opacity: 0.5;
     pointer-events: none;
   }
+
+/* Login overlay */
+.login-modal {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Øget opacitet til 0.6 for mindre gennemsigtighed */
+    z-index: 9999; /* Høj z-index for at sikre, at modal-overlayet ligger over andet indhold */
+  }
+  
+  /* Modal content */
+  .modal-content {
+    width: fit-content;
+    max-width: 500px;
+    background: #2b364a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-out;
+    z-index: 10000; /* Højere end modal-overlay for at ligge over overlayet */
+  }
+
+  .modal-content form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+  }
+
+  .form-input-name {
+    margin-bottom: 5px;
+    color: white;
+    float: left;
+  }
+
+  .form-input-name h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Luk-knap */
+  .close {
+    float: left;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Indtastningsfelter og knapper */
+  .login-modal-inputs {
+    width: 20rem;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    align-self: center;
+    border: 2px solid #2b364aa8;
+    font-weight: bold;
+  }
+.login-modal-inputs:focus {
+    outline: none;
+    border: 2px solid #2d7dfe;
+  }
+
+  
+  .login-modal-inputs.submit {
+    background-color: #2d7dfe;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color ease-in-out 0.3s;
+  }
+  
+  .login-modal-inputs.submit:hover {
+    background-color: #0043ae;
+  }
+
+  .submit-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .remember-me-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .remember-me-input {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .remember-me-label {
+    color: white;
+  }
+
+  .login-error {
+    color: red;
+    font-size: 16px;
+  }
+
+  
+  /* Animation til modal */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   
 
 

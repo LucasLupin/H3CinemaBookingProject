@@ -165,6 +165,10 @@ export class FrontpageComponent {
     this.router.navigate(['/moviepage', movieId]);
   }
 
+  truncateTitle(title: string): string {
+    return title.length > 26 ? title.substring(0, 26) + '...' : title;
+  }
+
   onAreaChange(event: any): void {
     const selectedAreaID = event.target.value;
     const selectedArea = this.areaList.find(area => area.areaID == selectedAreaID);
