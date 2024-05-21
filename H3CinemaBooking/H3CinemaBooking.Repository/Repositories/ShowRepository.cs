@@ -43,6 +43,7 @@ namespace H3CinemaBooking.Repository.Repositories
         public List<Show> GetAll()
         {
             var result = context.Shows.ToList();
+
             return result;
         }
 

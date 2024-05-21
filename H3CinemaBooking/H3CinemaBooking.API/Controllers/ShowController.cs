@@ -26,6 +26,10 @@ namespace H3CinemaBooking.API.Controllers
         public ActionResult<List<Show>> GetAll()
         {
             var result = _showRepository.GetAll();
+            if (result == null || result.Count == 0)
+            {
+                return NoContent();
+            }
             return Ok(result);
         }
 
@@ -55,28 +59,39 @@ namespace H3CinemaBooking.API.Controllers
         [HttpPost]
         public ActionResult<Show>Post(Show show)
         {   
+            if (show == null)
+            {
+                return BadRequest("Show data is required");
+            }
             _showRepository.Create(show);
-            return Ok(show);
+            return Ok("Show created successfully");
         }
 
         // DELETE api/<CinemaHallController>/ID
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var show = _showRepository.GetById(id);
-            if (show == null)
+            if (_showRepository.DeleteByID(id))
             {
-                return NotFound();
+                return Ok(new { message = "Show deleted successfully" });
             }
-
-            _showRepository.DeleteByID(id);
-            return Ok();
+            return NotFound("ID was not found!");
         }
 
         //Update Api Movie with Genre
         [HttpPut("{id}")]
         public ActionResult Update(int id, Show show)
         {
+            if (show == null)
+            {
+                return BadRequest();
+            }
+            var existingShow = _showRepository.GetById(id);
+            if (existingShow == null)
+            {
+                return NotFound();
+            }
+
             _showRepository.UpdateByID(id, show);
             return Ok(show);
         }
