@@ -3,6 +3,7 @@ using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -39,6 +40,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<SeatController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<Seat> Post([FromBody] Seat seat)
         {
             if (seat == null)
@@ -51,6 +53,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<SeatController>/bulk
         [HttpPost("bulk")]
+        [Authorize(Roles = "Admin")]
         public IActionResult PostBulk([FromBody] List<Seat> seats)
         {
             if (seats == null || seats.Count == 0)
@@ -63,6 +66,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // DELETE api/<SeatController>/ID
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var seat = _seatRepository.GetById(id);
@@ -76,6 +80,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // PUT api/<SeatController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update([FromBody] Seat seat)
         {
             if (seat == null)

@@ -4,6 +4,7 @@ using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using H3CinemaBooking.Repository.Repositories;
 using H3CinemaBooking.Repository.Models.DTO_s;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -57,6 +58,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<Showtroller>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<Show>Post(Show show)
         {   
             if (show == null)
@@ -69,6 +71,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // DELETE api/<CinemaHallController>/ID
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             if (_showRepository.DeleteByID(id))
@@ -80,6 +83,7 @@ namespace H3CinemaBooking.API.Controllers
 
         //Update Api Movie with Genre
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Show show)
         {
             if (show == null)
