@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Kanit&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Kanit&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
 
 .roboto-thin {
     font-family: "Roboto", sans-serif;
@@ -81,7 +81,7 @@
     font-family: Arial, sans-serif;
   }
 
-  .container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,17 +89,16 @@
     width: 100vw;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    padding-right: 40rem;
+    padding-left: 40rem;
     background-color: white;
-    background-image: url('../../../static/assets/images/login-wallpaper.jpg'); 
+    background-image: url('../../../static/assets/images/LoginBiograf.png'); 
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-  }
+}
 
-  
-  .signin-section, .show-signup-section, .signup-section {
+.signin-section, .show-signup-section, .signup-section {
     flex: 1;
     padding: 20px;
     display: flex;
@@ -107,30 +106,30 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    box-shadow: 1px 1px 20px 6px rgb(0 0 0);
-    background: rgba(0, 0, 0, 0.59);
-  }
+    background: rgba(30, 30, 30, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(48, 45, 45, 0.164);
+    box-shadow: 1px 1px 20px 6px rgba(0, 0, 0, 0.6);
+}
 
-  .signin-section {
+.signin-section {
     display: none;
-    box-shadow: 1px 1px 20px 6px rgb(0 0 0);
-    background: rgba(0, 0, 0, 0.59);
-  }
+}
 
-  .signin-section.show {
+.signin-section.show {
     display: flex;
-  }
+}
 
-  .show-signup-section {
+.show-signup-section {
     display: none;
-  }
+}
 
-  .show-signup-section.show {
+.show-signup-section.show {
     display: flex;
-  }
+}
   
-  /* Login og Tilmeld Knapper */
-  .sign-in-button, .sign-up-button {
+/* Login og Tilmeld Knapper */
+.sign-in-button, .sign-up-button {
     background-color: #e74c3c;
     color: white;
     border: none;
@@ -138,84 +137,89 @@
     margin-top: 10px;
     cursor: pointer;
     border-radius: 20px;
-  }
+    transition: background-color 0.3s;
+}
 
-  .login-text {
+.sign-in-button:hover, .sign-up-button:hover {
+    background-color: #c0392b;
+}
+
+.login-text {
     font-size: 3rem;
     padding-bottom: 5rem;
-  }
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
   
-  .sign-in-button {
+.sign-in-button {
     display: inline;
-  }
+}
   
- 
-  /* Tekst og links */
-  .or, .forgot-password {
+/* Tekst og links */
+.or, .forgot-password {
     margin: 10px 0;
-  }
+}
   
-  .forgot-password {
+.forgot-password {
     color: white;
     text-decoration: none;
     display: block;
     cursor: pointer;
     font-weight: 600;
-  }
+}
   
-  /* Styling af form input-felter */
-  .login-form input {
+/* Styling af form input-felter */
+.login-form input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 3px solid #ddd;
-    /* border-radius: 20px; */
+    border-radius: 5px;
     display: block;
-  }
+    transition: border-color 0.3s;
+}
 
-  .login-form input:focus {
+.login-form input:focus {
     outline: none;
     border-color: #e74c3c;
-    border: 3px solid #e74c3c;
-  }
+}
 
-  .login-form {
+.login-form {
     width: 100%;
     max-width: 400px;
-  }
-
+}
   
-  /* Stil Sign Up Section */
-  .show-signup-section {
+/* Stil Sign Up Section */
+.show-signup-section {
     color: white;
-    /* background-color: #e74c3c; */
     text-align: center;
     border: 1px solid black;
-    box-shadow: 1px 1px 20px 6px rgb(0 0 0);
-  }
+    box-shadow: 1px 1px 20px 6px rgba(0, 0, 0, 0.6);
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
+}
 
-  .signup-section {
+.signup-section {
     display: none;
-  }
+}
 
-  .signup-section.show {
+.signup-section.show {
     display: flex;
-  }
+}
   
-  h1 {
+h1 {
     margin-bottom: 20px;
-  }
+}
   
-  /* Tilpasning til mobile enheder */
-  @media (max-width: 800px) {
+/* Tilpasning til mobile enheder */
+@media (max-width: 800px) {
     .container {
       flex-direction: column;
+      padding: 1rem;
     }
-  }
+}
   
-
-  /* Password requirements */
-
+/* Password requirements */
 .pass-req-group {
     display: flex;
 }
@@ -238,15 +242,15 @@
     display: none;
 }
 
-
 .login-field-error {
-  color: red;
-  margin-top: 5px;
-  display: none;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
-  text-align: center;
+    color: red;
+    margin-top: 5px;
+    display: none;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+    text-align: center;
 } 
+
 .show {
-  display: flex;
+    display: flex;
 }
