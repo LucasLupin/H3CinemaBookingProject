@@ -11,6 +11,7 @@ namespace H3CinemaBooking.Repository.Interfaces
 {
     public interface IBookingService
     {
-        void ReserveSeats(ReserveSeatDTO reserveSeat);
+        ReserveSeatResultDTO ReserveSeats(ReserveSeatDTO reserveSeat);
+        BookingDTO GetLatestBookingForUser(int userId);
     }
 }

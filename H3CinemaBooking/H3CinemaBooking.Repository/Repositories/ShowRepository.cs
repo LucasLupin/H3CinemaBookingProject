@@ -82,5 +82,16 @@ namespace H3CinemaBooking.Repository.Repositories
             return false;
         }
 
+        public double GetShowPrice(int showId)
+        {
+            var show = context.Shows.FirstOrDefault(s => s.ShowID == showId);
+            if (show != null)
+            {
+                return show.Price;
+            }
+            throw new InvalidOperationException($"Show with ID {showId} not found.");
+        }
+
+
     }
 }

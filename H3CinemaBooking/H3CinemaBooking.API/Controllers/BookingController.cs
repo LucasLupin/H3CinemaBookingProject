@@ -3,6 +3,8 @@ using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Security.Cryptography;
 using H3CinemaBooking.Repository.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,10 +16,12 @@ namespace H3CinemaBooking.API.Controllers
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly IBookingService _bookingService;
-        public BookingController(IBookingRepository bookingRepository, IBookingService bookingService)  
+        private readonly IJWTokenService _jwtTokenService;
+        public BookingController(IBookingRepository bookingRepository, IBookingService bookingService, IJWTokenService jWTokenService)  
         { 
             _bookingRepository = bookingRepository;
             _bookingService = bookingService;
+            _jwtTokenService = jWTokenService;
         }
 
         //TODO: Make a Get all here
@@ -43,11 +47,55 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<BookingController>
         [HttpPost("reserve")]
-        public ActionResult<ReserveSeatDTO> Post(ReserveSeatDTO reserveSeat)
+        [Authorize(Roles = "Admin,Customer")]
+        public ActionResult<ReserveSeatResultDTO> Post(ReserveSeatDTO reserveSeat)
+            {
+
+            if (reserveSeat.SeatList == null || reserveSeat.ShowID == 0)
+            {
+                return BadRequest("Invalid data received.");
+            }
+
+            var userId = _jwtTokenService.GetUserIDFromToken(User);
+            if (userId == null)
+            {
+                return Unauthorized("UserID not found in token");
+            }
+
+            reserveSeat.UserID = userId.Value;
+
+            var result = _bookingService.ReserveSeats(reserveSeat);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet("latest")]
+        [Authorize(Roles = "Admin,Customer")]
+        public ActionResult<BookingDTO> GetLatestBooking()
         {
-            ////_bookingRepository.Create(booking);
-            _bookingService.ReserveSeats(reserveSeat);
-            return Ok("Customer created successfully.");
+            //var userId = 1;
+            var userId = _jwtTokenService.GetUserIDFromToken(User);
+            if (userId == null)
+            {
+                return Unauthorized("UserID not found in token");
+            }
+
+
+
+            //var latestBooking = _bookingService.GetLatestBookingForUser(userId.Value);
+            var latestBooking = _bookingService.GetLatestBookingForUser(userId.Value);
+            if (latestBooking == null)
+            {
+                return NotFound("No booking found for the user");
+            }
+
+            return Ok(latestBooking);
         }
 
         // POST api/<BookingController>

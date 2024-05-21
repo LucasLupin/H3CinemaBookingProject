@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using H3CinemaBooking.Repository.Models.DTO;
 using H3CinemaBooking.Repository.Repositories;
 using H3CinemaBooking.Repository.Models.DTO_s;
+using Microsoft.AspNetCore.Authorization;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -44,6 +45,7 @@ namespace H3CinemaBooking.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserDetail> Post(UserDetail userDetail)
         {
             var (hash, salt) = _userDetailService.CreateUserDetail(userDetail);
@@ -55,6 +57,7 @@ namespace H3CinemaBooking.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             _userDetailService.DeleteUserdetail(id);
@@ -82,6 +85,7 @@ namespace H3CinemaBooking.API.Controllers
         }
 
         [HttpPost("registerAdminOutToken")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserDetail> RegisterAdminWithOutToken(RegisterUserDTO registerUserDetail)
         {
             List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);
@@ -99,6 +103,7 @@ namespace H3CinemaBooking.API.Controllers
         }
 
         [HttpPost("registerCostumerOutToken")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserDetail> RegisterCostumerWithOutToken(RegisterUserDTO registerUserDetail)
         {
             List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);

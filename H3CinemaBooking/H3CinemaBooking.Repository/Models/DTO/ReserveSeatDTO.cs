@@ -13,9 +13,7 @@ namespace H3CinemaBooking.Repository.Models.DTO
 
         public int UserID { get; set; }
 
-        public double Price { get; set; }
-
-        public List<SeatDTO>? SeatList { get; set;}
+        public List<SeatReservationStatusDTO>? SeatList { get; set;}
 
     }
 }

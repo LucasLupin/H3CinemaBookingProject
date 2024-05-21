@@ -20,6 +20,7 @@ import { MoviePageComponent } from './components/movie-page/movie-page.component
 import { BookingComponent } from './components/booking/booking.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 const routes: Routes = [
   { path: '', component: FrontpageComponent},
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'booking/:id', component: BookingComponent},
   { path: 'payment', component: PaymentComponent, canActivate : [authGuard]},
+  { path: 'confirmation', component: ConfirmationComponent, canActivate : [authGuard]},
   { path: '404', component: NotfoundComponent },
   { path: '**', redirectTo: '/404' }
 ];

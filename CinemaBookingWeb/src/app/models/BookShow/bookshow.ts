@@ -9,7 +9,7 @@ export class BookShow
     cinemaName?: string;
     movie?: Movie;
     seats?: Seat[];
-    show?: string[];
+    showId?: number;
     showDateTime?: string;
     selectedSeats?: Seat[];
     availableSeats?: Seat[];

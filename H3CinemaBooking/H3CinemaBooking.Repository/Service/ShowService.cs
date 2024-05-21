@@ -76,6 +76,7 @@ namespace H3CinemaBooking.Repository.Service
                 
                 var seats = _seatRepository.GetAllSeatsFromHall(show.HallID);
                 var bookedSeats = _bookingRepository.GetBookingSeatsByShowId(showId);
+                bookShow.showId = showId;
 
                 // Tildel status til hver sæde
                 foreach (var seat in seats)

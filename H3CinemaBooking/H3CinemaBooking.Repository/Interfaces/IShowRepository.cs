@@ -14,5 +14,7 @@ namespace H3CinemaBooking.Repository.Interfaces
         List<Show> GetAll();
         void UpdateByID(int Id, Show updatedShow);
         bool DeleteByID(int id);
+
+        double GetShowPrice(int showId);
     }
 }

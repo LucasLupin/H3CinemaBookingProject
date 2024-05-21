@@ -15,17 +15,16 @@ import { AdminFrontPageComponent } from './components/admin/admin-front-page/adm
 import { AdminMovieComponent } from './components/admin/admin-movie/adminmovie.component';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/generic.services';
 import { AdmingenreComponent } from './components/admin/admin-genre/admingenre.component';
 import { AdminCinemaComponent } from './components/admin/admin-cinema/admincinema.component';
 import { AdmincinemaHallComponent } from './components/admin/admincinema-hall/admincinemahall.component';
 import { AdminregionComponent } from './components/admin/adminregion/adminregion.component';
 import { AdminareaComponent } from './components/admin/adminarea/adminarea.component';
 import { AdminroleComponent } from './components/admin/adminrole/adminrole.component';
-import { JwtModule } from '@auth0/angular-jwt';
 import { AdminseatComponent } from './components/admin/adminseat/adminseat.component';
 import { AdminshowComponent } from './components/admin/adminshow/adminshow.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,6 +40,8 @@ import { MoviePageComponent } from './components/movie-page/movie-page.component
 import { BookingComponent } from './components/booking/booking.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { AuthService } from './services/auth.service';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 
 
@@ -70,6 +71,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     BookingComponent,
     NotfoundComponent,
     PaymentComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,18 +88,9 @@ import { PaymentComponent } from './components/payment/payment.component';
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('authToken');
-        },
-        allowedDomains: ['localhost:4200'],
-        disallowedRoutes: [],
-      },
-    })
   ],
   providers: [
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

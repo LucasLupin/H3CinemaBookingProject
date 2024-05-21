@@ -36,6 +36,36 @@ namespace H3CinemaBooking.Repository.Repositories
             return booking;
         }
 
+        public Booking GetLatestBookingForUser(int userId)
+        {
+            var booking = context.Bookings
+                .Where(b => b.UserDetailID == userId)
+                .Include(b => b.BookingSeats)
+                .Include(b => b.Show)
+                .OrderByDescending(b => b.BookingID)
+                .FirstOrDefault();
+            return booking;
+        }
+
+        public List<BookingSeat> GetBookingSeatsFromBookingId(int bookingId)
+        {
+            var seats = context.BookingSeats
+                .Where(bs => bs.BookingID == bookingId)
+                .ToList();
+
+            return seats;
+        }
+
+        public void DeleteBookingSeat(int bookingSeatId)
+        {
+            var bookingSeat = context.BookingSeats.FirstOrDefault(bs => bs.BookingSeatID == bookingSeatId);
+            if (bookingSeat != null)
+            {
+                context.BookingSeats.Remove(bookingSeat);
+                context.SaveChanges();
+            }
+        }
+
         public Booking GetById(int Id)
             {
                 var result = context.Bookings.FirstOrDefault(c => c.BookingID == Id);
@@ -69,15 +99,11 @@ namespace H3CinemaBooking.Repository.Repositories
                                     .Select(b => b.BookingID)
                                     .ToList(); // This will execute the query and return a List<int>
 
-            // Throw an exception if no bookings are found for the given showId
-            if (bookingIds.Count == 0)
-            {
-                throw new InvalidOperationException($"No bookings found for show ID {showId}");
-            }
 
             // Then, filter BookingSeats by the obtained BookingIDs
             var result = context.BookingSeats
                                 .Where(bs => bookingIds.Contains(bs.BookingID))
+                                .Include(bs => bs.Booking)
                                 .ToList();
 
             return result;
@@ -109,7 +135,11 @@ namespace H3CinemaBooking.Repository.Repositories
             }
         }
 
-
+        public void UpdateBookingSeat(BookingSeat bookingSeat)
+        {
+            context.BookingSeats.Update(bookingSeat);
+            context.SaveChanges();
+        }
 
     }
 }

@@ -5,11 +5,13 @@ using H3CinemaBooking.Repository.Models;
 using H3CinemaBooking.Repository.Repositories;
 using H3CinemaBooking.Repository.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUserDetailRepository, UserDetailRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
@@ -28,15 +30,14 @@ builder.Services.AddScoped<IGenericRepository<Roles>, GenericRepository<Roles>>(
 
 //Add service to Services, And add services to the container
 builder.Services.AddScoped<IUserDetailService, UserDetailService>();
+builder.Services.AddScoped<IJWTokenService, JWTokenService>();
 builder.Services.AddScoped<IPropertyValidationService, PropertyValidationService>();
 //Add IShowService 
 builder.Services.AddScoped<IShowService, ShowService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<HashingService>();
 
-
-//Cors Thread
-
+// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("coffee",
@@ -48,14 +49,36 @@ builder.Services.AddCors(options =>
                           });
 });
 
-
-//string conStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Samurai;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-//builder.Services.AddDbContext<Dbcontext>(options => options.UseSqlServer(conStr, b => b.MigrationsAssembly("H3CinemaBooking.API")));
-
 var conStr = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<Dbcontext>(options => options.UseSqlServer(conStr, b => b.MigrationsAssembly("H3CinemaBooking.API")));
 
+// Add JWT authentication and authorization
+var key = Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Token"]);
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("AdminOrCustomer", policy => policy.RequireRole("Admin", "Customer"));
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -69,9 +92,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors("coffee");
 app.UseHttpsRedirection();
 
+app.UseAuthentication();  // Add this line
 app.UseAuthorization();
 
 app.MapControllers();

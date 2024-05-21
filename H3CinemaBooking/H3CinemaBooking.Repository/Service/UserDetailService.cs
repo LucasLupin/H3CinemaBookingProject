@@ -20,13 +20,13 @@ namespace H3CinemaBooking.Repository.Service
     {
         private readonly IUserDetailRepository _userDetailRepository;
         private readonly HashingService _hashingService = new HashingService();
-        private readonly IConfiguration _configuration;
+        private readonly IJWTokenService _jWTokenService;
 
 
-        public UserDetailService(IUserDetailRepository userDetailRepository, IConfiguration configuration)
+        public UserDetailService(IUserDetailRepository userDetailRepository, IConfiguration configuration, IJWTokenService jWTokenService)
         {
             _userDetailRepository = userDetailRepository;
-            _configuration = configuration;
+            _jWTokenService = jWTokenService;
         }
 
         public List<UserDetailDTO> GetAllUserDetail()
@@ -101,7 +101,7 @@ namespace H3CinemaBooking.Repository.Service
             var result = _userDetailRepository.Create(userDetail);
             if (result != null)
             {
-                return CreateToken(result);
+                return _jWTokenService.CreateToken(result);
             }
             return "false";
         }
@@ -149,42 +149,9 @@ namespace H3CinemaBooking.Repository.Service
             string hash = _hashingService.HashPassword(loginUserDetail.Password, salt);
             if (hash == user.PasswordHash)
             {
-                return CreateToken(user);
+                return _jWTokenService.CreateToken(user);
             }
             return "False";
-        }
-
-        private string CreateToken(UserDetail userDetail)
-        {
-            //TODO: Lav så den bruger en rolle metode der konverterer id til rolle navn
-            var roleInfo = _userDetailRepository.GetRole(userDetail.RoleID);
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Sid, userDetail.UserDetailID.ToString()),
-                new Claim(ClaimTypes.Email, userDetail.Email),
-                new Claim(ClaimTypes.Name, userDetail.Name),
-                new Claim(ClaimTypes.MobilePhone, userDetail.PhoneNumber)
-            };
-
-            if (roleInfo != null)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, roleInfo.RoleName));
-            }
-            else
-            {
-                claims.Add(new Claim(ClaimTypes.Role, "Customer"));
-            }
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value!));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-            var token = new JwtSecurityToken(
-                    claims: claims,
-                    expires: DateTime.Now.AddDays(1),
-                    signingCredentials: credentials
-                );
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return (jwt);
         }
 
 

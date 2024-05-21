@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faCouch } from '@fortawesome/free-solid-svg-icons';
 import { faWheelchairMove } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GenericService } from 'src/app/services/generic.services';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookShowService } from 'src/app/services/bookshow.service';
 import { Genre } from 'src/app/models/genre/genre';
 
@@ -31,7 +30,7 @@ interface BookShow {
   cinemaName: string;
   movie: Movie;
   seats: Seat[];
-  show: string[];
+  showId: number;
   showDateTime: string;
   selectedSeats: Seat[];
   availableSeats: Seat[];
@@ -43,36 +42,36 @@ interface BookShow {
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-
-export class BookingComponent {
-  //Modal & Form Variables
+export class BookingComponent implements OnInit {
+  // Modal & Form Variables
   loginForm!: FormGroup;
   showModal = false;
 
-  //Error Variables
+  // Error Variables
   error: string = '';
   loginError: string = '';
 
-  //Auth Global Variables
+  // Auth Global Variables
   isAuthenticated!: boolean;
   userRole!: string | null;
   email!: string | null;
   name!: string | null;
 
-  //Ticket Variables
+  // Ticket Variables
   ticketCnt: number = 0;
   basketPrice: number = 0; 
 
-  //BookShow Variable 
+  // BookShow Variable 
   bookShow!: BookShow;
 
   rows: { row: string, seats: Seat[] }[] = [];
 
-  //Font Awesome Icons
+  // Font Awesome Icons
   faCouch = faCouch;
   faWheelchairMove = faWheelchairMove;
 
-  constructor(private route: ActivatedRoute, 
+  constructor(
+    private route: ActivatedRoute, 
     private router: Router, 
     private authService: AuthService, 
     private formBuilder: FormBuilder, 
@@ -98,13 +97,14 @@ export class BookingComponent {
       const showId = params['id'];
       this.genericService.getById('Show/BookInfo', showId).subscribe({
         next: (data: BookShow) => {
-          console.log("Data from booking component", data)
+          console.log("Data from booking component", data);
           if (data.cinemaName == null) {
             this.router.navigate(['404']);
           }
           this.bookShow = data;
           this.handleGlobalVariables();
           this.organizeRows();
+          this.bookShowService.updateBookShow(this.bookShow);
         },
         error: (err) => {
           console.error("Error from booking component", err);
@@ -113,38 +113,39 @@ export class BookingComponent {
       });
     });
   }
-  //Handle Login Modal 
+
+  // Handle Login Modal 
   toggleModal() {
     this.showModal = !this.showModal;
   }
 
-  //Handle login
+  // Handle login
   login() {
     if (this.loginForm.valid) {
-        const { email, password } = this.loginForm.value;
-        console.log("email:", email, "password:", password);
-        this.authService.login(email, password).subscribe({
-            next: (success) => {
-                if (success) {
-                    console.log("Login success from login component");
-                    this.isAuthenticated = true;
-                    this.name = this.authService.getName();
-                    this.email = this.authService.getEmail();
-                    this.userRole = this.authService.getUserRole();
-                    this.toggleModal();
-                } else {
-                    this.loginError = 'Invalid credentials';
-                    console.log("Invalid credentials from login component");
-                }
-            },
-            error: (err) => {
-                this.loginError = err.message;
-            }
-        });
+      const { email, password } = this.loginForm.value;
+      console.log("email:", email, "password:", password);
+      this.authService.login(email, password).subscribe({
+        next: (success) => {
+          if (success) {
+            console.log("Login success from login component");
+            this.isAuthenticated = true;
+            this.name = this.authService.getName();
+            this.email = this.authService.getEmail();
+            this.userRole = this.authService.getUserRole();
+            this.toggleModal();
+          } else {
+            this.loginError = 'Invalid credentials';
+            console.log("Invalid credentials from login component");
+          }
+        },
+        error: (err) => {
+          this.loginError = err.message;
+        }
+      });
     }
   }
 
-  //Handle logout
+  // Handle logout
   logout() {
     this.authService.logout();
     this.isAuthenticated = false;
@@ -154,20 +155,20 @@ export class BookingComponent {
   }
 
   increaseTicketCnt() {
-    //If there are available seats and the ticket count is greater than 0
-    if (this.ticketCnt > 0 && this.bookShow.availableSeats.length > 0) {;
-      //Get the last selected seat
+    // If there are available seats and the ticket count is greater than 0
+    if (this.ticketCnt > 0 && this.bookShow.availableSeats.length > 0) {
+      // Get the last selected seat
       const lastSelectedSeat = this.bookShow.selectedSeats[this.bookShow.selectedSeats.length - 1];
-      //Find the next available seat
+      // Find the next available seat
       const nextAvailableSeat = this.bookShow.availableSeats.find(seat => seat.seatID === lastSelectedSeat.seatID + 1);
       if (nextAvailableSeat) {
         nextAvailableSeat.seatStatus = 'Selected';
         this.ticketCnt++;
         this.handleGlobalVariables();
       }
-    //If there are no selected seats and there are available seats
+    // If there are no selected seats and there are available seats
     } else if (this.ticketCnt == 0 && this.bookShow.availableSeats.length > 0) {
-      //Select the first available seat to ticket
+      // Select the first available seat to ticket
       const firstAvailableSeat = this.bookShow.availableSeats[0];
       firstAvailableSeat.seatStatus = 'Selected';
       this.ticketCnt++;
@@ -176,10 +177,8 @@ export class BookingComponent {
   }
 
   decreaseTicketCnt() {
-    console.log("ticket count from decreasteticket", this.ticketCnt)
-    // const selectedSeats = this.bookShow.seats.filter(seat => seat.seatStatus === 'Selected');
-
-    console.log("selected seats from decreaseticket", this.bookShow.selectedSeats)
+    console.log("ticket count from decreasteticket", this.ticketCnt);
+    console.log("selected seats from decreaseticket", this.bookShow.selectedSeats);
     if (this.ticketCnt > 0 && this.bookShow.selectedSeats.length > 0) {
       const lastSelectedSeat = this.bookShow.selectedSeats[this.bookShow.selectedSeats.length - 1];
       lastSelectedSeat.seatStatus = 'Available';
@@ -194,7 +193,9 @@ export class BookingComponent {
     this.basketPrice = selectedSeats.length * this.bookShow.price;
     this.bookShow.selectedSeats = selectedSeats;
     this.bookShow.availableSeats = availableSeats;
-    console.log("selected seats", this.bookShow.selectedSeats)
+    console.log("selected seats", this.bookShow.selectedSeats);
+    // Opdater BookShowService, så data gemmes i sessionStorage
+    this.bookShowService.updateBookShow(this.bookShow);
   }
 
   organizeRows() {
@@ -239,5 +240,4 @@ export class BookingComponent {
       this.toggleModal();
     }
   }
-
 }
