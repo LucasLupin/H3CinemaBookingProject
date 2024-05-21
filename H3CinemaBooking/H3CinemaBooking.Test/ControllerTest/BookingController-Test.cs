@@ -14,13 +14,15 @@ namespace H3CinemaBooking.Test.ControllerTest
     {
         private readonly Mock<IBookingRepository> _mockBookingRepo;
         private readonly Mock<IBookingService> _mockBookingService;
+        private readonly Mock<IJWTokenService> _mockJWTokenService;
         private readonly BookingController _controller;
 
         public BookingController_Test()
         {
             _mockBookingRepo = new Mock<IBookingRepository>();
             _mockBookingService = new Mock<IBookingService>();
-            _controller = new BookingController(_mockBookingRepo.Object, _mockBookingService.Object);
+            _mockJWTokenService = new Mock<IJWTokenService>();
+            _controller = new BookingController(_mockBookingRepo.Object, _mockBookingService.Object, _mockJWTokenService.Object);
         }
 
         [Fact]
@@ -122,8 +124,7 @@ namespace H3CinemaBooking.Test.ControllerTest
             {
                 ShowID = 1,
                 UserID = 1,
-                Price = 20.0,
-                SeatList = new List<SeatDTO> { new SeatDTO { SeatID = 1 }, new SeatDTO { SeatID = 2 } }
+                SeatList = new List<SeatReservationStatusDTO> { new SeatReservationStatusDTO { SeatID = 1 }, new SeatReservationStatusDTO { SeatID = 2 } }
             };
 
             // Act
@@ -156,8 +157,7 @@ namespace H3CinemaBooking.Test.ControllerTest
             {
                 ShowID = 1,
                 UserID = 1,
-                Price = 20.0,
-                SeatList = new List<SeatDTO> { new SeatDTO { SeatID = 1 }, new SeatDTO { SeatID = 2 } }
+                SeatList = new List<SeatReservationStatusDTO> { new SeatReservationStatusDTO { SeatID = 1 }, new SeatReservationStatusDTO { SeatID = 2 } }
             };
 
             _mockBookingService.Setup(service => service.ReserveSeats(It.IsAny<ReserveSeatDTO>())).Throws(new ArgumentException("Error"));
