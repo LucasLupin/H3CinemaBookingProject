@@ -102,6 +102,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<BookingController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<Booking>Post(Booking booking)
         {
             if (booking == null)
@@ -115,6 +116,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // DELETE api/<BookingController>/ID
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             if (_bookingRepository.DeleteByID(id))

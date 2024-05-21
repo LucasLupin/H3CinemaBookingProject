@@ -147,6 +147,7 @@ namespace H3CinemaBooking.API.Controllers
 
         //Update 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(UserDetailDTO userdetail, int id)
         {
             _userDetailService.UpdateByID(id, userdetail);

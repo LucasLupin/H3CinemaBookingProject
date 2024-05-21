@@ -3,6 +3,7 @@ using H3CinemaBooking.Repository.Interfaces;
 using H3CinemaBooking.Repository.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace H3CinemaBooking.API.Controllers
 {
@@ -43,6 +44,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // POST api/<CinemaController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<Cinema> Post([FromBody] Cinema cinema)
         {
             if (cinema == null)
@@ -55,6 +57,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // PUT api/<CinemaController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, [FromBody] Cinema cinema)
         {
             if (cinema == null)
@@ -79,6 +82,7 @@ namespace H3CinemaBooking.API.Controllers
 
         // DELETE api/<CinemaController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var cinema = _cinemaRepository.GetById(id);
