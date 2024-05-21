@@ -27,6 +27,7 @@ initForm(movie?: Movie): void {
     duration: new FormControl(movie ? movie.duration : '', Validators.required),
     director: new FormControl(movie ? movie.director : '', Validators.required),
     movieLink: new FormControl(movie ? movie.movieLink : '', Validators.required),
+    trailerLink: new FormControl(movie ? movie.trailerLink : '', Validators.required),
     genreIDs: this.fb.array([])
   });
 }
@@ -107,6 +108,7 @@ constructor(private fb: FormBuilder, private movieService: GenericService<Movie>
         duration: parseInt(formdata.duration, 10),
         director: formdata.director,
         movieLink: formdata.movieLink,
+        trailerLink: formdata.trailerLink,
         genres: selectedGenres.map((genre: Genre) => ({
           genreID: genre.genreID,
           genreName: genre.genreName
