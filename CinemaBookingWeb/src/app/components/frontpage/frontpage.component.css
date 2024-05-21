@@ -426,7 +426,8 @@ video {
 }
 
 .Movie-Title {
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: bolder;
   font-family: "Inter-Bold", sans-serif;
   line-height: 1.2;
 }
@@ -466,5 +467,130 @@ video {
 .reset-filter-button:hover {
   color: #0056b3; 
 }
+
+/* Login overlay */
+.login-modal {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  border: solid 2pc red;
+  background-color: rgba(0, 0, 0, 0.6); /* Øget opacitet til 0.6 for mindre gennemsigtighed */
+  z-index: 9999; /* Høj z-index for at sikre, at modal-overlayet ligger over andet indhold */
+}
+
+/* Modal content */
+.modal-content {
+  width: fit-content;
+  max-width: 500px;
+  background: #2b364a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.5s ease-out;
+  z-index: 10000; /* Højere end modal-overlay for at ligge over overlayet */
+}
+
+.modal-content form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.form-input-name {
+  margin-bottom: 5px;
+  color: white;
+  float: left;
+}
+
+.form-input-name h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+/* Luk-knap */
+.close {
+  float: left;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Indtastningsfelter og knapper */
+.login-modal-inputs {
+  width: 20rem;
+  padding: 10px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+  align-self: center;
+  border: 2px solid #2b364aa8;
+  font-weight: bold;
+}
+.login-modal-inputs:focus {
+  outline: none;
+  border: 2px solid #2d7dfe;
+}
+
+
+.login-modal-inputs.submit {
+  background-color: #2d7dfe;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10rem;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color ease-in-out 0.3s;
+}
+
+.login-modal-inputs.submit:hover {
+  background-color: #0043ae;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remember-me-section {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me-input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.remember-me-label {
+  color: white;
+}
+
+
+/* Animation til modal */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 

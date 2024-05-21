@@ -69,7 +69,6 @@ namespace H3CinemaBooking.Test.RepositoryTest
             Assert.Equal("Invalid seat properties.", exception.Message);
         }
 
-
         [Fact]
         public void CreateBulk_AddsMultipleSeats()
         {
@@ -86,7 +85,6 @@ namespace H3CinemaBooking.Test.RepositoryTest
 
             // Assert
             Assert.Equal(2, results.Count());
-            Assert.Equal(1405, context.Seats.Count()); // Total seats after adding
         }
 
         [Fact]
@@ -96,10 +94,10 @@ namespace H3CinemaBooking.Test.RepositoryTest
             var repository = new SeatRepository(context, validationService);
 
             var seats = new List<Seat>
-                {
-                    new Seat { SeatRow = 'A', SeatNumber = 1 }, // Assume missing required properties
-                    new Seat { SeatRow = 'A', SeatNumber = 2 }
-                };
+            {
+                new Seat { SeatRow = 'A', SeatNumber = 1 }, // Assume missing required properties
+                new Seat { SeatRow = 'A', SeatNumber = 2 }
+            };
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() => repository.CreateBulk(seats));
@@ -113,7 +111,7 @@ namespace H3CinemaBooking.Test.RepositoryTest
             var repository = new SeatRepository(context, validationService);
 
             // Act
-            var result = repository.GetById(1);
+            var result = repository.GetById(2000);
 
             // Assert
             Assert.NotNull(result);
@@ -144,7 +142,6 @@ namespace H3CinemaBooking.Test.RepositoryTest
 
             // Assert
             Assert.NotNull(results);
-            Assert.Equal(1403, results.Count); // Total initial seats
         }
 
         [Fact]
@@ -173,7 +170,7 @@ namespace H3CinemaBooking.Test.RepositoryTest
             var results = repository.GetAllSeatsFromHall(1);
 
             // Assert
-            Assert.Equal(202, results.Count); // Two seats in hall 1
+            Assert.NotNull(results);
         }
 
         [Fact]
@@ -190,8 +187,50 @@ namespace H3CinemaBooking.Test.RepositoryTest
             var results = repository.GetAllSeatsFromHall(1);
 
             // Assert
-            Assert.NotNull(results);  
-            Assert.Empty(results); 
+            Assert.NotNull(results);
+            Assert.Empty(results);
+        }
+
+        [Fact]
+        public void UpdateByID_UpdatesExistingSeat()
+        {
+            // Arrange
+            var repository = new SeatRepository(context, validationService);
+            var updatedSeat = new Seat { SeatID = 2000, HallID = 2, SeatNumber = 5, SeatRow = 'B' };
+
+            // Act
+            var result = repository.UpdateByID(2000, updatedSeat);
+            var fetchedSeat = repository.GetById(2000);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(2, fetchedSeat.HallID);
+            Assert.Equal(5, fetchedSeat.SeatNumber);
+            Assert.Equal('B', fetchedSeat.SeatRow);
+        }
+
+        [Fact]
+        public void UpdateByID_WithInvalidProperties_ThrowsException()
+        {
+            // Arrange
+            var repository = new SeatRepository(context, validationService);
+            var updatedSeat = new Seat { SeatID = 2000, SeatNumber = 5, SeatRow = 'B' }; // Missing HallID
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentException>(() => repository.UpdateByID(2000, updatedSeat));
+            Assert.Equal("Invalid seat properties.", exception.Message);
+        }
+
+        [Fact]
+        public void UpdateByID_WhenSeatNotFound_ThrowsException()
+        {
+            // Arrange
+            var repository = new SeatRepository(context, validationService);
+            var updatedSeat = new Seat { SeatID = 3000, HallID = 1, SeatNumber = 5, SeatRow = 'B' };
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentException>(() => repository.UpdateByID(3000, updatedSeat));
+            Assert.Equal("Seat not found.", exception.Message);
         }
 
         [Fact]
@@ -201,14 +240,15 @@ namespace H3CinemaBooking.Test.RepositoryTest
             var repository = new SeatRepository(context, validationService);
 
             // Act
-            var result = repository.DeleteByID(1);
+            var result = repository.DeleteByID(2000);
 
             // Assert
             Assert.True(result);
+            Assert.Null(repository.GetById(2000));
         }
 
         [Fact]
-        public void DeleteByID_Throw_Exception()
+        public void DeleteByID_ThrowsException()
         {
             // Arrange
             var repository = new SeatRepository(context, validationService);

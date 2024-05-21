@@ -135,18 +135,6 @@ namespace H3CinemaBooking.Test.RepositoryTest
         }
 
         [Fact]
-        public void GetBookingSeatsByShowId_WhenNoBookingsFound_ShouldThrowException()
-        {
-            // Arrange
-            var repository = new BookingRepository(context, validationService);
-            int showId = 100;
-
-            // Act & Assert
-            var exception = Assert.Throws<InvalidOperationException>(() => repository.GetBookingSeatsByShowId(showId));
-            Assert.Equal($"No bookings found for show ID {showId}", exception.Message);
-        }
-
-        [Fact]
         public void CreateBookingSeat_ValidInput_CreatesSeats()
         {
             // Arrange

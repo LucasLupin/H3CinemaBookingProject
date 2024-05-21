@@ -137,7 +137,7 @@
               </div>
               <div class="movie-info">
                 <h2>
-                  <span class="Movie-Title">{{ movie.title }}</span>
+                  <span class="Movie-Title" [attr.title]="movie.title">{{ truncateTitle(movie.title ?? '') }}</span>
                 </h2>
                 <button (click)="goToMoviePage(movie.movieID!.toString())" class="buy-button">Køb <fa-icon [icon]="faTicket"></fa-icon></button>
               </div>
