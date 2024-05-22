@@ -86,7 +86,7 @@ namespace H3CinemaBooking.API.Controllers
         }
 
         [HttpPost("registerAdminOutToken")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<UserDetail> RegisterAdminWithOutToken(RegisterUserDTO registerUserDetail)
         {
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
@@ -108,7 +108,6 @@ namespace H3CinemaBooking.API.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult<UserDetail> RegisterCostumerWithOutToken(RegisterUserDTO registerUserDetail)
         {
-            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
             List<string> errors = _userDetailService.ValidateUserInput(registerUserDetail);
             if (errors.Any())
             {
@@ -147,7 +146,6 @@ namespace H3CinemaBooking.API.Controllers
 
         //Update 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
         public ActionResult Update(UserDetailDTO userdetail, int id)
         {
             _userDetailService.UpdateByID(id, userdetail);
